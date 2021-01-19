@@ -1,6 +1,6 @@
 //
 //  Flashcard+CoreDataClass.swift
-//  
+//  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 19/01/2021.
 //
