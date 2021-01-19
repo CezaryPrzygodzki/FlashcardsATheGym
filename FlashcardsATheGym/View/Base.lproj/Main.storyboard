@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsy-MM-sk5">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Flashcards View Controller-->
+        <scene sceneID="hF3-HV-XwI">
+            <objects>
+                <viewController id="d0K-Ke-vUw" customClass="FlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HAC-AZ-01c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="oyU-HZ-vNO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kWU-ch-hvK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="laK-1l-LbZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-713" y="1393"/>
+        </scene>
+        <!--Trening View Controller-->
+        <scene sceneID="bET-C5-uCV">
+            <objects>
+                <viewController id="0GF-n2-1RG" customClass="TreningViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SXX-CC-fAn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WYu-O6-hxh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ucf-ji-9x5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TBN-3W-b7m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1700" y="1393"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="V8v-SZ-xep">
+            <objects>
+                <viewController id="2tg-sp-F9t" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tiw-0q-Af6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="iPl-YK-x6M"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hRd-11-Bm1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szI-Qn-is8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="267" y="1393"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="MLf-O0-PTP">
+            <objects>
+                <viewController id="5vj-W8-Wu6" customClass="SettingsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Mq-fo-nJ5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="w8G-Hh-Inu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dVD-T2-8T7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inM-nX-Ab4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="1393"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="16O-Wk-d6I">
+            <objects>
+                <viewController id="e0w-4f-Wvr" customClass="LoginViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ncF-so-BUi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="dbr-vA-4dh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1PM-t1-4gd"/>
+                    <connections>
+                        <segue destination="9Bm-rC-diJ" kind="show" identifier="toSignUp" destinationCreationSelector="toSignUp" id="zWj-dz-Ohy"/>
+                        <segue destination="EF9-0z-83q" kind="show" identifier="logged" destinationCreationSelector="logged" id="dUK-nb-9Np"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fCt-HU-WzS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1357" y="-1046"/>
+        </scene>
+        <!--Sign Up Login Skip Controller-->
+        <scene sceneID="CSl-NV-e5L">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="D7O-3U-Z6G" customClass="SignUpLoginSkipController" customModule="FlashcardsATheGym" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yc4-iJ-OtV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ukC-mJ-xJ5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9b6-HU-hbg"/>
+                    <connections>
+                        <segue destination="e0w-4f-Wvr" kind="show" identifier="Login" destinationCreationSelector="Login" id="trX-Cm-1iU"/>
+                        <segue destination="9Bm-rC-diJ" kind="show" identifier="SignUp" destinationCreationSelector="SignUp" id="Slt-WF-9Gr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gsx-ME-xOF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-22" y="-1820"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="LWd-Np-wJe">
+            <objects>
+                <tabBarController storyboardIdentifier="MainViewController" modalPresentationStyle="fullScreen" id="EF9-0z-83q" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="MMf-Ok-uNk"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PZ4-R0-4LQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Dd4-hu-VkJ" kind="relationship" relationship="viewControllers" id="avg-yn-6KA"/>
+                        <segue destination="6lM-Dd-dod" kind="relationship" relationship="viewControllers" id="ha9-Q2-Y1b"/>
+                        <segue destination="6Cl-J2-nUo" kind="relationship" relationship="viewControllers" id="0N5-Hk-EpP"/>
+                        <segue destination="2gB-kh-2Qy" kind="relationship" relationship="viewControllers" id="0Zf-r9-MEs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WFZ-RZ-GlM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110" y="-309"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="m7N-0X-KT4">
+            <objects>
+                <viewController id="9Bm-rC-diJ" customClass="SignUpViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x7o-g9-hVF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="y4u-2Z-D9R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="brb-Sj-8vc"/>
+                    <connections>
+                        <segue destination="e0w-4f-Wvr" kind="show" identifier="toLogin" destinationCreationSelector="toLogin" id="jgq-Yw-SL0"/>
+                        <segue destination="EF9-0z-83q" kind="show" identifier="signedUp" destinationCreationSelector="signedUp" id="k43-Wg-4Tm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O6Y-MQ-eUI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="-1083"/>
+        </scene>
+        <!--Fiszki-->
+        <scene sceneID="lyP-W2-Wqa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6lM-Dd-dod" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Fiszki" image="book" catalog="system" id="oaH-OO-il0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="MzO-97-9Ev">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZh-qq-X3J">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="d0K-Ke-vUw" kind="relationship" relationship="rootViewController" id="4yu-yd-H6b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTp-gg-vGl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-712" y="473"/>
+        </scene>
+        <!--Trening-->
+        <scene sceneID="bQ5-Jy-1YI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dd4-hu-VkJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trening" image="t.circle" catalog="system" id="Zr6-yF-flx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1YF-3A-OtF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0GF-n2-1RG" kind="relationship" relationship="rootViewController" id="niv-7B-sBl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X6G-En-sbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1699" y="474"/>
+        </scene>
+        <!--Sklep-->
+        <scene sceneID="uPJ-X6-CIq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Cl-J2-nUo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sklep" image="cart" catalog="system" id="JIu-Wh-0Cf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="It3-8m-jgE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2tg-sp-F9t" kind="relationship" relationship="rootViewController" id="8jZ-0s-bF1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mge-vJ-zaG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="267" y="473"/>
+        </scene>
+        <!--Ustawienia-->
+        <scene sceneID="NKi-bt-Btl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2gB-kh-2Qy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ustawienia" image="ellipsis.circle" catalog="system" id="e28-7h-tfD"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1ta-h7-7bf">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5vj-W8-Wu6" kind="relationship" relationship="rootViewController" id="jDW-4B-A94"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N5a-fR-vw4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="473"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vmm-Df-Er5">
+            <objects>
+                <navigationController storyboardIdentifier="SignUpLoginSkipController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" navigationBarHidden="YES" id="92b-NI-P1a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NgO-Lr-5H4">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D7O-3U-Z6G" kind="relationship" relationship="rootViewController" id="Ea2-cH-fRb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JcS-gu-jE6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-874" y="-1820"/>
+        </scene>
+        <!--App Container View Controller-->
+        <scene sceneID="VlR-2g-F0y">
+            <objects>
+                <viewController id="tsy-MM-sk5" customClass="AppContainerViewController" customModule="FlashcardsATheGym" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ka3-fZ-h5v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="qy4-hx-ik4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJg-86-EMx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2107" y="-1838"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Slt-WF-9Gr"/>
+        <segue reference="dUK-nb-9Np"/>
+        <segue reference="trX-Cm-1iU"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="book" catalog="system" width="128" height="102"/>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
+        <image name="t.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
