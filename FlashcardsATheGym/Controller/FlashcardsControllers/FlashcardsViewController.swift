@@ -14,6 +14,9 @@ class FlashcardsViewController: UIViewController {
     
     let allFlashcardsButton = UIButton()
     
+    let buttonsView = UIView()
+    let addFlashcardButton = UIButton()
+    let addListButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,8 @@ class FlashcardsViewController: UIViewController {
         flashcardsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         flashcardsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive       = true
         
+        configureAddFlashcardsButton()
+        view.addSubview(buttonsView)
         
     }
     
@@ -62,27 +67,40 @@ class FlashcardsViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
-        
+
         imageView.tintColor = Colors.FATGpink
         NSLayoutConstraint.activate([
         imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -16),
         imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -12),
-        imageView.heightAnchor.constraint(equalToConstant: 35),
-        imageView.widthAnchor.constraint(equalToConstant: 35)
+        imageView.heightAnchor.constraint(equalToConstant: 45),
+        imageView.widthAnchor.constraint(equalToConstant: 45)
         ])
+        
+        
     }
     @objc
     func addButtonAction() {
-//        let addVC = UIStoryboard(name: "Main",
-//                                 bundle: nil)
-//            .instantiateViewController(identifier: "addEmployee") as! AddEmployeeViewController
-//
-//
-//
-//        navigationController?.showDetailViewController(addVC, sender: true)
-        print("You pressed add button :)")
+        if ( self.navigationController!.navigationBar.layer.zPosition == 0 ) {
+            self.navigationController!.navigationBar.layer.zPosition = -1
+            
+            UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseInOut,animations: {
+
+                self.buttonsView.transform = CGAffineTransform(translationX: -300, y: 0)
+                
+            }) { (finished) in
+                //self.buttonLabel.isHidden = finished
+            }
+        } else if ( self.navigationController!.navigationBar.layer.zPosition == -1 ){
+            
+            UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseInOut,animations: {
+
+                self.buttonsView.transform = CGAffineTransform(translationX: 300, y: 0)
+                
+            }) { (finished) in
+                self.navigationController!.navigationBar.layer.zPosition = 0
+            }
+        }
     }
-    
     func configureEmployeeTableView(){
         
         flashcardsTableView = UITableView()
@@ -120,7 +138,62 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func allFlashcards (){
-        print("All flashcards")
+        print("Wszystkie fiszki")
+        
+    }
+    
+    func configureAddFlashcardsButton() {
+        buttonsView.backgroundColor = .white
+        buttonsView.layer.cornerRadius = 15
+        buttonsView.layer.shadowRadius = 10
+        buttonsView.layer.shadowColor = CGColor(red: 0.215, green: 0.247, blue: 0.344, alpha: 1)
+        buttonsView.layer.shadowOpacity = 1
+        buttonsView.layer.shadowOffset = .zero
+        buttonsView.layer.zPosition = 10
+
+        
+        buttonsView.frame.size.width = 240
+        buttonsView.frame.size.height = 150
+        
+        buttonsView.frame = CGRect(x: self.view.frame.size.width - buttonsView.frame.size.width - 10 + 300,
+                                   y: 15,
+                                   width: buttonsView.frame.size.width,
+                                   height: buttonsView.frame.size.height)
+        
+        buttonsView.addSubview(addFlashcardButton)
+        addFlashcardButton.frame = CGRect(x: 10,
+                                          y: 10,
+                                 width: buttonsView.frame.size.width - 20,
+                                 height: ( buttonsView.frame.size.height - 10 ) / 2 - 10)
+        addFlashcardButton.backgroundColor = Colors.FATGpink
+        addFlashcardButton.layer.cornerRadius = 10
+        addFlashcardButton.addTarget(self, action: #selector(addFlashcard), for: .touchUpInside)
+        addFlashcardButton.setTitle("Nowa fiszka", for: .normal)
+        addFlashcardButton.setTitleColor(Colors.FATGtext, for: .normal)
+        addFlashcardButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .medium)
+        
+
+        buttonsView.addSubview(addListButton)
+        addListButton.frame = CGRect(x: 10,
+                                     y: addFlashcardButton.frame.origin.y + addFlashcardButton.frame.size.height + 10,
+                                     width: buttonsView.frame.size.width - 20,
+                                     height: ( buttonsView.frame.size.height - 10 ) / 2 - 10)
+        addListButton.backgroundColor = Colors.FATGpink
+        addListButton.layer.cornerRadius = 10
+        addListButton.addTarget(self, action: #selector(addList), for: .touchUpInside)
+        addListButton.setTitle("Nowa lista", for: .normal)
+        addListButton.setTitleColor(Colors.FATGtext, for: .normal)
+        addListButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .medium)
+        
+    }
+    
+    @objc func addFlashcard (){
+        print("addFlashcard")
+        
+    }
+    
+    @objc func addList (){
+        print("addList")
         
     }
 }
