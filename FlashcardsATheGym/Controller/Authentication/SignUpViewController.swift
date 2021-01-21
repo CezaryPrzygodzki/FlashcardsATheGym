@@ -18,9 +18,9 @@ class SignUpViewController: UIViewController {
     let welcomeImage = UIImageView()
     let signUpToLoginQuestion = FRHyperLabel()
     
-    var textFieldNick = UITextField()
-    var textFieldMail = UITextField()
-    var textFieldPassword = UITextField()
+    let textFieldNick = UITextField()
+    let textFieldMail = UITextField()
+    let textFieldPassword = UITextField()
     let eyeButton = UIButton(type: .custom)
     let signUpButton = UIButton()
     var labelError = UILabel()

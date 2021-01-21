@@ -20,7 +20,7 @@
 		4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9825B4898000F9669C /* TreningViewController.swift */; };
 		4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */; };
 		4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA225B489D100F9669C /* FlashcardsViewController.swift */; };
-		4990AFA825B4C22000F9669C /* FlashcardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA725B4C22000F9669C /* FlashcardsTableViewCell.swift */; };
+		4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */; };
 		4990AFAD25B5B46500F9669C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */; };
 		4990AFF425B5C99900F9669C /* SignUpLoginSkipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFF325B5C99900F9669C /* SignUpLoginSkipController.swift */; };
 		4990B02425B6E23700F9669C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B02325B6E23700F9669C /* SignUpViewController.swift */; };
@@ -30,6 +30,10 @@
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
 		49E2DE1A25B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */; };
 		49E2DE1B25B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */; };
+		49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */; };
+		49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2425B8E30200F3C4F8 /* Alert.swift */; };
+		49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */; };
+		49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */; };
 		575222F8360AE0519D9C9574 /* Pods_FlashcardsATheGym.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */; };
 		9EB2CD42D3C465E44B68F6AB /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */; };
 		D67EA40553958F8400957878 /* Pods_FlashcardsATheGymTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00374564AD2F3F6E563E9F1B /* Pods_FlashcardsATheGymTests.framework */; };
@@ -75,7 +79,7 @@
 		4990AF9825B4898000F9669C /* TreningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreningViewController.swift; sourceTree = "<group>"; };
 		4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTreningsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFA225B489D100F9669C /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
-		4990AFA725B4C22000F9669C /* FlashcardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsTableViewCell.swift; sourceTree = "<group>"; };
+		4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4990AFF325B5C99900F9669C /* SignUpLoginSkipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpLoginSkipController.swift; path = FlashcardsATheGym/Controller/Authentication/SignUpLoginSkipController.swift; sourceTree = SOURCE_ROOT; };
 		4990B02325B6E23700F9669C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +89,10 @@
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataClass.swift"; sourceTree = "<group>"; };
 		49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardsViewController.swift; sourceTree = "<group>"; };
+		49E2DE2425B8E30200F3C4F8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFlashcardsViewController.swift; sourceTree = "<group>"; };
+		49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsTableViewCell.swift; sourceTree = "<group>"; };
 		748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE0B69B113D0494DC321C3 /* Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym-FlashcardsATheGymUITests/Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +213,7 @@
 			children = (
 				4990AF8B25B488EE00F9669C /* Constants.swift */,
 				4990AF9325B4892400F9669C /* UIKitExtensions.swift */,
+				49E2DE2425B8E30200F3C4F8 /* Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,7 +268,10 @@
 			isa = PBXGroup;
 			children = (
 				4990AFA225B489D100F9669C /* FlashcardsViewController.swift */,
-				4990AFA725B4C22000F9669C /* FlashcardsTableViewCell.swift */,
+				4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */,
+				49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */,
+				49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */,
+				49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */,
 			);
 			path = FlashcardsControllers;
 			sourceTree = "<group>";
@@ -563,7 +575,10 @@
 				4990B02925B7152100F9669C /* LoginViewController.swift in Sources */,
 				4990B02425B6E23700F9669C /* SignUpViewController.swift in Sources */,
 				49E2DE1B25B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift in Sources */,
+				49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */,
 				4990AFF425B5C99900F9669C /* SignUpLoginSkipController.swift in Sources */,
+				49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */,
+				49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */,
 				4990AF5425B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld in Sources */,
 				49E2DE1A25B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift in Sources */,
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
@@ -573,7 +588,8 @@
 				4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */,
 				4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */,
 				4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */,
-				4990AFA825B4C22000F9669C /* FlashcardsTableViewCell.swift in Sources */,
+				4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */,
+				49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */,
 				4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */,
 				4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */,
 				4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */,

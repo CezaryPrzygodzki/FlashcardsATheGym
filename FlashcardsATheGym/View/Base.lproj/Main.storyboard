@@ -13,23 +13,58 @@
             <objects>
                 <viewController id="d0K-Ke-vUw" customClass="FlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HAC-AZ-01c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oyU-HZ-vNO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="kWU-ch-hvK"/>
+                    <connections>
+                        <segue destination="0jc-Ct-cd5" kind="show" identifier="showAllFlashcards" destinationCreationSelector="showAllFlashcards" id="90n-2S-Gmi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laK-1l-LbZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-713" y="1393"/>
+        </scene>
+        <!--All Flashcards View Controller-->
+        <scene sceneID="G4m-uV-z6Z">
+            <objects>
+                <viewController id="0jc-Ct-cd5" customClass="AllFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xyc-Ft-MeE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wfM-cH-WAP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Toq-LF-Ap4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0eW-ZF-jis" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-713" y="2133"/>
+        </scene>
+        <!--Add Flashcards View Controller-->
+        <scene sceneID="WT9-rW-bpw">
+            <objects>
+                <viewController storyboardIdentifier="addFlashcard" id="RgI-hy-Toi" customClass="AddFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="03g-aJ-wgg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2c8-hK-JBj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6oD-yu-AvS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-nG-GXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-713" y="2873"/>
         </scene>
         <!--Trening View Controller-->
         <scene sceneID="bET-C5-uCV">
             <objects>
                 <viewController id="0GF-n2-1RG" customClass="TreningViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SXX-CC-fAn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="WYu-O6-hxh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,7 +80,7 @@
             <objects>
                 <viewController id="2tg-sp-F9t" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tiw-0q-Af6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iPl-YK-x6M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,7 +96,7 @@
             <objects>
                 <viewController id="5vj-W8-Wu6" customClass="SettingsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Mq-fo-nJ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="w8G-Hh-Inu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -77,7 +112,7 @@
             <objects>
                 <viewController id="e0w-4f-Wvr" customClass="LoginViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ncF-so-BUi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="dbr-vA-4dh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -138,7 +173,7 @@
             <objects>
                 <viewController id="9Bm-rC-diJ" customClass="SignUpViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7o-g9-hVF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="y4u-2Z-D9R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -160,11 +195,12 @@
                     <tabBarItem key="tabBarItem" title="Fiszki" image="book" catalog="system" id="oaH-OO-il0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="MzO-97-9Ev">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZh-qq-X3J">
+                        <rect key="frame" x="0.0" y="-54" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -182,7 +218,7 @@
                     <tabBarItem key="tabBarItem" title="Trening" image="t.circle" catalog="system" id="Zr6-yF-flx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1YF-3A-OtF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -201,7 +237,7 @@
                     <tabBarItem key="tabBarItem" title="Sklep" image="cart" catalog="system" id="JIu-Wh-0Cf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="It3-8m-jgE">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -220,7 +256,7 @@
                     <tabBarItem key="tabBarItem" title="Ustawienia" image="ellipsis.circle" catalog="system" id="e28-7h-tfD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1ta-h7-7bf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -266,9 +302,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Slt-WF-9Gr"/>
+        <segue reference="zWj-dz-Ohy"/>
         <segue reference="dUK-nb-9Np"/>
-        <segue reference="trX-Cm-1iU"/>
+        <segue reference="jgq-Yw-SL0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

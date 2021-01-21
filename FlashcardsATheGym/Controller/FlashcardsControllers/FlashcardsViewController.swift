@@ -29,7 +29,7 @@ class FlashcardsViewController: UIViewController {
         configureAllFlashcardsButton()
         view.addSubview(allFlashcardsButton)
         
-        configureEmployeeTableView()
+        configureFlashcardsTableView()
         view.addSubview(flashcardsTableView)
         flashcardsTableView.topAnchor.constraint(equalTo: allFlashcardsButton.bottomAnchor , constant: 25).isActive = true
         flashcardsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
@@ -44,14 +44,14 @@ class FlashcardsViewController: UIViewController {
 
     func configureNavigationAndTabBarControllers(){
 
-        self.tabBarController?.tabBar.tintColor = Colors.FATGtext!
+        self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
         title = "Fiszki"
         self.view.backgroundColor = Colors.FATGbackground
         navigationController?.setStatusBar(backgroundColor: Colors.FATGbackground!)
         navigationController?.navigationBar.backgroundColor = Colors.FATGbackground //large nav bar
         navigationController?.navigationBar.barTintColor = Colors.FATGbackground //small nav bar
         navigationController?.navigationBar.isTranslucent = false
-        tabBarController?.tabBar.barTintColor = .lightGray
+        tabBarController?.tabBar.barTintColor = Colors.FATGBarTint
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.FATGtext!]
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.FATGtext!]
     }
@@ -72,8 +72,8 @@ class FlashcardsViewController: UIViewController {
         NSLayoutConstraint.activate([
         imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -16),
         imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -12),
-        imageView.heightAnchor.constraint(equalToConstant: 45),
-        imageView.widthAnchor.constraint(equalToConstant: 45)
+        imageView.heightAnchor.constraint(equalToConstant: 35),
+        imageView.widthAnchor.constraint(equalToConstant: 35)
         ])
         
         
@@ -83,7 +83,7 @@ class FlashcardsViewController: UIViewController {
         if ( self.navigationController!.navigationBar.layer.zPosition == 0 ) {
             self.navigationController!.navigationBar.layer.zPosition = -1
             
-            UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseInOut,animations: {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut,animations: {
 
                 self.buttonsView.transform = CGAffineTransform(translationX: -300, y: 0)
                 
@@ -92,7 +92,7 @@ class FlashcardsViewController: UIViewController {
             }
         } else if ( self.navigationController!.navigationBar.layer.zPosition == -1 ){
             
-            UIView.animate(withDuration: 1.5, delay: 0, options: .curveEaseInOut,animations: {
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut,animations: {
 
                 self.buttonsView.transform = CGAffineTransform(translationX: 300, y: 0)
                 
@@ -101,13 +101,13 @@ class FlashcardsViewController: UIViewController {
             }
         }
     }
-    func configureEmployeeTableView(){
+    func configureFlashcardsTableView(){
         
         flashcardsTableView = UITableView()
         //set row height
         flashcardsTableView.rowHeight = 80
         //register cells
-        flashcardsTableView.register(FlashcardsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
+        flashcardsTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
         //set contraits
         flashcardsTableView.translatesAutoresizingMaskIntoConstraints = false
         //set delegates
@@ -138,12 +138,14 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc func allFlashcards (){
-        print("Wszystkie fiszki")
+        print("allFlashcards")
+        self.performSegue(withIdentifier: "showAllFlashcards", sender: self)
+
         
     }
     
     func configureAddFlashcardsButton() {
-        buttonsView.backgroundColor = .white
+        buttonsView.backgroundColor = Colors.FATGWhiteBlack
         buttonsView.layer.cornerRadius = 15
         buttonsView.layer.shadowRadius = 10
         buttonsView.layer.shadowColor = CGColor(red: 0.215, green: 0.247, blue: 0.344, alpha: 1)
@@ -189,11 +191,29 @@ class FlashcardsViewController: UIViewController {
     
     @objc func addFlashcard (){
         print("addFlashcard")
+        addButtonAction()
+        let addVC = UIStoryboard(name: "Main",
+                                 bundle: nil)
+            .instantiateViewController(identifier: "addFlashcard") as! AddFlashcardsViewController
+        
+
+        addVC.flashcardsViewController = self
+        
+        navigationController?.showDetailViewController(addVC, sender: true)
+
         
     }
     
     @objc func addList (){
         print("addList")
+        addButtonAction()
+    }
+    
+    
+    func backFromAddFlashcardControllerToDetailsController(){
+        
+    }
+    func backFromAddListControllerToDetailsController(){
         
     }
 }
@@ -206,7 +226,7 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: letflashcardsTableViewCellIdentifier, for: indexPath) as? FlashcardsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: letflashcardsTableViewCellIdentifier, for: indexPath) as? ListsTableViewCell else {
             fatalError("Bad Instance")
         }
     

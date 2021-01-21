@@ -44,14 +44,14 @@ class TreningViewController: UIViewController{
 
     func configureNavigationAndTabBarControllers(){
 
-        self.tabBarController?.tabBar.tintColor = Colors.FATGtext!
+        self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
         title = "Trening"
         self.view.backgroundColor = Colors.FATGbackground
         navigationController?.setStatusBar(backgroundColor: Colors.FATGbackground!)
         navigationController?.navigationBar.backgroundColor = Colors.FATGbackground //large nav bar
         navigationController?.navigationBar.barTintColor = Colors.FATGbackground //small nav bar
         navigationController?.navigationBar.isTranslucent = false
-        tabBarController?.tabBar.barTintColor = .lightGray
+        tabBarController?.tabBar.barTintColor = Colors.FATGBarTint
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.FATGtext!]
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.FATGtext!]
     }

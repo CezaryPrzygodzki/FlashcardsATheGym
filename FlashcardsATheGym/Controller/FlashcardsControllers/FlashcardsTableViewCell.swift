@@ -2,7 +2,7 @@
 //  FlashcardsTableViewCell.swift
 //  FlashcardsATheGym
 //
-//  Created by Cezary Przygodzki on 17/01/2021.
+//  Created by Cezary Przygodzki on 21/01/2021.
 //
 
 import UIKit
@@ -10,12 +10,13 @@ import UIKit
 class FlashcardsTableViewCell: UITableViewCell {
 
     let cellWidth = UIScreen.main.bounds.size.width - 50
-    let cellHeight : CGFloat = 80
+    let cellHeight : CGFloat = 100
     let padding: CGFloat = 15
     
     
     let background = UIView()
-    let nameOfListOfFlashcardsLabel = UILabel()
+    let wordLabel = UILabel()
+    let translationLabel = UILabel()
     
 
     
@@ -26,8 +27,11 @@ class FlashcardsTableViewCell: UITableViewCell {
         addSubview(background)
         configureBackground()
         
-        addSubview(nameOfListOfFlashcardsLabel)
-        configureNameOfListOfFlashcardsLabel()
+        addSubview(wordLabel)
+        configureWordLabel()
+        
+        addSubview(translationLabel)
+        configureTranslationLabel()
         
 
      }
@@ -38,7 +42,7 @@ class FlashcardsTableViewCell: UITableViewCell {
     
     
     func configureBackground() {
-        background.backgroundColor = .white
+        background.backgroundColor = Colors.FATGWhiteBlack
         
         background.layer.cornerRadius = 10
 
@@ -47,21 +51,35 @@ class FlashcardsTableViewCell: UITableViewCell {
         
     }
     
-    func configureNameOfListOfFlashcardsLabel(){
-        nameOfListOfFlashcardsLabel.text = "Czasowniki nieregularne"
-        nameOfListOfFlashcardsLabel.textColor = Colors.FATGtext
-        nameOfListOfFlashcardsLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+    func configureWordLabel(){
+        wordLabel.text = "Sensational"
+        wordLabel.textColor = Colors.FATGtext
+        wordLabel.font = UIFont.systemFont(ofSize: 19, weight: .medium)
 
         
-        nameOfListOfFlashcardsLabel.frame.size.width = cellWidth - padding - padding
-        nameOfListOfFlashcardsLabel.frame.size.height = 30
+        wordLabel.frame.size.width = cellWidth - padding - padding
+        wordLabel.frame.size.height = 30
         
-        nameOfListOfFlashcardsLabel.frame = CGRect(x: padding,
-                                                   y: background.frame.size.height / 2 - nameOfListOfFlashcardsLabel.frame.size.height / 2,
-                                                   width: nameOfListOfFlashcardsLabel.frame.size.width,
-                                                   height: nameOfListOfFlashcardsLabel.frame.size.height)
+        wordLabel.frame = CGRect(x: padding,
+                                 y: background.frame.size.height / 2 - wordLabel.frame.size.height / 2 - 10,
+                                 width: wordLabel.frame.size.width,
+                                 height: wordLabel.frame.size.height)
         
         
+    }
+    func configureTranslationLabel() {
+        translationLabel.text = "Rewelacyjny"
+        translationLabel.textColor = Colors.FATGtext
+        translationLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+
+        
+        translationLabel.frame.size.width = cellWidth - padding - padding
+        translationLabel.frame.size.height = 30
+        
+        translationLabel.frame = CGRect(x: padding,
+                                 y: background.frame.size.height / 2 - translationLabel.frame.size.height / 2 + 10,
+                                 width: translationLabel.frame.size.width,
+                                 height: translationLabel.frame.size.height)
     }
 
 }

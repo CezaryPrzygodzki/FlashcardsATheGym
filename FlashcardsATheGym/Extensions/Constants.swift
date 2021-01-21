@@ -16,6 +16,10 @@ class Colors: UIColor {
     static let FATGtext = UIColor(named: "FATGDarkBlue")
     
     static let FATGbackground = UIColor(named: "FATGBackground")
+    
+    static let FATGWhiteBlack = UIColor(named: "FATGWhiteBlack")
+    
+    static let FATGBarTint = UIColor(named: "FATGBarTint")
 
 }
 
