@@ -16,6 +16,10 @@ class AllFlashcardsViewController: UIViewController {
     
     var flashcardsTableView: UITableView!
     let flashcardsTableViewCellIdentifier = "flashcardsTableViewCellIdentifier"
+
+    var thereIsCellTapped = false
+    var selectedRowIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,7 +106,7 @@ class AllFlashcardsViewController: UIViewController {
         
         flashcardsTableView = UITableView()
         //set row height
-        flashcardsTableView.rowHeight = 100
+        //flashcardsTableView.rowHeight = 100
         //register cells
         flashcardsTableView.register(FlashcardsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
         //set contraits
@@ -140,6 +144,11 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         let flashcard = flashcards[indexPath.row]
         cell.wordLabel.text = flashcard.word
         cell.translationLabel.text = flashcard.translation
+        cell.pronunciationLabel.text = "wym. /\(flashcard.pronunciation ?? "  ")/"
+        cell.meaningLabel.text = flashcard.meaning
+        cell.exampleLabel.text = flashcard.example
+        
+        cell.animate()
         return cell
     }
     
@@ -148,34 +157,33 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: flashcardsTableViewCellIdentifier, for: indexPath) as? FlashcardsTableViewCell else {
             fatalError("Bad Instance")
         }
-        
-        let flashcard = flashcards[indexPath.row]
-        print(flashcard.word)
+
+//        let flashcard = flashcards[indexPath.row]
+//        print(flashcard.word)
+        if selectedRowIndex != indexPath.row {
+               self.thereIsCellTapped = true
+               self.selectedRowIndex = indexPath.row
+           }
+           else {
+               // there is no cell selected anymore
+               self.thereIsCellTapped = false
+               self.selectedRowIndex = -1
+           }
+
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.endUpdates()
+
     }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//
-//            guard let appDelegate =
-//              UIApplication.shared.delegate as? AppDelegate else {
-//              return
-//            }
-//
-//            let managedContext = appDelegate.persistentContainer.viewContext
-//
-//            let flashcard = flashcards[indexPath.row]
-//            managedContext.delete(flashcard)
-//
-//            do {
-//                try managedContext.save()
-//            } catch let error as NSError {
-//              print("Could not save. \(error), \(error.userInfo)")
-//            }
-//
-//            flashcards.remove(at: indexPath.row)
-//            flashcardsTableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == selectedRowIndex && thereIsCellTapped {
+                return 190
+            }
+
+            return 90
+    }
+
     func setFlashcardsTableViewDelegates(){
         flashcardsTableView.delegate = self
         flashcardsTableView.dataSource = self
@@ -241,8 +249,9 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
 
         if let swipeContainerView = tableView.subviews.first(where: { String(describing: type(of: $0)) == "_UITableViewCellSwipeContainerView" }) {
           if let swipeActionPullView = swipeContainerView.subviews.first, String(describing: type(of: swipeActionPullView)) == "UISwipeActionPullView" {
-            swipeActionPullView.frame.size.height -= 20
-            swipeActionPullView.layer.cornerRadius = 10
+//            swipeActionPullView.frame.size.height -= 20
+//            
+//            swipeActionPullView.layer.cornerRadius = 10
           }
         }
     }
