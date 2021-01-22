@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SC-nG-GXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-713" y="2873"/>
+            <point key="canvasLocation" x="-713" y="2875"/>
         </scene>
         <!--Trening View Controller-->
         <scene sceneID="bET-C5-uCV">
@@ -299,6 +299,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BJg-86-EMx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2107" y="-1838"/>
+        </scene>
+        <!--Edit Flashcards View Controller-->
+        <scene sceneID="eoZ-gb-JSj">
+            <objects>
+                <viewController storyboardIdentifier="editFlashcard" id="lFA-eQ-Ldd" customClass="EditFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NhA-37-9xn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mw5-9p-bk6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DDC-6b-zLs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lkO-a6-BuA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-713" y="3561"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -15,8 +15,8 @@ class FlashcardsTableViewCell: UITableViewCell {
     
     
     let background = UIView()
-    let wordLabel = UILabel()
-    let translationLabel = UILabel()
+    var wordLabel = UILabel()
+    var translationLabel = UILabel()
     
 
     

@@ -23,6 +23,8 @@ class AddFlashcardsViewController: UIViewController {
     let addButton = UIButton()
     
     var flashcardsViewController: FlashcardsViewController?
+    var allFlashcardsViewController: AllFlashcardsViewController?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +71,7 @@ class AddFlashcardsViewController: UIViewController {
         titleLabel.text = "Nowa fiszka"
         titleLabel.textColor = Colors.FATGtext
         titleLabel.font = UIFont.systemFont(ofSize: 40, weight: .bold)
-        titleLabel.frame = CGRect(x: 25, y: 25, width: 400, height: 100)
+        titleLabel.frame = CGRect(x: 25, y: 40, width: 400, height: 100)
         titleLabel.sizeToFit()
 
         
@@ -85,7 +87,7 @@ class AddFlashcardsViewController: UIViewController {
     func createTextFieldWord(){
         textFieldWord.textField(placeholder: "Wyraz np sensational")
         textFieldWord.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldWord.frame.size.width / 2,
-                                     y: titleLabel.frame.origin.y + titleLabel.frame.size.height + padding,
+                                     y: titleLabel.frame.origin.y + titleLabel.frame.size.height + 20,
                                      width: textFieldWord.frame.size.width,
                                      height: textFieldWord.frame.size.height)
     }

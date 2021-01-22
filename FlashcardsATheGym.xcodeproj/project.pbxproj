@@ -34,6 +34,7 @@
 		49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2425B8E30200F3C4F8 /* Alert.swift */; };
 		49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */; };
 		49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */; };
+		49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */; };
 		575222F8360AE0519D9C9574 /* Pods_FlashcardsATheGym.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */; };
 		9EB2CD42D3C465E44B68F6AB /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */; };
 		D67EA40553958F8400957878 /* Pods_FlashcardsATheGymTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00374564AD2F3F6E563E9F1B /* Pods_FlashcardsATheGymTests.framework */; };
@@ -93,6 +94,7 @@
 		49E2DE2425B8E30200F3C4F8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsTableViewCell.swift; sourceTree = "<group>"; };
+		49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFlashcardsViewController.swift; sourceTree = "<group>"; };
 		748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE0B69B113D0494DC321C3 /* Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym-FlashcardsATheGymUITests/Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 				49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */,
 				49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */,
 				49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */,
+				49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */,
 			);
 			path = FlashcardsControllers;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */,
 				4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */,
 				4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */,
+				49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */,
 				49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */,
 				4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */,
 				4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */,

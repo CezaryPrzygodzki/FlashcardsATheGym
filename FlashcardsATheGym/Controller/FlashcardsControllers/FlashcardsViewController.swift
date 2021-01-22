@@ -13,6 +13,7 @@ class FlashcardsViewController: UIViewController {
     var letflashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
     
     let allFlashcardsButton = UIButton()
+    let imageViewAddbutton = UIImageView()
     
     let buttonsView = UIView()
     let addFlashcardButton = UIButton()
@@ -40,6 +41,9 @@ class FlashcardsViewController: UIViewController {
         view.addSubview(buttonsView)
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        imageViewAddbutton.isHidden = false
+    }
     
 
     func configureNavigationAndTabBarControllers(){
@@ -58,33 +62,37 @@ class FlashcardsViewController: UIViewController {
 
     
     func createAddButton(){
-    let imageView = UIImageView(image: UIImage(systemName: "plus.circle.fill"))
+        imageViewAddbutton.image = UIImage(systemName: "plus.circle.fill")
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addButtonAction))
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
-        navigationBar.addSubview(imageView)
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
+        navigationBar.addSubview(imageViewAddbutton)
+        imageViewAddbutton.clipsToBounds = true
+        imageViewAddbutton.translatesAutoresizingMaskIntoConstraints = false
+        imageViewAddbutton.isUserInteractionEnabled = true
+        imageViewAddbutton.addGestureRecognizer(tapGestureRecognizer)
 
-        imageView.tintColor = Colors.FATGpink
+        imageViewAddbutton.tintColor = Colors.FATGpink
         NSLayoutConstraint.activate([
-        imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -16),
-        imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -12),
-        imageView.heightAnchor.constraint(equalToConstant: 35),
-        imageView.widthAnchor.constraint(equalToConstant: 35)
+            imageViewAddbutton.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -16),
+            imageViewAddbutton.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -12),
+            imageViewAddbutton.heightAnchor.constraint(equalToConstant: 45),
+            imageViewAddbutton.widthAnchor.constraint(equalToConstant: 45)
         ])
         
         
     }
     @objc
     func addButtonAction() {
+        
+
         if ( self.navigationController!.navigationBar.layer.zPosition == 0 ) {
             self.navigationController!.navigationBar.layer.zPosition = -1
             
             UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut,animations: {
 
+                let degrees : Double = 45
+                self.imageViewAddbutton.transform = CGAffineTransform(rotationAngle: CGFloat(degrees * .pi/180))
                 self.buttonsView.transform = CGAffineTransform(translationX: -300, y: 0)
                 
             }) { (finished) in
@@ -94,6 +102,8 @@ class FlashcardsViewController: UIViewController {
             
             UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut,animations: {
 
+                let degrees : Double = 0
+                self.imageViewAddbutton.transform = CGAffineTransform(rotationAngle: CGFloat(degrees * .pi/180))
                 self.buttonsView.transform = CGAffineTransform(translationX: 300, y: 0)
                 
             }) { (finished) in
@@ -139,6 +149,7 @@ class FlashcardsViewController: UIViewController {
     
     @objc func allFlashcards (){
         print("allFlashcards")
+        self.imageViewAddbutton.isHidden = true
         self.performSegue(withIdentifier: "showAllFlashcards", sender: self)
 
         
@@ -230,6 +241,7 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
             fatalError("Bad Instance")
         }
     
+        cell.selectionStyle = .none
         
 
         
