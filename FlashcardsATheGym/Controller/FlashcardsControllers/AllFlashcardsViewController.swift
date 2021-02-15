@@ -23,6 +23,7 @@ class AllFlashcardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("Hi im working")
         title = "Wszystkie fiszki"
         view.backgroundColor = Colors.FATGbackground
         navigationController?.navigationBar.tintColor = Colors.FATGpurple
@@ -106,7 +107,8 @@ class AllFlashcardsViewController: UIViewController {
         
         flashcardsTableView = UITableView()
         //set row height
-        //flashcardsTableView.rowHeight = 100
+        //flashcardsTableView.rowHeight = 100 //UITableView.automaticDimension
+        //flashcardsTableView.estimatedRowHeight = 90
         //register cells
         flashcardsTableView.register(FlashcardsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
         //set contraits
@@ -127,6 +129,11 @@ class AllFlashcardsViewController: UIViewController {
 //        flashcardToEdit = data
 //
 //    }
+    
+    func backFromAddingNewFlashcard( data: Flashcard!){
+        flashcards.append(data)
+        flashcardsTableView.reloadData()
+    }
 
 }
 
@@ -147,7 +154,9 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         cell.pronunciationLabel.text = "wym. /\(flashcard.pronunciation ?? "  ")/"
         cell.meaningLabel.text = flashcard.meaning
         cell.exampleLabel.text = flashcard.example
-        
+       
+
+
         cell.animate()
         return cell
     }
@@ -159,10 +168,11 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         }
 
 //        let flashcard = flashcards[indexPath.row]
-//        print(flashcard.word)
+//       print(flashcard.word)
         if selectedRowIndex != indexPath.row {
                self.thereIsCellTapped = true
                self.selectedRowIndex = indexPath.row
+            
            }
            else {
                // there is no cell selected anymore
@@ -177,11 +187,40 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let flashcard = flashcards[indexPath.row]
+        
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-                return 190
-            }
+            var height:  CGFloat = 190
+            
+            height = ( flashcard.meaning == "" ) ? ( height - 15 ) : ( height + CGFloat(( 15 * ( flashcard.meaning!.count / 35 ) )))
+            height = ( flashcard.example == "" ) ? ( height - 15 ) : ( height + CGFloat(( 15 * ( flashcard.example!.count / 35 ) )))
+            
+//            if ( flashcard.meaning == "" ) {
+//                height -= 15
+//            } else {
+//                height += CGFloat(( 15 * ( flashcard.meaning!.count / 35 ) ))
+//            }
+//
+//            if ( flashcard.example == "" ) {
+//                height -= 15
+//            } else {
+//                height += CGFloat(( 15 * ( flashcard.example!.count / 35 ) ))
+//            }
+            //previous one:
+//            if ( flashcard.meaning?.count ?? 0 > 35 ) { height += 15 }
+//            if (flashcard.meaning?.count ?? 0 > 70 ) { height += 15 }
+//            if (flashcard.meaning?.count ?? 0 > 105 ) { height += 15 }
+//
+//            if ( flashcard.example?.count ?? 0 > 35 ) { height += 15 }
+//            if (flashcard.example?.count ?? 0 > 70 ) { height += 15 }
+//            if (flashcard.example?.count ?? 0 > 105 ) { height += 15 }
+//
 
-            return 90
+            
+            return height
+        }
+
+        return 90
     }
 
     func setFlashcardsTableViewDelegates(){
@@ -243,18 +282,7 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
       return UISwipeActionsConfiguration(actions: [deleteAction, muteAction])
     }
     
-    //Setting height of buttond that appears on swipe in UITableViewCell
-
-    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-
-        if let swipeContainerView = tableView.subviews.first(where: { String(describing: type(of: $0)) == "_UITableViewCellSwipeContainerView" }) {
-          if let swipeActionPullView = swipeContainerView.subviews.first, String(describing: type(of: swipeActionPullView)) == "UISwipeActionPullView" {
-//            swipeActionPullView.frame.size.height -= 20
-//            
-//            swipeActionPullView.layer.cornerRadius = 10
-          }
-        }
-    }
+   
     
     
 }

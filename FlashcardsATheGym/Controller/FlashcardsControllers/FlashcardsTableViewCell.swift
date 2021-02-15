@@ -37,7 +37,7 @@ class FlashcardsTableViewCell: UITableViewCell {
         configureWordLabel()
         wordLabel.topAnchor.constraint(equalTo: background.topAnchor, constant: 15).isActive = true
         wordLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        wordLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: 20).isActive = true
+        wordLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
         wordLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         background.addSubview(translationLabel)
@@ -45,31 +45,34 @@ class FlashcardsTableViewCell: UITableViewCell {
         
         translationLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor).isActive = true
         translationLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        translationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: 20).isActive = true
+        translationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
         translationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         background.addSubview(pronunciationLabel)
         configurePronunciationLabel()
-        
+
         pronunciationLabel.topAnchor.constraint(equalTo: translationLabel.bottomAnchor).isActive = true
         pronunciationLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        pronunciationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: 20).isActive = true
-        pronunciationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
+        pronunciationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+        //pronunciationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
         background.addSubview(meaningLabel)
         configureMeaningLabel()
-        meaningLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor).isActive = true
+        meaningLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor, constant: 5 ).isActive = true
         meaningLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        meaningLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: 20).isActive = true
-        meaningLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
+        meaningLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+        //meaningLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
         background.addSubview(exampleLabel)
         configureExampleLabel()
-        exampleLabel.topAnchor.constraint(equalTo: meaningLabel.bottomAnchor).isActive = true
+        exampleLabel.topAnchor.constraint(equalTo: meaningLabel.bottomAnchor, constant: 5).isActive = true
         exampleLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        exampleLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: 20).isActive = true
-        exampleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        exampleLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+        exampleLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10).isActive = true
+        //exampleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
+
+
 
      }
      required init?(coder: NSCoder) {
@@ -130,6 +133,7 @@ class FlashcardsTableViewCell: UITableViewCell {
         meaningLabel.text = "Very happy, full of joy"
         meaningLabel.textColor = Colors.FATGtext
         meaningLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        meaningLabel.numberOfLines = 0
 
         
         meaningLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -139,6 +143,7 @@ class FlashcardsTableViewCell: UITableViewCell {
         exampleLabel.text = "You look sensational this evening"
         exampleLabel.textColor = Colors.FATGtext
         exampleLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        exampleLabel.numberOfLines = 0
 
         
         exampleLabel.translatesAutoresizingMaskIntoConstraints = false

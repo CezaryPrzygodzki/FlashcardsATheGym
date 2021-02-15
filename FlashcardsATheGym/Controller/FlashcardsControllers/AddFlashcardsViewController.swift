@@ -184,7 +184,7 @@ class AddFlashcardsViewController: UIViewController {
               print("Could not save. \(error), \(error.userInfo)")
             }
             
-            
+            allFlashcardsViewController?.backFromAddingNewFlashcard(data: flashcard)
             dismiss(animated: true, completion: nil)
         }
         
