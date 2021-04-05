@@ -9,6 +9,8 @@ import UIKit
 
 class FlashcardsViewController: UIViewController {
 
+    var lessons: [Lesson] = []//List of loaded flashcards
+    
     var flashcardsTableView: UITableView!
     var letflashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
     
@@ -20,10 +22,11 @@ class FlashcardsViewController: UIViewController {
     let addListButton = UIButton()
     
     let blurView = UIButton()
+    var addListView: AddListView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadData()
         
         configureNavigationAndTabBarControllers()
         
@@ -44,12 +47,33 @@ class FlashcardsViewController: UIViewController {
         
         configureBlurView()
         
+        addListView = AddListView()
+        addListView.frame = CGRect(x: self.view.frame.size.width / 2 - addListView.frame.size.width / 2,
+                               y: self.view.frame.size.height / 2 - addListView.frame.size.height / 2,
+                               width: addListView.frame.size.width,
+                               height: addListView.frame.size.height)
+        self.view.addSubview(addListView)
+        addListView.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(hideBlur), name: Notification.Name("hideBlur"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: Notification.Name("reload"), object: nil)
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         imageViewAddbutton.isHidden = false
     }
     
 
+    @objc func loadData(){
+        
+        lessons = DataHelper.shareInstance.loadData()
+        
+        DispatchQueue.main.async {
+            self.flashcardsTableView.reloadData()
+        }
+        
+    }
+    
     func configureNavigationAndTabBarControllers(){
 
         self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
@@ -223,12 +247,7 @@ class FlashcardsViewController: UIViewController {
         print("addList")
         addButtonAction()
         
-        let addList = AddListView()
-        addList.frame = CGRect(x: self.view.frame.size.width / 2 - addList.frame.size.width / 2,
-                               y: self.view.frame.size.height / 2 - addList.frame.size.height / 2,
-                               width: addList.frame.size.width,
-                               height: addList.frame.size.height)
-        self.view.addSubview(addList)
+        addListView.isHidden = false
         blurView.isHidden = false
         
     }
@@ -250,6 +269,7 @@ class FlashcardsViewController: UIViewController {
     }
     @objc func hideBlur(){
         blurView.isHidden = true
+        addListView.isHidden = true
         
     }
 }
@@ -257,7 +277,7 @@ class FlashcardsViewController: UIViewController {
 
 extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return lessons.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -266,8 +286,9 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
             fatalError("Bad Instance")
         }
     
+        let lesson = lessons[indexPath.row]
         cell.selectionStyle = .none
-        
+        cell.nameOfListOfFlashcardsLabel.text = lesson.name
 
         
         return cell

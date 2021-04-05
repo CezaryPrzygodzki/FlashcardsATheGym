@@ -33,6 +33,20 @@ class DataHelper {
         return flashcard
         
     }
+    func saveData(name: String) -> Lesson {
+        let lesson = Lesson(context: context)
+        
+        lesson.name = name
+        
+        do {
+          try context.save()
+            print("Yes, u did it!")
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        return lesson
+    }
     func editData(flashcardToEdit: Flashcard, word: String, translation: String, pronunciation: String, meaning: String, example: String ) ->Flashcard {
         
         
@@ -52,6 +66,20 @@ class DataHelper {
         
     }
     
+    func editData(lessonToEdit: Lesson, newName: String) -> Lesson {
+        
+        lessonToEdit.name = newName
+        
+        do {
+          try context.save()
+            print("Yes, u did it!")
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        return lessonToEdit
+    }
+    
     func loadData() -> [Flashcard] {
         var flashcards: [Flashcard] = []//List of loaded flashcards
         
@@ -61,6 +89,18 @@ class DataHelper {
           print("Could not fetch. \(error), \(error.userInfo)")
         }
         return flashcards
+    }
+    
+    func loadData() -> [Lesson]{
+        var lessons: [Lesson] = []
+        
+        do {
+            lessons = try context.fetch(Lesson.fetchRequest())
+        } catch let error as NSError {
+          print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return lessons
     }
     func deleteData(flashcard: Flashcard) {
         
@@ -72,6 +112,17 @@ class DataHelper {
           print("Could not save. \(error), \(error.userInfo)")
         }
 
+    }
+    func deleteData(lesson: Lesson){
+        context.delete(lesson)
+
+        do {
+            try context.save()
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
         
     }
+    
+    
 }

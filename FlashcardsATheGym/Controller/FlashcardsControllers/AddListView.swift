@@ -92,6 +92,19 @@ class AddListView: UIView {
     
     @objc func addList(sender:  UIButton!){
         
+        let name = textFieldName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if ( name == "" ){
+            Alert.wrongData(on: UIViewController(), message: "Uzupełnij pole nazwa.")
+        } else {
+            let lesson = DataHelper.shareInstance.saveData(name: name)
+            NotificationCenter.default.post(name: Notification.Name("reload"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("hideBlur"), object: nil)
+            
+        }
+        
         print("Nice, dodałeś kolejną listę byczq")
+        
+        
     }
 }

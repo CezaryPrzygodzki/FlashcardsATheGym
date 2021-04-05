@@ -30,8 +30,10 @@
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
 		49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9984425DBFFC0000F9DB4 /* AddListView.swift */; };
 		49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431BB261B08C400FC99C1 /* DataHelper.swift */; };
-		49E2DE1A25B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */; };
-		49E2DE1B25B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */; };
+		49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */; };
+		49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */; };
+		49B431DA261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */; };
+		49B431DB261B80F100FC99C1 /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */; };
 		49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */; };
 		49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2425B8E30200F3C4F8 /* Alert.swift */; };
 		49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */; };
@@ -92,8 +94,10 @@
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49A9984425DBFFC0000F9DB4 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		49B431BB261B08C400FC99C1 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
-		49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataClass.swift"; sourceTree = "<group>"; };
-		49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49E2DE2425B8E30200F3C4F8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFlashcardsViewController.swift; sourceTree = "<group>"; };
@@ -227,8 +231,10 @@
 		4990AF8125B4883100F9669C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */,
-				49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */,
+				49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */,
+				49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */,
+				49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */,
+				49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */,
 				4990AF5225B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld */,
 				49B431BB261B08C400FC99C1 /* DataHelper.swift */,
 			);
@@ -581,20 +587,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B431DB261B80F100FC99C1 /* Flashcard+CoreDataClass.swift in Sources */,
 				4990B02925B7152100F9669C /* LoginViewController.swift in Sources */,
 				4990B02425B6E23700F9669C /* SignUpViewController.swift in Sources */,
-				49E2DE1B25B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift in Sources */,
 				49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */,
 				4990AFF425B5C99900F9669C /* SignUpLoginSkipController.swift in Sources */,
 				49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */,
+				49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */,
 				49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */,
+				49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */,
 				4990AF5425B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld in Sources */,
-				49E2DE1A25B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift in Sources */,
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
 				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,
 				49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */,
+				49B431DA261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift in Sources */,
 				4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */,
 				4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */,
 				4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */,
