@@ -87,17 +87,8 @@ class AllFlashcardsViewController: UIViewController {
 
     func loadData(){
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+        flashcards = DataHelper.shareInstance.loadData()
         
-        let context = appDelegate.persistentContainer.viewContext
-        
-        do {
-            flashcards = try context.fetch(Flashcard.fetchRequest())
-        } catch let error as NSError {
-          print("Could not fetch. \(error), \(error.userInfo)")
-        }
         DispatchQueue.main.async {
             self.flashcardsTableView.reloadData()
         }
@@ -232,24 +223,12 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "Usuń") { [self] (action, view, completion) in
         
-        guard let appDelegate =
-                      UIApplication.shared.delegate as? AppDelegate else {
-                      return
-                    }
+
+            let flashcard = flashcards[indexPath.row]
+            DataHelper.shareInstance.deleteData(flashcard: flashcard)
         
-                    let managedContext = appDelegate.persistentContainer.viewContext
-        
-                    let flashcard = flashcards[indexPath.row]
-                    managedContext.delete(flashcard)
-        
-                    do {
-                        try managedContext.save()
-                    } catch let error as NSError {
-                      print("Could not save. \(error), \(error.userInfo)")
-                    }
-        
-                    flashcards.remove(at: indexPath.row)
-                    flashcardsTableView.deleteRows(at: [indexPath], with: .fade)
+            flashcards.remove(at: indexPath.row)
+            flashcardsTableView.deleteRows(at: [indexPath], with: .fade)
         
           completion(true)
       }
@@ -265,11 +244,6 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         editFlashcards.allFlashcardsViewController = self
         editFlashcards.flashcardToEdit = self.flashcardToEdit
 
-
-
-   
-        
-        
         self.navigationController?.showDetailViewController(editFlashcards, sender: true)
 
 

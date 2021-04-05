@@ -18,6 +18,9 @@ class TreningViewController: UIViewController{
     let previousTreningsTableViewCellIdentifier = "previousTreningsTableViewCellIdentifier"
     
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
 
         configureNavigationAndTabBarControllers()

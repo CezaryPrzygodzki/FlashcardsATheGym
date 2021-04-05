@@ -163,32 +163,13 @@ class AddFlashcardsViewController: UIViewController {
             Alert.wrongData(on: self, message: "Uzupełnij pola nazwa oraz tłumaczenie.")
         } else {
             
-            guard let appDelegate =
-              UIApplication.shared.delegate as? AppDelegate else {
-              return
-            }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            let flashcard = Flashcard(context: managedContext)
-            flashcard.word = word
-            flashcard.translation = translation
-            flashcard.pronunciation = pronunciation
-            flashcard.meaning = meaning
-            flashcard.example = example
-            
-            do {
-              try managedContext.save()
-                print("Yes, u did it!")
-            } catch let error as NSError {
-              print("Could not save. \(error), \(error.userInfo)")
-            }
-            
+            let flashcard = DataHelper.shareInstance.saveData(word: word, translation: translation, pronunciation: pronunciation, meaning: meaning, example: example)
             allFlashcardsViewController?.backFromAddingNewFlashcard(data: flashcard)
-            dismiss(animated: true, completion: nil)
-        }
-        
+            }
+            
+        dismiss(animated: true, completion: nil)
     }
-    
-    
+        
 }
+    
+

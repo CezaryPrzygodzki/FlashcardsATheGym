@@ -45,26 +45,28 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
             Alert.wrongData(on: self, message: "Uzupełnij pola nazwa oraz tłumaczenie.")
         } else {
             
-            guard let appDelegate =
-              UIApplication.shared.delegate as? AppDelegate else {
-              return
-            }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            flashcardToEdit!.word = word
-            flashcardToEdit!.translation = translation
-            flashcardToEdit?.pronunciation = pronunciation
-            flashcardToEdit?.meaning = meaning
-            flashcardToEdit?.example = example
-            
-            do {
-              try managedContext.save()
-                print("Yes, u did it!")
-            } catch let error as NSError {
-              print("Could not save. \(error), \(error.userInfo)")
-            }
+//            guard let appDelegate =
+//              UIApplication.shared.delegate as? AppDelegate else {
+//              return
+//            }
+//
+//            let managedContext = appDelegate.persistentContainer.viewContext
+//
+//            flashcardToEdit!.word = word
+//            flashcardToEdit!.translation = translation
+//            flashcardToEdit?.pronunciation = pronunciation
+//            flashcardToEdit?.meaning = meaning
+//            flashcardToEdit?.example = example
+//
+//            do {
+//              try managedContext.save()
+//                print("Yes, u did it!")
+//            } catch let error as NSError {
+//              print("Could not save. \(error), \(error.userInfo)")
+//            }
             //allFlashcardsViewController?.backFromEditFlashcardController(data: flashcardToEdit!)
+            
+            flashcardToEdit = DataHelper.shareInstance.editData(flashcardToEdit: flashcardToEdit!, word: word, translation: translation, pronunciation: pronunciation, meaning: meaning, example:  example)
             allFlashcardsViewController?.loadData()
             allFlashcardsViewController?.flashcardsTableView.reloadData()
             

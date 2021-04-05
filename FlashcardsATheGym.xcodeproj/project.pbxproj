@@ -28,6 +28,8 @@
 		4990B03125B7449A00F9669C /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03025B7449A00F9669C /* AppManager.swift */; };
 		4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03525B744CA00F9669C /* AppContainerViewController.swift */; };
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
+		49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9984425DBFFC0000F9DB4 /* AddListView.swift */; };
+		49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431BB261B08C400FC99C1 /* DataHelper.swift */; };
 		49E2DE1A25B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */; };
 		49E2DE1B25B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */; };
 		49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */; };
@@ -88,6 +90,8 @@
 		4990B03025B7449A00F9669C /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		4990B03525B744CA00F9669C /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		49A9984425DBFFC0000F9DB4 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
+		49B431BB261B08C400FC99C1 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataClass.swift"; sourceTree = "<group>"; };
 		49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardsViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 				49E2DE1825B7865B00F3C4F8 /* Flashcard+CoreDataClass.swift */,
 				49E2DE1925B7865B00F3C4F8 /* Flashcard+CoreDataProperties.swift */,
 				4990AF5225B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld */,
+				49B431BB261B08C400FC99C1 /* DataHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */,
 				49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */,
 				49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */,
+				49A9984425DBFFC0000F9DB4 /* AddListView.swift */,
 			);
 			path = FlashcardsControllers;
 			sourceTree = "<group>";
@@ -588,6 +594,7 @@
 				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,
+				49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */,
 				4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */,
 				4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */,
 				4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */,
@@ -595,6 +602,7 @@
 				49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */,
 				49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */,
 				4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */,
+				49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */,
 				4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */,
 				4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */,
 			);

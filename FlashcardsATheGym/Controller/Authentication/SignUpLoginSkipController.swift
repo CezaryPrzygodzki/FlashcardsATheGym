@@ -21,6 +21,7 @@ class SignUpLoginSkipController: UIViewController {
     let alreadyHaveAccountLabel = FRHyperLabel()
 
     
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

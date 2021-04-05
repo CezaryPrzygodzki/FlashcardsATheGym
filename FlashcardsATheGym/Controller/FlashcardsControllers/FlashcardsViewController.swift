@@ -19,6 +19,8 @@ class FlashcardsViewController: UIViewController {
     let addFlashcardButton = UIButton()
     let addListButton = UIButton()
     
+    let blurView = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +41,8 @@ class FlashcardsViewController: UIViewController {
         
         configureAddFlashcardsButton()
         view.addSubview(buttonsView)
+        
+        configureBlurView()
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -218,6 +222,15 @@ class FlashcardsViewController: UIViewController {
     @objc func addList (){
         print("addList")
         addButtonAction()
+        
+        let addList = AddListView()
+        addList.frame = CGRect(x: self.view.frame.size.width / 2 - addList.frame.size.width / 2,
+                               y: self.view.frame.size.height / 2 - addList.frame.size.height / 2,
+                               width: addList.frame.size.width,
+                               height: addList.frame.size.height)
+        self.view.addSubview(addList)
+        blurView.isHidden = false
+        
     }
     
     
@@ -225,6 +238,18 @@ class FlashcardsViewController: UIViewController {
         
     }
     func backFromAddListControllerToDetailsController(){
+        
+    }
+    
+    func configureBlurView() {
+        blurView.backgroundColor = Colors.FATGbackground!.withAlphaComponent(0.5)
+        view.addSubview(blurView)
+        blurView.pin(to: view)
+        blurView.addTarget(self, action: #selector(hideBlur), for: .touchUpInside)
+        blurView.isHidden = true
+    }
+    @objc func hideBlur(){
+        blurView.isHidden = true
         
     }
 }
