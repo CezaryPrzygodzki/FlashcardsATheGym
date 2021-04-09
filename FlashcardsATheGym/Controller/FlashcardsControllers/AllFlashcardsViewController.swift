@@ -20,10 +20,11 @@ class AllFlashcardsViewController: UIViewController {
     var thereIsCellTapped = false
     var selectedRowIndex = -1
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Hi im working")
         title = "Wszystkie fiszki"
         view.backgroundColor = Colors.FATGbackground
         navigationController?.navigationBar.tintColor = Colors.FATGpurple

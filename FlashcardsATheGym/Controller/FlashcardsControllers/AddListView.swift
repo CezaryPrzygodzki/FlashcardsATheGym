@@ -23,7 +23,7 @@ class AddListView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = Colors.FATGbackground
+        backgroundColor = Colors.FATGpurple
         layer.cornerRadius = 10
         
         self.frame.size.height = 200

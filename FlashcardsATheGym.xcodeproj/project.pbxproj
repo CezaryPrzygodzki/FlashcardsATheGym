@@ -29,6 +29,7 @@
 		4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03525B744CA00F9669C /* AppContainerViewController.swift */; };
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
 		49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9984425DBFFC0000F9DB4 /* AddListView.swift */; };
+		49AC05752620AC7C004CC4BE /* LessonFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AC05742620AC7C004CC4BE /* LessonFlashcardsViewController.swift */; };
 		49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431BB261B08C400FC99C1 /* DataHelper.swift */; };
 		49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */; };
 		49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */; };
@@ -93,6 +94,7 @@
 		4990B03525B744CA00F9669C /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49A9984425DBFFC0000F9DB4 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
+		49AC05742620AC7C004CC4BE /* LessonFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49B431BB261B08C400FC99C1 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift"; sourceTree = "<absolute>"; };
@@ -287,6 +289,7 @@
 				49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */,
 				49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */,
 				49A9984425DBFFC0000F9DB4 /* AddListView.swift */,
+				49AC05742620AC7C004CC4BE /* LessonFlashcardsViewController.swift */,
 			);
 			path = FlashcardsControllers;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */,
 				4990AF5425B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld in Sources */,
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
+				49AC05752620AC7C004CC4BE /* LessonFlashcardsViewController.swift in Sources */,
 				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,

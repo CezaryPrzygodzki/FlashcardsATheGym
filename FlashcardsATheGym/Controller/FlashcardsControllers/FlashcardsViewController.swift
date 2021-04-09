@@ -24,6 +24,9 @@ class FlashcardsViewController: UIViewController {
     let blurView = UIButton()
     var addListView: AddListView!
     
+    var thereIsCellTapped = false
+    var selectedRowIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -52,11 +55,14 @@ class FlashcardsViewController: UIViewController {
                                y: self.view.frame.size.height / 2 - addListView.frame.size.height / 2,
                                width: addListView.frame.size.width,
                                height: addListView.frame.size.height)
-        self.view.addSubview(addListView)
+        
+
+        UIApplication.shared.keyWindow!.addSubview(addListView)
         addListView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(hideBlur), name: Notification.Name("hideBlur"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: Notification.Name("reload"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancel), name: Notification.Name("cancel"), object: nil)
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +78,16 @@ class FlashcardsViewController: UIViewController {
         DispatchQueue.main.async {
             self.lessonTableView.reloadData()
         }
+        
+    }
+    @objc func cancel(){
+        
+        thereIsCellTapped = false
+        selectedRowIndex = -1
+        lessonTableView.beginUpdates()
+        lessonTableView.reloadData()
+        lessonTableView.endUpdates()
+
         
     }
     
@@ -144,7 +160,7 @@ class FlashcardsViewController: UIViewController {
         
         lessonTableView = UITableView()
         //set row height
-        lessonTableView.rowHeight = 80
+        //lessonTableView.rowHeight = 80
         //register cells
         lessonTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
         //set contraits
@@ -262,11 +278,15 @@ class FlashcardsViewController: UIViewController {
     }
     
     func configureBlurView() {
-        blurView.backgroundColor = Colors.FATGbackground!.withAlphaComponent(0.5)
-        view.addSubview(blurView)
-        blurView.pin(to: view)
+        blurView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        //view.addSubview(blurView)
+        //blurView.pin(to: view)
         blurView.addTarget(self, action: #selector(hideBlur), for: .touchUpInside)
         blurView.isHidden = true
+        
+        //https://stackoverflow.com/questions/21850436/add-a-uiview-above-all-even-the-navigation-bar
+        blurView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(blurView)
     }
     @objc func hideBlur(){
         blurView.isHidden = true
@@ -290,7 +310,9 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
         let lesson = lessons[indexPath.row]
         cell.selectionStyle = .none
         cell.nameOfListOfFlashcardsLabel.text = lesson.name
+        cell.lessonToEdit = lesson
 
+        cell.animate()
         
         return cell
     }
@@ -321,17 +343,11 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
 
         let muteAction = UIContextualAction(style: .normal, title: "Edytuj") { [self] (action, view, completion) in
 
-//        let editLesson = UIStoryboard(name: "Main",
-//                                 bundle: nil)
-//            .instantiateViewController(identifier: "editFlashcard") as! EditFlashcardsViewController
-//
-//        flashcardToEdit = self.flashcards[indexPath.row]
-//
-//        editFlashcards.allFlashcardsViewController = self
-//        editFlashcards.flashcardToEdit = self.flashcardToEdit
-//
-//        self.navigationController?.showDetailViewController(editFlashcards, sender: true)
-
+            self.selectedRowIndex = indexPath.row
+            self.thereIsCellTapped = true
+            tableView.beginUpdates()
+            tableView.reloadRows(at: [indexPath], with: .none)
+            tableView.endUpdates()
 
         completion(true)
       }
@@ -339,13 +355,29 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
         muteAction.backgroundColor = Colors.FATGpurple
         //deleteAction.image = UIImage(systemName: "trash")
         deleteAction.backgroundColor = Colors.FATGpink
-      return UISwipeActionsConfiguration(actions: [deleteAction /*,muteAction*/])
+      return UISwipeActionsConfiguration(actions: [deleteAction, muteAction])
     }
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        if indexPath.row == selectedRowIndex && thereIsCellTapped { return 200 }
+        return 80
+    }
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let lesson = lessons[indexPath.row]
+        let lessonVC = LessonFlashcardsViewController()
+
+
+        lessonVC.flashcardsViewController = self
+        lessonVC.lesson = lesson
+        imageViewAddbutton.isHidden = true
+
+        self.navigationController?.pushViewController(lessonVC, animated: true)
+        
+    }
     
     
 }
