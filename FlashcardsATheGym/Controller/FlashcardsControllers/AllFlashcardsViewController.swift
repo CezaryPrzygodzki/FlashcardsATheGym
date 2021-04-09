@@ -225,7 +225,7 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         
 
             let flashcard = flashcards[indexPath.row]
-            DataHelper.shareInstance.deleteData(flashcard: flashcard)
+            DataHelper.shareInstance.deleteData(object: flashcard)
         
             flashcards.remove(at: indexPath.row)
             flashcardsTableView.deleteRows(at: [indexPath], with: .fade)

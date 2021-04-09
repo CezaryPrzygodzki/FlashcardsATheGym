@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
 import CoreData
 
 class DataHelper {
@@ -14,6 +14,15 @@ class DataHelper {
     static let shareInstance = DataHelper()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    
+    func saveContext(){
+        do {
+            try context.save()
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
     
     func saveData(word: String, translation: String, pronunciation: String, meaning: String, example: String ) ->Flashcard {
      
@@ -24,12 +33,8 @@ class DataHelper {
         flashcard.meaning = meaning
         flashcard.example = example
         
-        do {
-          try context.save()
-            print("Yes, u did it!")
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+        saveContext()
+        
         return flashcard
         
     }
@@ -38,12 +43,7 @@ class DataHelper {
         
         lesson.name = name
         
-        do {
-          try context.save()
-            print("Yes, u did it!")
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+        saveContext()
         
         return lesson
     }
@@ -56,12 +56,8 @@ class DataHelper {
         flashcardToEdit.meaning = meaning
         flashcardToEdit.example = example
         
-        do {
-          try context.save()
-            print("Yes, u did it!")
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+        saveContext()
+        
         return flashcardToEdit
         
     }
@@ -70,59 +66,75 @@ class DataHelper {
         
         lessonToEdit.name = newName
         
-        do {
-          try context.save()
-            print("Yes, u did it!")
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+        saveContext()
         
         return lessonToEdit
     }
     
-    func loadData() -> [Flashcard] {
-        var flashcards: [Flashcard] = []//List of loaded flashcards
-        
+    func loadData<T: NSManagedObject>() ->[T]{
+        var objects: [T] = [] // list od loaded objects
+                
         do {
-            flashcards = try context.fetch(Flashcard.fetchRequest())
+            objects = try context.fetch(T.fetchRequest() as! NSFetchRequest<T>)
         } catch let error as NSError {
           print("Could not fetch. \(error), \(error.userInfo)")
         }
-        return flashcards
+        return objects
+    }
+
+    func deleteData<T: NSManagedObject>(object: T){
+        context.delete(object)
+        
+        saveContext()
     }
     
-    func loadData() -> [Lesson]{
-        var lessons: [Lesson] = []
-        
-        do {
-            lessons = try context.fetch(Lesson.fetchRequest())
-        } catch let error as NSError {
-          print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        
-        return lessons
-    }
-    func deleteData(flashcard: Flashcard) {
-        
-        context.delete(flashcard)
-
-        do {
-            try context.save()
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
-
-    }
-    func deleteData(lesson: Lesson){
-        context.delete(lesson)
-
-        do {
-            try context.save()
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
-        
-    }
+    
+//    func loadData() -> [Flashcard] {
+//        var flashcards: [Flashcard] = []//List of loaded flashcards
+//
+//        do {
+//            flashcards = try context.fetch(Flashcard.fetchRequest())
+//        } catch let error as NSError {
+//          print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//        return flashcards
+//    }
+//
+//    func loadData() -> [Lesson]{
+//        var lessons: [Lesson] = []
+//
+//        do {
+//            lessons = try context.fetch(Lesson.fetchRequest())
+//        } catch let error as NSError {
+//          print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//
+//        return lessons
+//    }
+    
+    
+    
+//    func deleteData(flashcard: Flashcard) {
+//
+//        context.delete(flashcard)
+//
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//          print("Could not save. \(error), \(error.userInfo)")
+//        }
+//
+//    }
+//    func deleteData(lesson: Lesson){
+//        context.delete(lesson)
+//
+//        do {
+//            try context.save()
+//        } catch let error as NSError {
+//          print("Could not save. \(error), \(error.userInfo)")
+//        }
+//
+//    }
     
     
 }

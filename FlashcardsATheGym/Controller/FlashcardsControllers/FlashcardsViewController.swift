@@ -11,7 +11,7 @@ class FlashcardsViewController: UIViewController {
 
     var lessons: [Lesson] = []//List of loaded flashcards
     
-    var flashcardsTableView: UITableView!
+    var lessonTableView: UITableView!
     var letflashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
     
     let allFlashcardsButton = UIButton()
@@ -36,11 +36,11 @@ class FlashcardsViewController: UIViewController {
         view.addSubview(allFlashcardsButton)
         
         configureFlashcardsTableView()
-        view.addSubview(flashcardsTableView)
-        flashcardsTableView.topAnchor.constraint(equalTo: allFlashcardsButton.bottomAnchor , constant: 25).isActive = true
-        flashcardsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        flashcardsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        flashcardsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive       = true
+        view.addSubview(lessonTableView)
+        lessonTableView.topAnchor.constraint(equalTo: allFlashcardsButton.bottomAnchor , constant: 25).isActive = true
+        lessonTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        lessonTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        lessonTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive       = true
         
         configureAddFlashcardsButton()
         view.addSubview(buttonsView)
@@ -66,10 +66,11 @@ class FlashcardsViewController: UIViewController {
 
     @objc func loadData(){
         
-        lessons = DataHelper.shareInstance.loadData()
+        //lessons = DataHelper.shareInstance.loadData()
         
+        lessons = DataHelper.shareInstance.loadData()
         DispatchQueue.main.async {
-            self.flashcardsTableView.reloadData()
+            self.lessonTableView.reloadData()
         }
         
     }
@@ -141,21 +142,21 @@ class FlashcardsViewController: UIViewController {
     }
     func configureFlashcardsTableView(){
         
-        flashcardsTableView = UITableView()
+        lessonTableView = UITableView()
         //set row height
-        flashcardsTableView.rowHeight = 80
+        lessonTableView.rowHeight = 80
         //register cells
-        flashcardsTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
+        lessonTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
         //set contraits
-        flashcardsTableView.translatesAutoresizingMaskIntoConstraints = false
+        lessonTableView.translatesAutoresizingMaskIntoConstraints = false
         //set delegates
         setFlashcardsTableViewDelegates()
         
-        flashcardsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        flashcardsTableView.showsVerticalScrollIndicator = false
+        lessonTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        lessonTableView.showsVerticalScrollIndicator = false
         
     
-        flashcardsTableView.backgroundColor = .clear
+        lessonTableView.backgroundColor = .clear
 
     }
     
@@ -295,8 +296,8 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
     }
     
     func setFlashcardsTableViewDelegates(){
-        flashcardsTableView.delegate = self
-        flashcardsTableView.dataSource = self
+        lessonTableView.delegate = self
+        lessonTableView.dataSource = self
     }
     
     
@@ -304,6 +305,46 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
      func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 10
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "Usuń") { [self] (action, view, completion) in
+        
+
+            let lesson = lessons[indexPath.row]
+            DataHelper.shareInstance.deleteData(object: lesson)
+        
+            lessons.remove(at: indexPath.row)
+            lessonTableView.deleteRows(at: [indexPath], with: .fade)
+        
+          completion(true)
+      }
+
+        let muteAction = UIContextualAction(style: .normal, title: "Edytuj") { [self] (action, view, completion) in
+
+//        let editLesson = UIStoryboard(name: "Main",
+//                                 bundle: nil)
+//            .instantiateViewController(identifier: "editFlashcard") as! EditFlashcardsViewController
+//
+//        flashcardToEdit = self.flashcards[indexPath.row]
+//
+//        editFlashcards.allFlashcardsViewController = self
+//        editFlashcards.flashcardToEdit = self.flashcardToEdit
+//
+//        self.navigationController?.showDetailViewController(editFlashcards, sender: true)
+
+
+        completion(true)
+      }
+        //muteAction.image = UIImage(systemName: "pencil")
+        muteAction.backgroundColor = Colors.FATGpurple
+        //deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = Colors.FATGpink
+      return UISwipeActionsConfiguration(actions: [deleteAction /*,muteAction*/])
+    }
+    
+    
+    
+    
     
     
     
