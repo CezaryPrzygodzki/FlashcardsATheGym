@@ -14,6 +14,7 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'KeychainSwift'
 pod 'GoogleSignIn'
+pod 'BEMCheckBox'
 pod 'FRHyperLabel'
 
 

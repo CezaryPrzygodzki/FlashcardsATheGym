@@ -20,6 +20,8 @@ class FlashcardsTableViewCell: UITableViewCell {
     var pronunciationLabel = UILabel()
     var meaningLabel = UILabel()
     var exampleLabel = UILabel()
+    
+    lazy var stackView = UIStackView()
 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,30 +50,37 @@ class FlashcardsTableViewCell: UITableViewCell {
         translationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
         translationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        background.addSubview(pronunciationLabel)
+        //background.addSubview(pronunciationLabel)
         configurePronunciationLabel()
 
-        pronunciationLabel.topAnchor.constraint(equalTo: translationLabel.bottomAnchor).isActive = true
-        pronunciationLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        pronunciationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
-        //pronunciationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        pronunciationLabel.topAnchor.constraint(equalTo: translationLabel.bottomAnchor).isActive = true
+//        pronunciationLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
+//        pronunciationLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+//        //pronunciationLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-        background.addSubview(meaningLabel)
+        //background.addSubview(meaningLabel)
         configureMeaningLabel()
-        meaningLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor, constant: 5 ).isActive = true
-        meaningLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        meaningLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
-        //meaningLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        meaningLabel.topAnchor.constraint(equalTo: pronunciationLabel.bottomAnchor, constant: 5 ).isActive = true
+//        meaningLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
+//        meaningLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+//        //meaningLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-        background.addSubview(exampleLabel)
+        //background.addSubview(exampleLabel)
         configureExampleLabel()
-        exampleLabel.topAnchor.constraint(equalTo: meaningLabel.bottomAnchor, constant: 5).isActive = true
-        exampleLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
-        exampleLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
-        exampleLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10).isActive = true
-        //exampleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//        exampleLabel.topAnchor.constraint(equalTo: meaningLabel.bottomAnchor, constant: 5).isActive = true
+//        exampleLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
+//        exampleLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+//        exampleLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10).isActive = true
+//        //exampleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
 
+        stackView = configureStackView()
+        background.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: translationLabel.bottomAnchor, constant: 10).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -20).isActive = true
+        
 
 
      }
@@ -147,5 +156,17 @@ class FlashcardsTableViewCell: UITableViewCell {
 
         
         exampleLabel.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    func configureStackView() -> UIStackView{
+        
+        let sv = UIStackView(arrangedSubviews: [pronunciationLabel, meaningLabel, exampleLabel])
+        
+        sv.axis = .vertical
+        sv.distribution = .equalSpacing
+        sv.spacing = 10
+        
+        return sv
     }
 }

@@ -120,7 +120,9 @@ class TreningViewController: UIViewController{
     }
     
     @objc func start(){
-        print("Start")
+        let sessionVC = TreningSessionViewController()
+        sessionVC.modalPresentationStyle = .fullScreen
+        navigationController?.showDetailViewController(sessionVC, sender: true)
     }
     
     func configurePreviousTreningsLabel() -> UILabel {

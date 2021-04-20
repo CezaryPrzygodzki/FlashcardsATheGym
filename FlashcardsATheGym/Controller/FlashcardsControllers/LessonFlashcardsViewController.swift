@@ -10,12 +10,17 @@ import UIKit
 class LessonFlashcardsViewController: AllFlashcardsViewController {
 
     var flashcardsViewController: FlashcardsViewController?
-    var lesson: Lesson?
+    var lesson: Lesson!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = lesson?.name
+        flashcards = DataHelper.shareInstance.loadFlashcards(lesson: lesson)
+        flashcardsTableView.reloadData()
+
+        
+
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Anuluj", style: .plain, target: self, action: #selector(anuluj))
     }
     
@@ -30,4 +35,19 @@ class LessonFlashcardsViewController: AllFlashcardsViewController {
     func anuluj() {
         dismiss(animated: true, completion: nil)
     }
+    
+    override func addButtonAction() {
+        
+        let addVC = UIStoryboard(name: "Main",
+                                 bundle: nil)
+            .instantiateViewController(identifier: "addFlashcard") as! AddFlashcardsViewController
+    
+        addVC.allFlashcardsViewController = self
+        addVC.saveThisFlashcardInLessons.append(lesson)
+      
+        self.navigationController?.showDetailViewController(addVC, sender: true)
+
+    }
 }
+
+

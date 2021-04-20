@@ -12,7 +12,7 @@ class FlashcardsViewController: UIViewController {
     var lessons: [Lesson] = []//List of loaded flashcards
     
     var lessonTableView: UITableView!
-    var letflashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
+    let flashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
     
     let allFlashcardsButton = UIButton()
     let imageViewAddbutton = UIImageView()
@@ -22,10 +22,11 @@ class FlashcardsViewController: UIViewController {
     let addListButton = UIButton()
     
     let blurView = UIButton()
-    var addListView: AddListView!
+    var addListView: AddListView?
     
     var thereIsCellTapped = false
     var selectedRowIndex = -1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class FlashcardsViewController: UIViewController {
         configureAllFlashcardsButton()
         view.addSubview(allFlashcardsButton)
         
-        configureFlashcardsTableView()
+        configureLessonTableView()
         view.addSubview(lessonTableView)
         lessonTableView.topAnchor.constraint(equalTo: allFlashcardsButton.bottomAnchor , constant: 25).isActive = true
         lessonTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
@@ -48,21 +49,25 @@ class FlashcardsViewController: UIViewController {
         configureAddFlashcardsButton()
         view.addSubview(buttonsView)
         
-        configureBlurView()
+ //       configureBlurView()
         
-        addListView = AddListView()
-        addListView.frame = CGRect(x: self.view.frame.size.width / 2 - addListView.frame.size.width / 2,
-                               y: self.view.frame.size.height / 2 - addListView.frame.size.height / 2,
-                               width: addListView.frame.size.width,
-                               height: addListView.frame.size.height)
-        
-
-        UIApplication.shared.keyWindow!.addSubview(addListView)
-        addListView.isHidden = true
+//        addListView = AddListView()
+//        addListView.frame = CGRect(x: self.view.frame.size.width / 2 - addListView.frame.size.width / 2,
+//                               y: self.view.frame.size.height / 2 - addListView.frame.size.height / 2,
+//                               width: addListView.frame.size.width,
+//                               height: addListView.frame.size.height)
+//
+//
+//        UIApplication.shared.keyWindow!.addSubview(addListView)
+   //     addListView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(hideBlur), name: Notification.Name("hideBlur"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: Notification.Name("reload"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(cancel), name: Notification.Name("cancel"), object: nil)
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+        
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -156,13 +161,13 @@ class FlashcardsViewController: UIViewController {
             }
         }
     }
-    func configureFlashcardsTableView(){
+    func configureLessonTableView(){
         
         lessonTableView = UITableView()
         //set row height
         //lessonTableView.rowHeight = 80
         //register cells
-        lessonTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: letflashcardsTableViewCellIdentifier)
+        lessonTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
         //set contraits
         lessonTableView.translatesAutoresizingMaskIntoConstraints = false
         //set delegates
@@ -257,14 +262,24 @@ class FlashcardsViewController: UIViewController {
         
         navigationController?.showDetailViewController(addVC, sender: true)
 
+
         
     }
     
     @objc func addList (){
         print("addList")
         addButtonAction()
+        configureBlurView()
+        addListView = AddListView()
+        addListView!.frame = CGRect(x: self.view.frame.size.width / 2 - addListView!.frame.size.width / 2,
+                                    y: self.view.frame.size.height / 2 - addListView!.frame.size.height / 2,
+                                    width: addListView!.frame.size.width,
+                                    height: addListView!.frame.size.height)
         
-        addListView.isHidden = false
+
+        UIApplication.shared.keyWindow!.addSubview(addListView!)
+        
+        //addListView.isHidden = false
         blurView.isHidden = false
         
     }
@@ -289,9 +304,9 @@ class FlashcardsViewController: UIViewController {
         UIApplication.shared.keyWindow!.addSubview(blurView)
     }
     @objc func hideBlur(){
-        blurView.isHidden = true
-        addListView.isHidden = true
-        
+        blurView.removeFromSuperview()
+        addListView?.removeFromSuperview()
+
     }
 }
 
@@ -303,7 +318,7 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: letflashcardsTableViewCellIdentifier, for: indexPath) as? ListsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: flashcardsTableViewCellIdentifier, for: indexPath) as? ListsTableViewCell else {
             fatalError("Bad Instance")
         }
     

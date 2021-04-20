@@ -86,11 +86,12 @@ extension UITextField{
         self.frame.size.width = UIScreen.main.bounds.size.width - 50
         self.frame.size.height = 50
         self.layer.cornerRadius = 10
-        self.backgroundColor = .white
+        self.backgroundColor = Colors.FATGWhiteBlack
         self.placeholder = placeholder
-        self.addPadding(.both(20))
+        self.addPadding(.both(15))
         self.textColor = Colors.FATGtext
     }
+    
     
     enum PaddingSide {
            case left(CGFloat)
@@ -137,6 +138,13 @@ extension UILabel {
         self.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         self.textColor = Colors.FATGpink
         self.numberOfLines = 0
+    }
+    
+    func newFlashcardLabel(text: String){
+        self.text = text
+        self.textColor = Colors.FATGtext
+        self.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 

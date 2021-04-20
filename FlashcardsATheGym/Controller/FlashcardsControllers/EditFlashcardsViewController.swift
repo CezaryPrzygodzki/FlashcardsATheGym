@@ -24,7 +24,15 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
         textFieldPronunciation.text = flashcardToEdit?.pronunciation
         textFieldMeaning.text = flashcardToEdit?.meaning
         textFieldExample.text = flashcardToEdit?.example
+        saveThisFlashcardInLessons = flashcardToEdit?.lesson?.allObjects as! [Lesson]
+
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+
     }
+    
     
 
     @objc override func addButtonFunc(sender: UIButton!){
@@ -66,7 +74,7 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
 //            }
             //allFlashcardsViewController?.backFromEditFlashcardController(data: flashcardToEdit!)
             
-            flashcardToEdit = DataHelper.shareInstance.editData(flashcardToEdit: flashcardToEdit!, word: word, translation: translation, pronunciation: pronunciation, meaning: meaning, example:  example)
+            flashcardToEdit = DataHelper.shareInstance.editData(flashcardToEdit: flashcardToEdit!, word: word, translation: translation, pronunciation: pronunciation, meaning: meaning, example: example, lessons: saveThisFlashcardInLessons)
             allFlashcardsViewController?.loadData()
             allFlashcardsViewController?.flashcardsTableView.reloadData()
             
@@ -74,14 +82,5 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
         }
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

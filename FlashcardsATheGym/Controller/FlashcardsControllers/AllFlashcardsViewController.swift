@@ -30,7 +30,6 @@ class AllFlashcardsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Colors.FATGpurple
         
         createAddButton()
-        
         loadData()
         
         configureFlashcardsTableView()
@@ -68,8 +67,6 @@ class AllFlashcardsViewController: UIViewController {
             imageViewAddbutton.heightAnchor.constraint(equalToConstant: 45),
             imageViewAddbutton.widthAnchor.constraint(equalToConstant: 45)
         ])
-        
-        
     }
     
     @objc
@@ -78,11 +75,11 @@ class AllFlashcardsViewController: UIViewController {
         let addVC = UIStoryboard(name: "Main",
                                  bundle: nil)
             .instantiateViewController(identifier: "addFlashcard") as! AddFlashcardsViewController
-        
-
+    
         addVC.allFlashcardsViewController = self
-        
-        navigationController?.showDetailViewController(addVC, sender: true)
+
+      
+        self.navigationController?.showDetailViewController(addVC, sender: true)
 
     }
 
@@ -98,29 +95,15 @@ class AllFlashcardsViewController: UIViewController {
     func configureFlashcardsTableView(){
         
         flashcardsTableView = UITableView()
-        //set row height
-        //flashcardsTableView.rowHeight = 100 //UITableView.automaticDimension
-        //flashcardsTableView.estimatedRowHeight = 90
-        //register cells
         flashcardsTableView.register(FlashcardsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
-        //set contraits
         flashcardsTableView.translatesAutoresizingMaskIntoConstraints = false
-        //set delegates
         setFlashcardsTableViewDelegates()
         
         flashcardsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         flashcardsTableView.showsVerticalScrollIndicator = false
-        
-    
         flashcardsTableView.backgroundColor = .clear
 
     }
-    
-//    func backFromEditFlashcardController(data: Flashcard!){
-//        print("Data received: \(data)")
-//        flashcardToEdit = data
-//
-//    }
     
     func backFromAddingNewFlashcard( data: Flashcard!){
         flashcards.append(data)
@@ -146,21 +129,14 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         cell.pronunciationLabel.text = "wym. /\(flashcard.pronunciation ?? "  ")/"
         cell.meaningLabel.text = flashcard.meaning
         cell.exampleLabel.text = flashcard.example
+        
        
-
-
         cell.animate()
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: flashcardsTableViewCellIdentifier, for: indexPath) as? FlashcardsTableViewCell else {
-            fatalError("Bad Instance")
-        }
 
-//        let flashcard = flashcards[indexPath.row]
-//       print(flashcard.word)
         if selectedRowIndex != indexPath.row {
                self.thereIsCellTapped = true
                self.selectedRowIndex = indexPath.row
@@ -184,34 +160,11 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             var height:  CGFloat = 190
             
-            height = ( flashcard.meaning == "" ) ? ( height - 15 ) : ( height + CGFloat(( 15 * ( flashcard.meaning!.count / 35 ) )))
-            height = ( flashcard.example == "" ) ? ( height - 15 ) : ( height + CGFloat(( 15 * ( flashcard.example!.count / 35 ) )))
-            
-//            if ( flashcard.meaning == "" ) {
-//                height -= 15
-//            } else {
-//                height += CGFloat(( 15 * ( flashcard.meaning!.count / 35 ) ))
-//            }
-//
-//            if ( flashcard.example == "" ) {
-//                height -= 15
-//            } else {
-//                height += CGFloat(( 15 * ( flashcard.example!.count / 35 ) ))
-//            }
-            //previous one:
-//            if ( flashcard.meaning?.count ?? 0 > 35 ) { height += 15 }
-//            if (flashcard.meaning?.count ?? 0 > 70 ) { height += 15 }
-//            if (flashcard.meaning?.count ?? 0 > 105 ) { height += 15 }
-//
-//            if ( flashcard.example?.count ?? 0 > 35 ) { height += 15 }
-//            if (flashcard.example?.count ?? 0 > 70 ) { height += 15 }
-//            if (flashcard.example?.count ?? 0 > 105 ) { height += 15 }
-//
-
-            
+            height = ( flashcard.meaning == "" ) ? ( height - 18 ) : ( height + CGFloat(( 18 * ( flashcard.meaning!.count / 38 ) )))
+            height = ( flashcard.example == "" ) ? ( height - 18 ) : ( height + CGFloat(( 18 * ( flashcard.example!.count / 38 ) )))
+        
             return height
         }
-
         return 90
     }
 
@@ -224,7 +177,6 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "Usuń") { [self] (action, view, completion) in
         
-
             let flashcard = flashcards[indexPath.row]
             DataHelper.shareInstance.deleteData(object: flashcard)
         
@@ -250,9 +202,7 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
 
         completion(true)
       }
-        //muteAction.image = UIImage(systemName: "pencil")
         muteAction.backgroundColor = Colors.FATGpurple
-        //deleteAction.image = UIImage(systemName: "trash")
         deleteAction.backgroundColor = Colors.FATGpink
       return UISwipeActionsConfiguration(actions: [deleteAction, muteAction])
     }

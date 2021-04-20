@@ -38,6 +38,8 @@ class AddListView: UIView {
         configureButton()
         addSubview(button)
         
+        
+        
     }
     
     required init?(coder: NSCoder) {

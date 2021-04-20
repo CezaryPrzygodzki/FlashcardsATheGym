@@ -24,7 +24,7 @@ class DataHelper {
         }
     }
     
-    func saveData(word: String, translation: String, pronunciation: String, meaning: String, example: String ) ->Flashcard {
+    func saveData(word: String, translation: String, pronunciation: String, meaning: String, example: String, lessons: [Lesson] ) ->Flashcard {
      
         let flashcard = Flashcard(context: context)
         flashcard.word = word
@@ -32,6 +32,9 @@ class DataHelper {
         flashcard.pronunciation = pronunciation
         flashcard.meaning = meaning
         flashcard.example = example
+        for lesson in lessons {
+            flashcard.addToLesson(lesson)
+        }
         
         saveContext()
         
@@ -47,7 +50,7 @@ class DataHelper {
         
         return lesson
     }
-    func editData(flashcardToEdit: Flashcard, word: String, translation: String, pronunciation: String, meaning: String, example: String ) ->Flashcard {
+    func editData(flashcardToEdit: Flashcard, word: String, translation: String, pronunciation: String, meaning: String, example: String, lessons: [Lesson] ) ->Flashcard {
         
         
         flashcardToEdit.word = word
@@ -55,7 +58,16 @@ class DataHelper {
         flashcardToEdit.pronunciation = pronunciation
         flashcardToEdit.meaning = meaning
         flashcardToEdit.example = example
-        
+
+        let lessonsToRemove : [Lesson] = loadData()
+        for lesson in lessonsToRemove {
+            if ((flashcardToEdit.lesson?.contains(lesson)) != nil) {
+                flashcardToEdit.removeFromLesson(lesson)
+            }
+        }
+        for lesson in lessons {
+            flashcardToEdit.addToLesson(lesson)
+        }
         saveContext()
         
         return flashcardToEdit
@@ -82,6 +94,17 @@ class DataHelper {
         return objects
     }
 
+    func loadFlashcards(lesson: Lesson) ->[Flashcard]{
+        var allFlashcards: [Flashcard] = loadData()
+        var flashcards: [Flashcard] = []
+        
+        for flashcard in allFlashcards {
+            if (lesson.flashcards?.contains(flashcard) ?? false) {
+                flashcards.append(flashcard)
+            }
+        }
+        return flashcards
+    }
     func deleteData<T: NSManagedObject>(object: T){
         context.delete(object)
         
