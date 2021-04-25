@@ -26,11 +26,6 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
         textFieldExample.text = flashcardToEdit?.example
         saveThisFlashcardInLessons = flashcardToEdit?.lesson?.allObjects as! [Lesson]
 
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-
     }
     
     

@@ -9,23 +9,23 @@ import UIKit
 
 class FlashcardsViewController: UIViewController {
 
-    var lessons: [Lesson] = []//List of loaded flashcards
+    private var lessons: [Lesson] = []//List of loaded flashcards
     
-    var lessonTableView: UITableView!
-    let flashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
+    private var lessonTableView: UITableView!
+    private let flashcardsTableViewCellIdentifier = "letflashcardsTableViewCellIdentifier"
     
-    let allFlashcardsButton = UIButton()
-    let imageViewAddbutton = UIImageView()
+    private let allFlashcardsButton = UIButton()
+    private let imageViewAddbutton = UIImageView()
     
-    let buttonsView = UIView()
-    let addFlashcardButton = UIButton()
-    let addListButton = UIButton()
+    private let buttonsView = UIView()
+    private let addFlashcardButton = UIButton()
+    private let addListButton = UIButton()
     
-    let blurView = UIButton()
-    var addListView: AddListView?
+    private let blurView = UIButton()
+    private var addListView: AddListView?
     
-    var thereIsCellTapped = false
-    var selectedRowIndex = -1
+    private var thereIsCellTapped = false
+    private var selectedRowIndex = -1
     
     
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class FlashcardsViewController: UIViewController {
     }
     
 
-    @objc func loadData(){
+    @objc private func loadData(){
         
         //lessons = DataHelper.shareInstance.loadData()
         
@@ -85,7 +85,7 @@ class FlashcardsViewController: UIViewController {
         }
         
     }
-    @objc func cancel(){
+    @objc private func cancel(){
         
         thereIsCellTapped = false
         selectedRowIndex = -1
@@ -96,7 +96,7 @@ class FlashcardsViewController: UIViewController {
         
     }
     
-    func configureNavigationAndTabBarControllers(){
+    private func configureNavigationAndTabBarControllers(){
 
         self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
         title = "Fiszki"
@@ -111,7 +111,7 @@ class FlashcardsViewController: UIViewController {
     }
 
     
-    func createAddButton(){
+    private func createAddButton(){
         imageViewAddbutton.image = UIImage(systemName: "plus.circle.fill")
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addButtonAction))
         guard let navigationBar = self.navigationController?.navigationBar else { return }
@@ -132,10 +132,7 @@ class FlashcardsViewController: UIViewController {
         
         
     }
-    @objc
-    func addButtonAction() {
-        
-
+    @objc private func addButtonAction() {
         if ( self.navigationController!.navigationBar.layer.zPosition == 0 ) {
             self.navigationController!.navigationBar.layer.zPosition = -1
             
@@ -161,11 +158,9 @@ class FlashcardsViewController: UIViewController {
             }
         }
     }
-    func configureLessonTableView(){
+    private func configureLessonTableView(){
         
         lessonTableView = UITableView()
-        //set row height
-        //lessonTableView.rowHeight = 80
         //register cells
         lessonTableView.register(ListsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
         //set contraits
@@ -176,12 +171,11 @@ class FlashcardsViewController: UIViewController {
         lessonTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         lessonTableView.showsVerticalScrollIndicator = false
         
-    
         lessonTableView.backgroundColor = .clear
 
     }
     
-    func configureAllFlashcardsButton() {
+    private func configureAllFlashcardsButton() {
         allFlashcardsButton.backgroundColor = Colors.FATGpurple
         allFlashcardsButton.setTitle("WSZYSTKIE FISZKI", for: .normal)
         allFlashcardsButton.setTitleColor(.white, for: .normal)
@@ -197,15 +191,13 @@ class FlashcardsViewController: UIViewController {
         
     }
     
-    @objc func allFlashcards (){
+    @objc private func allFlashcards (){
         print("allFlashcards")
         self.imageViewAddbutton.isHidden = true
         self.performSegue(withIdentifier: "showAllFlashcards", sender: self)
-
-        
     }
     
-    func configureAddFlashcardsButton() {
+    private func configureAddFlashcardsButton() {
         buttonsView.backgroundColor = Colors.FATGWhiteBlack
         buttonsView.layer.cornerRadius = 15
         buttonsView.layer.shadowRadius = 10
@@ -250,7 +242,7 @@ class FlashcardsViewController: UIViewController {
         
     }
     
-    @objc func addFlashcard (){
+    @objc private func addFlashcard (){
         print("addFlashcard")
         addButtonAction()
         let addVC = UIStoryboard(name: "Main",
@@ -266,7 +258,7 @@ class FlashcardsViewController: UIViewController {
         
     }
     
-    @objc func addList (){
+    @objc private func addList (){
         print("addList")
         addButtonAction()
         configureBlurView()
@@ -279,23 +271,12 @@ class FlashcardsViewController: UIViewController {
 
         UIApplication.shared.keyWindow!.addSubview(addListView!)
         
-        //addListView.isHidden = false
         blurView.isHidden = false
         
     }
     
-    
-    func backFromAddFlashcardControllerToDetailsController(){
-        
-    }
-    func backFromAddListControllerToDetailsController(){
-        
-    }
-    
-    func configureBlurView() {
+    private func configureBlurView() {
         blurView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
-        //view.addSubview(blurView)
-        //blurView.pin(to: view)
         blurView.addTarget(self, action: #selector(hideBlur), for: .touchUpInside)
         blurView.isHidden = true
         
@@ -303,10 +284,9 @@ class FlashcardsViewController: UIViewController {
         blurView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(blurView)
     }
-    @objc func hideBlur(){
+    @objc private func hideBlur(){
         blurView.removeFromSuperview()
         addListView?.removeFromSuperview()
-
     }
 }
 
@@ -332,7 +312,7 @@ extension FlashcardsViewController:  UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func setFlashcardsTableViewDelegates(){
+    private func setFlashcardsTableViewDelegates(){
         lessonTableView.delegate = self
         lessonTableView.dataSource = self
     }

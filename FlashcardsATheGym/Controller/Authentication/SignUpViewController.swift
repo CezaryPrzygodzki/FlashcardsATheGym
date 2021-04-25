@@ -10,21 +10,23 @@ import FirebaseAuth
 import Firebase
 import FRHyperLabel
 import KeychainSwift
+import JGProgressHUD
 
 class SignUpViewController: UIViewController {
 
-    let keychain = KeychainSwift()
+    private let keychain = KeychainSwift()
     
-    let welcomeImage = UIImageView()
-    let signUpToLoginQuestion = FRHyperLabel()
+    private let welcomeImage = UIImageView()
+    private let signUpToLoginQuestion = FRHyperLabel()
     
-    let textFieldNick = UITextField()
-    let textFieldMail = UITextField()
-    let textFieldPassword = UITextField()
-    let eyeButton = UIButton(type: .custom)
-    let signUpButton = UIButton()
-    var labelError = UILabel()
-    
+    private let textFieldNick = UITextField()
+    private let textFieldMail = UITextField()
+    private let textFieldPassword = UITextField()
+    private let eyeButton = UIButton(type: .custom)
+    private let signUpButton = UIButton()
+    private var labelError = UILabel()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,16 +55,110 @@ class SignUpViewController: UIViewController {
         labelError.alpha = 0
         view.addSubview(labelError)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.delegate = self
         view.addGestureRecognizer(tap)
         
+
     }
+    // MARK: Validation
     
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    func configureWelcomeImage() {
+    
+    @objc private func signUpTapped(){
+        
+        let progressHUD = JGProgressHUD(style: .dark)
+        progressHUD.show(in: view)
+        //Validate the fields
+        let error = validateFields()
+        
+        if error != nil {
+            //There's something wrong with fileds, show error message
+            progressHUD.dismiss()
+            showError(error!)
+        }else{
+            let nick = textFieldNick.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = textFieldMail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = textFieldPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            //Create the user
+            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                // Check for errors
+                if err != nil{
+                    //There was an error creating the user
+                    progressHUD.dismiss()
+                    self.showError(err.debugDescription.description)
+                    print("ERROR ERROR ERROR")
+                    print(err.debugDescription)
+                    
+                }else{
+                    // User was created successfully, be happy :)
+                    let db = Firestore.firestore()
+                    let user: [String: Any] = [
+                        "UID":result!.user.uid,
+                        "Nick":nick
+                    ]
+                    self.keychain.set((result?.user.uid)!, forKey: Keys.uid, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
+                    self.keychain.set(nick, forKey: Keys.nick, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
+                    db.collection("Users").addDocument(data: user) { (error) in
+                        if error != nil{
+                            //Show error message
+                            self.showError(error!.localizedDescription)
+                            print(error!.localizedDescription)
+                        }
+                    }
+                    //Go to featuredViewController
+                    progressHUD.dismiss()
+                    print("ID użytkownika to:\(self.keychain.get(Keys.uid)!)")
+                    self.performSegue(withIdentifier: "signedUp", sender: self)
+                    
+                }
+            }
+            
+        }
+    }
+
+    private func showError(_ message:String){
+        
+        labelError.text = message
+        labelError.alpha = 1
+        labelError.frame = CGRect(x: self.view.frame.size.width/2 - labelError.frame.size.width/2,
+                                  y: signUpButton.frame.origin.y + signUpButton.frame.size.height + 20,
+                                  width: labelError.frame.size.width,
+                                  height: labelError.frame.size.height)
+        labelError.sizeToFit()
+        labelError.frame.size.width = self.view.frame.size.width - 50
+    }
+    
+    //Check the fields and validate that the data is correct. If everything is correct, this method return nil. Otherwise, it returns the error message that it's going to be shown in errorLabel
+    private func validateFields() ->String?{
+        
+        //Check that all fields are filled in
+        if textFieldNick.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            textFieldMail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            textFieldPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Uzupełnij wszystkie pola."
+            //return "Please fill in all fields"
+        }
+        //Check if the password is secured
+        if textFieldMail.isEmail() == false {
+            return "Niepoprawny adres email."
+            //return "Incorect email"
+        }
+        
+        if textFieldPassword.isPassword() == false {
+            return "Twoje hasło jest za łatwe. Zgodnie z naszą polityką bezpieczeństwa wymagamy, aby każde hasło składało się z conajmniej 8 znaków, zawierało conjamniej jedną cyfrę i duże litery. "
+            //return "Make your passoword stronger. Due to our security policy we require each password to be at least 8 characters long and must contain at least one digit and uppercase."
+        }
+        
+        
+        return nil
+    }
+    
+    private func configureWelcomeImage() {
         let image = UIImage(named: "welcome")
         welcomeImage.image = image
         
@@ -77,7 +173,8 @@ class SignUpViewController: UIViewController {
         
     }
     
-    func createSignUpToLoginQuestion(){
+    // MARK: Configuring UITextFields
+    private func createSignUpToLoginQuestion(){
         signUpToLoginQuestion.frame.size.width = 348
         signUpToLoginQuestion.frame.size.height = 41
         signUpToLoginQuestion.textAlignment = .center
@@ -106,7 +203,7 @@ class SignUpViewController: UIViewController {
         
     }
 
-    func configureTextFieldNick() {
+    private func configureTextFieldNick() {
         textFieldNick.textField(placeholder: "Nazwa użytkownika")
         textFieldNick.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldNick.frame.size.width / 2,
                                      y: signUpToLoginQuestion.frame.origin.y + signUpToLoginQuestion.frame.size.height,
@@ -115,7 +212,7 @@ class SignUpViewController: UIViewController {
         
     }
 
-    func configuretextFieldMail() {
+    private func configuretextFieldMail() {
         textFieldMail.textField(placeholder: "E-mail")
         textFieldMail.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldMail.frame.size.width / 2,
                                      y: textFieldNick.frame.origin.y + textFieldNick.frame.size.height + 10,
@@ -124,7 +221,7 @@ class SignUpViewController: UIViewController {
         
     }
 
-    func configuretextFieldPassword() {
+    private func configuretextFieldPassword() {
         textFieldPassword.textField(placeholder: "Hasło")
         textFieldPassword.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldPassword.frame.size.width / 2,
                                      y: textFieldMail.frame.origin.y + textFieldMail.frame.size.height + 10,
@@ -141,7 +238,7 @@ class SignUpViewController: UIViewController {
         textFieldPassword.isSecureTextEntry.toggle()
     }
     
-    @objc func showPassword(_ sender: Any){
+     @objc private func showPassword(_ sender: Any){
         (sender as! UIButton).isSelected = !(sender as! UIButton).isSelected
         if (sender as! UIButton).isSelected{
             self.textFieldPassword.isSecureTextEntry = false
@@ -152,7 +249,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    func configureSignUpButton(){
+    private func configureSignUpButton(){
         signUpButton.setTitle("Utwórz konto", for: .normal)
         signUpButton.setTitleColor(.white, for: .normal)
         signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 23, weight:.medium)
@@ -171,89 +268,7 @@ class SignUpViewController: UIViewController {
         
     }
     
-    @objc func signUpTapped(){
-        
-        //Validate the fields
-        let error = validateFields()
-        
-        if error != nil {
-            //There's something wrong with fileds, show error message
-            showError(error!)
-        }else{
-            let nick = textFieldNick.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = textFieldMail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = textFieldPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            //Create the user
-            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                // Check for errors
-                if err != nil{
-                    //There was an error creating the user
-                    self.showError(err.debugDescription.description)
-                    print("ERROR ERROR ERROR")
-                    print(err.debugDescription)
-                }else{
-                    // User was created successfully, be happy :)
-                    let db = Firestore.firestore()
-                    let user: [String: Any] = [
-                        "UID":result!.user.uid,
-                        "Nick":nick
-                    ]
-                    self.keychain.set((result?.user.uid)!, forKey: Keys.uid, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
-                    self.keychain.set(nick, forKey: Keys.nick, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
-                    db.collection("Users").addDocument(data: user) { (error) in
-                        if error != nil{
-                            //Show error message
-                            self.showError(error!.localizedDescription)
-                            print(error!.localizedDescription)
-                        }
-                    }
-                    //Go to featuredViewController
-                    print("ID użytkownika to:\(self.keychain.get(Keys.uid)!)")
-                    self.performSegue(withIdentifier: "signedUp", sender: self)
-                    
-                }
-            }
-            
-        }
-    }
-
-    func showError(_ message:String){
-        
-        labelError.text = message
-        labelError.alpha = 1
-        labelError.frame = CGRect(x: self.view.frame.size.width/2 - labelError.frame.size.width/2,
-                                  y: signUpButton.frame.origin.y + signUpButton.frame.size.height + 20,
-                                  width: labelError.frame.size.width,
-                                  height: labelError.frame.size.height)
-        labelError.sizeToFit()
-        labelError.frame.size.width = self.view.frame.size.width - 50
-    }
-    
-    //Check the fields and validate that the data is correct. If everything is correct, this method return nil. Otherwise, it returns the error message that it's going to be shown in errorLabel
-    func validateFields() ->String?{
-        
-        //Check that all fields are filled in
-        if textFieldNick.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            textFieldMail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            textFieldPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
-            return "Please fill in all fields"
-        }
-        //Check if the password is secured
-        if textFieldMail.isEmail() == false {
-            return "Incorect email"
-        }
-        
-        if textFieldPassword.isPassword() == false {
-            return "Make your passoword stronger. Due to our security policy we require each password to be at least 8 characters long and must contain at least one digit and uppercase."
-        }
-        
-        
-        return nil
-    }
-    
-    func configureLabelError() {
+    private func configureLabelError() {
         labelError.error()
         labelError.frame = CGRect(x: self.view.frame.size.width/2 - labelError.frame.size.width/2,
                                   y: signUpButton.frame.origin.y + signUpButton.frame.size.height + 20,
@@ -265,3 +280,21 @@ class SignUpViewController: UIViewController {
         
     }
 }
+
+// MARK: GestureRecognizerDeleagte
+extension SignUpViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+
+  // Get the location in CGPoint
+      let location = touch.location(in: nil)
+
+  // Check if location is inside the Zaloguj sie
+      if signUpToLoginQuestion.frame.contains(location) {
+          return false
+      }
+
+      return true
+    }
+  }
+

@@ -13,7 +13,7 @@ class DataHelper {
     
     static let shareInstance = DataHelper()
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     func saveContext(){

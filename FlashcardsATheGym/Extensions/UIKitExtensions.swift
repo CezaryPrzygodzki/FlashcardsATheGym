@@ -20,7 +20,17 @@ extension UIView {
 
 }
 
+extension UIButton{
+    
+    func makeRounded(diameter: CGFloat) {
 
+        self.frame.size.width = diameter
+        self.frame.size.height = diameter
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = self.frame.size.height / 2
+        self.clipsToBounds = true
+    }
+}
 extension UINavigationController {
 
     

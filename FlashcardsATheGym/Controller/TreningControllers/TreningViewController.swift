@@ -9,18 +9,12 @@ import UIKit
 
 class TreningViewController: UIViewController{
 
-    var topLabelStartTrening : UIView!
-    
-    var previousTreningsLabel: UILabel!
-    
-    var previousTreningsTableView: UITableView!
-    
+    private var topLabelStartTrening : UIView!
+    private var previousTreningsLabel: UILabel!
+    private var previousTreningsTableView: UITableView!
     let previousTreningsTableViewCellIdentifier = "previousTreningsTableViewCellIdentifier"
     
     override func viewDidLoad() {
-        
-        
-        
         super.viewDidLoad()
 
         configureNavigationAndTabBarControllers()
@@ -45,7 +39,7 @@ class TreningViewController: UIViewController{
     }
     
 
-    func configureNavigationAndTabBarControllers(){
+    private func configureNavigationAndTabBarControllers(){
 
         self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
         title = "Trening"
@@ -59,7 +53,7 @@ class TreningViewController: UIViewController{
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.FATGtext!]
     }
 
-    func configureTopLabelStartTrening() -> UIView{
+    private func configureTopLabelStartTrening() -> UIView{
         
         let topView = UIView()
         
@@ -119,13 +113,13 @@ class TreningViewController: UIViewController{
         return topView
     }
     
-    @objc func start(){
+    @objc private func start(){
         let sessionVC = TreningSessionViewController()
         sessionVC.modalPresentationStyle = .fullScreen
         navigationController?.showDetailViewController(sessionVC, sender: true)
     }
     
-    func configurePreviousTreningsLabel() -> UILabel {
+    private func configurePreviousTreningsLabel() -> UILabel {
         let label = UILabel()
         
         label.text = "Poprzednie treningi"
@@ -136,7 +130,7 @@ class TreningViewController: UIViewController{
         return label
     }
     
-    func configurePreviousTreningsTableView() {
+    private func configurePreviousTreningsTableView() {
         previousTreningsTableView = UITableView()
         //set row height
         previousTreningsTableView.rowHeight = 130
@@ -149,11 +143,7 @@ class TreningViewController: UIViewController{
         
         previousTreningsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         previousTreningsTableView.showsVerticalScrollIndicator = false
-        
-       // previousTreningsTableView.isScrollEnabled = false
-    //Scrolling whole screen and not just tableview
-
-        
+                
         previousTreningsTableView.backgroundColor = .clear
         
     }
@@ -172,13 +162,11 @@ extension TreningViewController: UITableViewDelegate , UITableViewDataSource {
             fatalError("Bad Instance")
         }
     
-        
-       
         return cell
     }
     
     
-    func  setPreviousTreningsTableView() {
+    private func  setPreviousTreningsTableView() {
         previousTreningsTableView.delegate = self
         previousTreningsTableView.dataSource = self
         

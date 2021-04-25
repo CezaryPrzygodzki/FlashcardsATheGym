@@ -10,18 +10,19 @@ import FirebaseAuth
 import Firebase
 import FRHyperLabel
 import KeychainSwift
+import JGProgressHUD
 
 class LoginViewController: UIViewController {
 
-    let keychain = KeychainSwift()
-    let welcomeImage = UIImageView()
-    let loginToSignUpQuestion = FRHyperLabel()
+    private let keychain = KeychainSwift()
+    private let welcomeImage = UIImageView()
+    private let loginToSignUpQuestion = FRHyperLabel()
     
-    let textFieldMail = UITextField()
-    let textFieldPassword = UITextField()
-    let eyeButton = UIButton(type: .custom)
-    let loginButton = UIButton()
-    let labelError = UILabel()
+    private let textFieldMail = UITextField()
+    private let textFieldPassword = UITextField()
+    private let eyeButton = UIButton(type: .custom)
+    private let loginButton = UIButton()
+    private let labelError = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +33,10 @@ class LoginViewController: UIViewController {
         
         configureWelcomeImage()
         view.addSubview(welcomeImage)
-        
         view.backgroundColor = Colors.FATGbackground
+        
         createLoginToSignUpQuestion()
         view.addSubview(loginToSignUpQuestion)
-        
 
         configuretextFieldMail()
         view.addSubview(textFieldMail)
@@ -50,16 +50,87 @@ class LoginViewController: UIViewController {
         labelError.alpha = 0
         view.addSubview(labelError)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        tap.delegate = self
     }
     
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    // MARK: Validation
+    @objc private func loginTapped(){
+        let progressHUD = JGProgressHUD(style: .dark)
+        progressHUD.show(in: view)
+        
+        let email = textFieldMail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let password = textFieldPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        //Validate Text Fields
+        let error = validateFields(email: email, password: password)
+        
+        if error != nil {
+            //There's something wrong with fileds, show error message
+            showError(error!)
+        }else {
+            //Singing in the user
+            
+            Auth.auth().signIn(withEmail: email, password: password) { (result, err) in
+                
+                if err != nil {
+                    //Couldn't sign it
+
+                    progressHUD.dismiss()
+                    self.showError("Popraw login lub hasło")
+                }else{
+                    var name = ""
+                    let db = Firestore.firestore()
+                    db.collection("Users").whereField("UID", isEqualTo:(result?.user.uid)!).getDocuments { (snapshot, err) in
+                        if let error = err {
+                            print("Error geting nick: \(error)")
+                        } else {
+                            for document in snapshot!.documents {
+                               
+                                name = (document.get("Nick")! as! String)
+                                print(name)
+                                self.keychain.set(name, forKey: Keys.nick, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
+                            }
+                        }
+                    }
+                    //Setting UserID as UID in Keychain
+                    self.keychain.set((result?.user.uid)!, forKey: Keys.uid, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
+                    print("UID dla tej sesji to: \(self.keychain.get(Keys.uid))")
+                    print("Nick dla tej sesji to: \(self.keychain.get(Keys.nick))")
+                    //Download profile photo from firebase storage and put it to Keychain
+                    //self.downloadPhoto()
+                    //Go to featuredViewController
+                    progressHUD.dismiss()
+                    self.performSegue(withIdentifier: "logged", sender: self)
+                }
+            }
+        }
+    }
     
-    func configureWelcomeImage() {
+    private func validateFields(email: String, password: String) ->String?{
+        
+        //Check that all fields are filled in
+        if email == "" || password == "" {
+            return "Uzupełnij wszystkie pola."
+            //return "Please fill in all fields"
+        }
+        return nil
+    }
+    
+    private func showError(_ message:String){
+        
+        labelError.text = message
+        labelError.alpha = 1
+        configureLabelError()
+    }
+    
+    // MARK: Configuring UITextFields
+    private func configureWelcomeImage() {
         let image = UIImage(named: "welcome")
         welcomeImage.image = image
         
@@ -74,7 +145,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    func createLoginToSignUpQuestion(){
+    private func createLoginToSignUpQuestion(){
         loginToSignUpQuestion.frame.size.width = 348
         loginToSignUpQuestion.frame.size.height = 41
         loginToSignUpQuestion.textAlignment = .center
@@ -104,7 +175,7 @@ class LoginViewController: UIViewController {
     }
 
     
-    func configuretextFieldMail() {
+    private func configuretextFieldMail() {
         textFieldMail.textField(placeholder: "E-mail")
         
         textFieldMail.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldMail.frame.size.width / 2,
@@ -114,7 +185,7 @@ class LoginViewController: UIViewController {
         
     }
 
-    func configuretextFieldPassword() {
+    private func configuretextFieldPassword() {
         textFieldPassword.textField(placeholder: "Hasło")
         textFieldPassword.frame = CGRect(x: self.view.frame.size.width / 2 - textFieldPassword.frame.size.width / 2,
                                      y: textFieldMail.frame.origin.y + textFieldMail.frame.size.height + 10,
@@ -131,7 +202,7 @@ class LoginViewController: UIViewController {
         textFieldPassword.isSecureTextEntry.toggle()
     }
     
-    @objc func showPassword(_ sender: Any){
+    @objc private func showPassword(_ sender: Any){
         (sender as! UIButton).isSelected = !(sender as! UIButton).isSelected
         if (sender as! UIButton).isSelected{
             self.textFieldPassword.isSecureTextEntry = false
@@ -142,7 +213,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func configureLoginButton(){
+    private func configureLoginButton(){
         loginButton.setTitle("Zaloguj się", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 23, weight:.medium)
@@ -161,69 +232,8 @@ class LoginViewController: UIViewController {
         
     }
     
-    @objc func loginTapped(){
-        let email = textFieldMail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let password = textFieldPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        //Validate Text Fields
-        let error = validateFields(email: email, password: password)
-        
-        if error != nil {
-            //There's something wrong with fileds, show error message
-            showError(error!)
-        }else {
-            //Singing in the user
-            
-            Auth.auth().signIn(withEmail: email, password: password) { (result, err) in
-                
-                if err != nil {
-                    //Couldn't sign it
-                    self.showError(err!.localizedDescription)
-                }else{
-                    var name = ""
-                    let db = Firestore.firestore()
-                    db.collection("Users").whereField("UID", isEqualTo:(result?.user.uid)!).getDocuments { (snapshot, err) in
-                        if let error = err {
-                            print("Error geting nick: \(error)")
-                        } else {
-                            for document in snapshot!.documents {
-                               
-                                name = (document.get("Nick")! as! String)
-                                print(name)
-                                self.keychain.set(name, forKey: Keys.nick, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
-                            }
-                        }
-                    }
-                    //Setting UserID as UID in Keychain
-                    self.keychain.set((result?.user.uid)!, forKey: Keys.uid, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
-                    print("UID dla tej sesji to: \(self.keychain.get(Keys.uid))")
-                    print("Nick dla tej sesji to: \(self.keychain.get(Keys.nick))")
-                    //Download profile photo from firebase storage and put it to Keychain
-                    //self.downloadPhoto()
-                    //Go to featuredViewController
-                    self.performSegue(withIdentifier: "logged", sender: self)
-                }
-            }
-        }
-    }
     
-    func validateFields(email: String, password: String) ->String?{
-        
-        //Check that all fields are filled in
-        if email == "" || password == "" {
-            return "Please fill in all fields"
-        }
-        return nil
-    }
-    
-    func showError(_ message:String){
-        
-        labelError.text = message
-        labelError.alpha = 1
-        configureLabelError()
-    }
-    
-    func configureLabelError() {
+    private func configureLabelError() {
         labelError.error()
         labelError.frame = CGRect(x: self.view.frame.size.width/2 - labelError.frame.size.width/2,
                                   y: loginButton.frame.origin.y + loginButton.frame.size.height + 20,
@@ -239,3 +249,19 @@ class LoginViewController: UIViewController {
         
     
 }
+
+extension LoginViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+
+  // Get the location in CGPoint
+      let location = touch.location(in: nil)
+
+  // Check if location is inside the Zarejestruj sie
+      if loginToSignUpQuestion.frame.contains(location) {
+          return false
+      }
+
+      return true
+    }
+  }

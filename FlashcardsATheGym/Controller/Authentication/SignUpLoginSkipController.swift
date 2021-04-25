@@ -40,15 +40,8 @@ class SignUpLoginSkipController: UIViewController {
         configureAlreadyHaveAccountLabel()
         view.addSubview(alreadyHaveAccountLabel)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     
-
-    @objc func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
     
     func configureWelcomeLabel() {
         welcomeLabel.text = "Witaj w FATG!"
@@ -129,6 +122,7 @@ class SignUpLoginSkipController: UIViewController {
     
     func configureAlreadyHaveAccountLabel() {
         alreadyHaveAccountLabel.textAlignment = .center
+        alreadyHaveAccountLabel.isUserInteractionEnabled = true
         
         alreadyHaveAccountLabel.frame.size.width = screenWidth - 50
         alreadyHaveAccountLabel.frame.size.height = 50

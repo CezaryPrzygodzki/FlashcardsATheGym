@@ -19,9 +19,6 @@ class LessonFlashcardsViewController: AllFlashcardsViewController {
         flashcards = DataHelper.shareInstance.loadFlashcards(lesson: lesson)
         flashcardsTableView.reloadData()
 
-        
-
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Anuluj", style: .plain, target: self, action: #selector(anuluj))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,8 +28,7 @@ class LessonFlashcardsViewController: AllFlashcardsViewController {
          }
     }
     
-    @objc
-    func anuluj() {
+    @objc private func anuluj() {
         dismiss(animated: true, completion: nil)
     }
     

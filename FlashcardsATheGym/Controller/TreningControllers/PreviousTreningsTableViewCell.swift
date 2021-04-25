@@ -10,12 +10,11 @@ import UIKit
 
 class PreviousTreningsTableViewCell: UITableViewCell {
     
-    let cellWidth = UIScreen.main.bounds.size.width - 50
-    let cellHeight : CGFloat = 130
-    let padding: CGFloat = 15
+    private let cellWidth = UIScreen.main.bounds.size.width - 50
+    private let cellHeight : CGFloat = 130
+    private let padding: CGFloat = 15
     
-    
-    let background = UIView()
+    private let background = UIView()
     
     let dayLabelView = UIView()
     let monthDateLabel = UILabel()
@@ -24,7 +23,7 @@ class PreviousTreningsTableViewCell: UITableViewCell {
     let timeLabel = UILabel()
     let listLabel = UILabel()
     let flashcardsDoneLabel = UILabel()
-    var stackView = UIStackView()
+    private var stackView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
      super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -49,23 +48,15 @@ class PreviousTreningsTableViewCell: UITableViewCell {
      required init?(coder: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }
-
     
-    
-    func configureBackground() {
+    private func configureBackground() {
         background.backgroundColor = Colors.FATGWhiteBlack
-        
         background.layer.cornerRadius = 10
-
         background.frame.size.height = cellHeight - 20
         background.frame.size.width = cellWidth
-        
     }
     
-    
-    
-    func configureDayLabelView() {
-        
+    private func configureDayLabelView() {
         dayLabelView.backgroundColor = Colors.FATGpink
         dayLabelView.layer.cornerRadius = 7
         
@@ -78,8 +69,7 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                     height: dayLabelView.frame.size.height)
     }
     
-    func configureMonthDateLabel(){
-        
+    private func configureMonthDateLabel(){
         monthDateLabel.text = "STY"
         monthDateLabel.textColor = .white
         monthDateLabel.font = UIFont.systemFont(ofSize: 25, weight: .regular)
@@ -93,10 +83,9 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                       width: monthDateLabel.frame.size.width ,
                                       height:  monthDateLabel.frame.size.height)
         
-        
     }
-    func configureDayDateLabel() {
-        
+    
+    private func configureDayDateLabel() {
         dayDateLabel.text = "27"
         dayDateLabel.textColor = .white
         dayDateLabel.font = UIFont.systemFont(ofSize: 30, weight: .black)
@@ -110,10 +99,9 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                     width: dayDateLabel.frame.size.width,
                                     height: dayDateLabel.frame.size.height)
         
-        
     }
     
-    func configureTimeListFlashcardsDoneLabels(){
+    private func configureTimeListFlashcardsDoneLabels(){
         
         timeLabel.textColor = Colors.FATGtext
         listLabel.textColor = Colors.FATGtext
@@ -129,14 +117,12 @@ class PreviousTreningsTableViewCell: UITableViewCell {
         
     }
     
-    func configureStackView() -> UIStackView {
+    private func configureStackView() -> UIStackView {
         let sv = UIStackView(arrangedSubviews: [
             timeLabel,
             listLabel,
             flashcardsDoneLabel
         ])
-        let numberOfLabels : CGFloat = 3
-        let labelSize : CGFloat = 75
         
         sv.axis = .vertical
         sv.distribution = .fillEqually

@@ -11,7 +11,7 @@ import KeychainSwift
 
 class AppManager {
     
-    let keychain = KeychainSwift()
+    private let keychain = KeychainSwift()
     //making singleton
     static let shared = AppManager()
     let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -9,19 +9,19 @@ import UIKit
 
 class FlashcardsTableViewCell: UITableViewCell {
 
-    let cellWidth = UIScreen.main.bounds.size.width - 50
-    var cellHeight : CGFloat = 100
-    let padding: CGFloat = 15
+    private let cellWidth = UIScreen.main.bounds.size.width - 50
+    private var cellHeight : CGFloat = 100
+    private let padding: CGFloat = 15
     
     
     let background = UIView()
-    var wordLabel = UILabel()
-    var translationLabel = UILabel()
-    var pronunciationLabel = UILabel()
-    var meaningLabel = UILabel()
-    var exampleLabel = UILabel()
+    let wordLabel = UILabel()
+    let translationLabel = UILabel()
+    let pronunciationLabel = UILabel()
+    let meaningLabel = UILabel()
+    let exampleLabel = UILabel()
     
-    lazy var stackView = UIStackView()
+    private lazy var stackView = UIStackView()
 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -97,69 +97,60 @@ class FlashcardsTableViewCell: UITableViewCell {
     }
 
     
-    func configureBackground() {
+    private func configureBackground() {
         background.backgroundColor = Colors.FATGWhiteBlack
-        
         background.layer.cornerRadius = 10
-
         background.clipsToBounds = true
-        
         background.translatesAutoresizingMaskIntoConstraints = false
     }
 
     
-    func configureWordLabel(){
+    private func configureWordLabel(){
         wordLabel.text = "Sensational"
         wordLabel.textColor = Colors.FATGtext
         wordLabel.font = UIFont.systemFont(ofSize: 19, weight: .medium)
 
-        
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         
         
     }
-    func configureTranslationLabel() {
+    private func configureTranslationLabel() {
         translationLabel.text = "Rewelacyjny"
         translationLabel.textColor = Colors.FATGtext
         translationLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
 
-        
         translationLabel.translatesAutoresizingMaskIntoConstraints = false
 
     }
-    func configurePronunciationLabel() {
+    private func configurePronunciationLabel() {
         pronunciationLabel.text = "Sensenszynal"
         pronunciationLabel.textColor = Colors.FATGtext
-        
         pronunciationLabel.font = UIFont.italicSystemFont(ofSize: 15)
-
-        
+            
         pronunciationLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configureMeaningLabel(){
+    private func configureMeaningLabel(){
         
         meaningLabel.text = "Very happy, full of joy"
         meaningLabel.textColor = Colors.FATGtext
         meaningLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         meaningLabel.numberOfLines = 0
-
         
         meaningLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configureExampleLabel(){
+    private func configureExampleLabel(){
         exampleLabel.text = "You look sensational this evening"
         exampleLabel.textColor = Colors.FATGtext
         exampleLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         exampleLabel.numberOfLines = 0
-
         
         exampleLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     
-    func configureStackView() -> UIStackView{
+    private func configureStackView() -> UIStackView{
         
         let sv = UIStackView(arrangedSubviews: [pronunciationLabel, meaningLabel, exampleLabel])
         

@@ -1,5 +1,5 @@
 //
-//  FlascardQuestion.swift
+//  FlashcardQuestion.swift
 //  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 20/04/2021.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class FlascardQuestion: UIView {
+class FlashcardQuestion: UIView {
 
-    var flashcard: Flashcard
-    var flashcardFrame: CGRect
+    private var flashcard: Flashcard
+    private var flashcardFrame: CGRect
     
-    var wordLabel = UILabel()
-    var pronunciationLabel = UILabel()
+    private let wordLabel = UILabel()
+    private let pronunciationLabel = UILabel()
     
     init(flashcard: Flashcard, frame: CGRect) {
         self.flashcard = flashcard
@@ -34,16 +34,16 @@ class FlascardQuestion: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWordLabel() {
+    private func configureWordLabel() {
         wordLabel.text = flashcard.word
-        wordLabel.tintColor = Colors.FATGtext
+        wordLabel.textColor = Colors.FATGtext
         wordLabel.textAlignment = .center
         wordLabel.font = UIFont.systemFont(ofSize: 25, weight: .regular)
         wordLabel.numberOfLines = 0
         wordLabel.frame.size.height = (flashcard.word!.count < 21) ? ( 30 ) : ( 60 )
         
         wordLabel.frame = CGRect(x: 20,
-                                 y: flashcardFrame.size.height / 2 - wordLabel.frame.size.height / 2 - 30,
+                                 y: flashcardFrame.size.height / 2 - wordLabel.frame.size.height / 2 - 10,
                                  width: flashcardFrame.size.width - 40, //tak, żeby były paddingi po 20 z każdej strony
                                  height: wordLabel.frame.size.height)
         
@@ -51,16 +51,16 @@ class FlascardQuestion: UIView {
         
     }
     
-    func configurePronunciationLabel() {
+    private func configurePronunciationLabel() {
         pronunciationLabel.text = "/\(flashcard.pronunciation!)/"
-        pronunciationLabel.tintColor = Colors.FATGtext
+        pronunciationLabel.textColor = Colors.FATGtext
         pronunciationLabel.textAlignment = .center
         pronunciationLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
         pronunciationLabel.numberOfLines = 0
         pronunciationLabel.frame.size.height = 25
         
         pronunciationLabel.frame = CGRect(x: 20,
-                                 y: flashcardFrame.size.height / 2 - pronunciationLabel.frame.size.height / 2 + 10 ,
+                                 y: flashcardFrame.size.height / 2 - pronunciationLabel.frame.size.height / 2 + 20 ,
                                  width: flashcardFrame.size.width - 40, //tak, żeby były paddingi po 20 z każdej strony
                                  height: wordLabel.frame.size.height)
         
