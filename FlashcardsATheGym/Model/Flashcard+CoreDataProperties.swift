@@ -1,8 +1,8 @@
 //
 //  Flashcard+CoreDataProperties.swift
-//  FlashcardsATheGym
+//  
 //
-//  Created by Cezary Przygodzki on 19/01/2021.
+//  Created by Cezary Przygodzki on 05/04/2021.
 //
 //
 
@@ -21,9 +21,23 @@ extension Flashcard {
     @NSManaged public var pronunciation: String?
     @NSManaged public var translation: String?
     @NSManaged public var word: String?
+    @NSManaged public var lesson: NSSet?
 
 }
 
-extension Flashcard : Identifiable {
+// MARK: Generated accessors for lesson
+extension Flashcard {
+
+    @objc(addLessonObject:)
+    @NSManaged public func addToLesson(_ value: Lesson)
+
+    @objc(removeLessonObject:)
+    @NSManaged public func removeFromLesson(_ value: Lesson)
+
+    @objc(addLesson:)
+    @NSManaged public func addToLesson(_ values: NSSet)
+
+    @objc(removeLesson:)
+    @NSManaged public func removeFromLesson(_ values: NSSet)
 
 }

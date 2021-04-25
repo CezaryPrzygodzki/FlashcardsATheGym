@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:FlashcardsATheGym.xcodeproj">
    </FileRef>
    <FileRef

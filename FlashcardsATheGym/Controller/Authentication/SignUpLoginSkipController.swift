@@ -21,6 +21,7 @@ class SignUpLoginSkipController: UIViewController {
     let alreadyHaveAccountLabel = FRHyperLabel()
 
     
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,17 @@ class SignUpLoginSkipController: UIViewController {
 
         configureAlreadyHaveAccountLabel()
         view.addSubview(alreadyHaveAccountLabel)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
 
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     func configureWelcomeLabel() {
         welcomeLabel.text = "Witaj w FATG!"
         welcomeLabel.textColor = Colors.FATGtext
@@ -134,11 +143,12 @@ class SignUpLoginSkipController: UIViewController {
         let attributes = [ NSAttributedString.Key.foregroundColor: Colors.FATGtext,
                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .medium)
         ]
-        alreadyHaveAccountLabel.attributedText = NSAttributedString(string: text, attributes: attributes)
+        alreadyHaveAccountLabel.attributedText = NSAttributedString(string: text, attributes: attributes as [NSAttributedString.Key : Any])
         
         //Define a selection handler block
         let handler = {
             (hyperLabel: FRHyperLabel!, substring: String!) -> Void in
+            print("self.performSegue(withIdentifier: Login, sender: self)")
             self.performSegue(withIdentifier: "Login", sender: self)
             
         }

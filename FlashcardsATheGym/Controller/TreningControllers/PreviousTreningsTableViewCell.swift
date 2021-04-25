@@ -53,7 +53,7 @@ class PreviousTreningsTableViewCell: UITableViewCell {
     
     
     func configureBackground() {
-        background.backgroundColor = .white
+        background.backgroundColor = Colors.FATGWhiteBlack
         
         background.layer.cornerRadius = 10
 

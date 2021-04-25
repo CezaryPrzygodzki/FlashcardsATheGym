@@ -18,9 +18,9 @@ class SignUpViewController: UIViewController {
     let welcomeImage = UIImageView()
     let signUpToLoginQuestion = FRHyperLabel()
     
-    var textFieldNick = UITextField()
-    var textFieldMail = UITextField()
-    var textFieldPassword = UITextField()
+    let textFieldNick = UITextField()
+    let textFieldMail = UITextField()
+    let textFieldPassword = UITextField()
     let eyeButton = UIButton(type: .custom)
     let signUpButton = UIButton()
     var labelError = UILabel()
@@ -53,6 +53,14 @@ class SignUpViewController: UIViewController {
         labelError.alpha = 0
         view.addSubview(labelError)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     func configureWelcomeImage() {
         let image = UIImage(named: "welcome")
