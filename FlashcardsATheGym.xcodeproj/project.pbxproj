@@ -28,6 +28,8 @@
 		4990B03125B7449A00F9669C /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03025B7449A00F9669C /* AppManager.swift */; };
 		4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03525B744CA00F9669C /* AppContainerViewController.swift */; };
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
+		49A1F600263D9FDE00125B0C /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1F5FF263D9FDE00125B0C /* Teacher.swift */; };
+		49A1F602263ED5F600125B0C /* SelectTrainigModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */; };
 		49A45F7A262EFCC100C6A37A /* TreningSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */; };
 		49A45F7F262F0F8500C6A37A /* FlashcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */; };
 		49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9984425DBFFC0000F9DB4 /* AddListView.swift */; };
@@ -97,6 +99,8 @@
 		4990B03025B7449A00F9669C /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		4990B03525B744CA00F9669C /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		49A1F5FF263D9FDE00125B0C /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTrainigModeViewController.swift; sourceTree = "<group>"; };
 		49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreningSessionViewController.swift; sourceTree = "<group>"; };
 		49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardQuestion.swift; sourceTree = "<group>"; };
 		49A9984425DBFFC0000F9DB4 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 				49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */,
 				49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */,
 				49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */,
+				49A1F5FF263D9FDE00125B0C /* Teacher.swift */,
+				49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */,
 			);
 			path = TreningControllers;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				4990B02925B7152100F9669C /* LoginViewController.swift in Sources */,
 				4990B02425B6E23700F9669C /* SignUpViewController.swift in Sources */,
 				49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */,
+				49A1F600263D9FDE00125B0C /* Teacher.swift in Sources */,
 				4990AFF425B5C99900F9669C /* SignUpLoginSkipController.swift in Sources */,
 				49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */,
 				49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */,
@@ -617,6 +624,7 @@
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
 				49AC05752620AC7C004CC4BE /* LessonFlashcardsViewController.swift in Sources */,
 				49A45F7F262F0F8500C6A37A /* FlashcardQuestion.swift in Sources */,
+				49A1F602263ED5F600125B0C /* SelectTrainigModeViewController.swift in Sources */,
 				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,

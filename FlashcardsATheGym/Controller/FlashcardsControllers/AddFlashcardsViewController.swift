@@ -41,22 +41,22 @@ class AddFlashcardsViewController: UIViewController {
     var flashcardsViewController: FlashcardsViewController?
     var allFlashcardsViewController: AllFlashcardsViewController?
 
-    private var lessons: [Lesson] = []
+    private let lessons: [Lesson] = {
+    return DataHelper.shareInstance.loadData()
+}()
     var saveThisFlashcardInLessons : [Lesson] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-
+        
         view.backgroundColor = Colors.FATGbackground
         title = "Nowa fiszka"
-        navigationItem.backBarButtonItem?.title = "Wszystkie fiszki"
         
         configureLittleBarView()
-               view.addSubview(littleBarView)
+        view.addSubview(littleBarView)
                
-               configureTitleLabel()
-               view.addSubview(titleLabel)
+        configureTitleLabel()
+        view.addSubview(titleLabel)
         
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,14 +119,6 @@ class AddFlashcardsViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc func loadData(){
-        
-        lessons = DataHelper.shareInstance.loadData()
-        DispatchQueue.main.async {
-            self.lessonsTableView.reloadData()
-        }
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: heightOfScrollView)

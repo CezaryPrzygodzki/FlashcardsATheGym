@@ -31,11 +31,6 @@ class TreningViewController: UIViewController{
         previousTreningsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         previousTreningsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         previousTreningsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//        previousTreningsTableView.frame = CGRect(x: 25,
-//                                                 y: previousTreningsLabel.bounds.maxY ,
-//                                                 width: UIScreen.main.bounds.size.width - 50 ,
-//                                                 height: 400)
-//
     }
     
 
@@ -114,9 +109,14 @@ class TreningViewController: UIViewController{
     }
     
     @objc private func start(){
-        let sessionVC = TreningSessionViewController()
-        sessionVC.modalPresentationStyle = .fullScreen
-        navigationController?.showDetailViewController(sessionVC, sender: true)
+//        let sessionVC = TreningSessionViewController()
+//        sessionVC.modalPresentationStyle = .fullScreen
+//        navigationController?.showDetailViewController(sessionVC, sender: true)
+        
+        let chooseVC = SelectTrainigModeViewController()
+        chooseVC.treningViewController = self
+        navigationController?.showDetailViewController(chooseVC, sender: true)
+        
     }
     
     private func configurePreviousTreningsLabel() -> UILabel {
@@ -146,6 +146,13 @@ class TreningViewController: UIViewController{
                 
         previousTreningsTableView.backgroundColor = .clear
         
+    }
+    func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher){
+        
+        let sessionVC = TreningSessionViewController()
+        sessionVC.modalPresentationStyle = .fullScreen
+        sessionVC.teacher = teacher
+        navigationController?.showDetailViewController(sessionVC, sender: true)
     }
 }
 

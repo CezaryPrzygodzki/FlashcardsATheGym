@@ -11,9 +11,6 @@ class TreningSessionViewController: UIViewController {
 
     private var flashcardQuestion: FlashcardQuestion!
     private var flashcardAnswer: FlashcardAnswer!
-    private let flashcards: [Flashcard] = {
-        return DataHelper.shareInstance.loadData()
-    }()
     
     private let closeButton = UIButton()
     
@@ -24,10 +21,16 @@ class TreningSessionViewController: UIViewController {
     
     private var currentFlashcard : Flashcard!
     
+    var teacher : Teacher!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currentFlashcard = flashcards[1]
+        if let currF = teacher.listOfFlashcards.first {
+            currentFlashcard = currF
+            teacher.listOfFlashcards.removeFirst()
+        }
+        
         view.backgroundColor = Colors.FATGpurple
         configureTopBar()
         
@@ -46,6 +49,7 @@ class TreningSessionViewController: UIViewController {
         view.addSubview(correctAnswerButton)
         view.addSubview(wrongAnswerButton)
         configureCorrectWrongAnswerButtons()
+        
     }
     
 
@@ -165,44 +169,97 @@ class TreningSessionViewController: UIViewController {
             self?.flashcardAnswer.isHidden = false
             self?.correctAnswerButton.isHidden = false
             self?.wrongAnswerButton.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                self!.correctAnswerButton.alpha = 1
+                self!.wrongAnswerButton.alpha = 1
+            }
         }
 
     }
-    
+    private func hideAnswer(complition: ((Bool) -> (Void))? = nil) {
+        UIView.animate(withDuration: 0.2) {
+            self.flashcardAnswer.alpha = 0
+            self.correctAnswerButton.alpha = 0
+            self.wrongAnswerButton.alpha = 0
+        } completion: { [weak self] completed in
+            self?.checkoutButton.isHidden = false
+            self?.checkoutButton.alpha = 1
+            self?.flashcardAnswer.isHidden = true
+            self?.correctAnswerButton.isHidden = true
+            self?.wrongAnswerButton.isHidden = true
+            complition?(true)
+        }
+    }
     private func configureCorrectWrongAnswerButtons(){
-        let size : CGFloat = 70
-        
         correctAnswerButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         correctAnswerButton.tintColor = Colors.FATGpurple
         correctAnswerButton.contentHorizontalAlignment = .fill
         correctAnswerButton.contentVerticalAlignment = .fill
         correctAnswerButton.imageView?.contentMode = .scaleAspectFit
         correctAnswerButton.addTarget(self, action: #selector(correctAnswer), for: .touchUpInside)
-        correctAnswerButton.frame = CGRect(x: ( self.view.frame.size.width / 2 ) - ( size / 2 ) - 50,
-                                           y: flashcardAnswer.frame.maxY + 20,
-                                           width: size,
-                                           height: size)
         
         wrongAnswerButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
         wrongAnswerButton.tintColor = Colors.FATGpink
         wrongAnswerButton.addTarget(self, action: #selector(wrongAnswer), for: .touchUpInside)
-        wrongAnswerButton.frame = CGRect(x: ( self.view.frame.size.width / 2 ) - ( size / 2 ) + 50,
-                                           y: flashcardAnswer.frame.maxY + 20,
-                                           width: size,
-                                           height: size)
+
         wrongAnswerButton.contentHorizontalAlignment = .fill
         wrongAnswerButton.contentVerticalAlignment = .fill
         wrongAnswerButton.imageView?.contentMode = .scaleAspectFit
         
+        setXYpositionsOfCorrectWrongButtons()
         correctAnswerButton.isHidden = true
         wrongAnswerButton.isHidden = true
     }
     
+    private func setXYpositionsOfCorrectWrongButtons(){
+        let size : CGFloat = 70
+        
+        correctAnswerButton.frame = CGRect(x: ( self.view.frame.size.width / 2 ) - ( size / 2 ) - 50,
+                                           y: flashcardAnswer.frame.maxY + 20,
+                                           width: size,
+                                           height: size)
+        wrongAnswerButton.frame = CGRect(x: ( self.view.frame.size.width / 2 ) - ( size / 2 ) + 50,
+                                           y: flashcardAnswer.frame.maxY + 20,
+                                           width: size,
+                                           height: size)
+    }
     @objc private func correctAnswer(_ sender: UIButton!){
-        print("Correct answer")
+        let currFlash = teacher.correctAnswer()
+        
+        hideAnswer { [weak self] completed in
+            if currFlash != nil {
+                self!.currentFlashcard = currFlash!
+                self!.configureNewFlashcard()
+                print(self!.currentFlashcard)
+            } else {
+                print("The is is nil opss")
+            }
+        }
+       
+       
     }
     
     @objc private func wrongAnswer(_ sender: UIButton!){
-        print("Wrong answer")
+        let currFlash = teacher.wrongAnswer()
+        
+        hideAnswer { [weak self] completed in
+            if currFlash != nil {
+                self!.currentFlashcard = currFlash!
+                self!.configureNewFlashcard()
+                print(self!.currentFlashcard)
+            } else {
+                print("The is is nil opss")
+            }
+        }
+    }
+    
+    private func configureNewFlashcard(){
+        flashcardAnswer.removeFromSuperview()
+        flashcardQuestion.removeFromSuperview()
+        flashcardAnswer = configureFlashcardAnswer()
+        self.view.addSubview(flashcardAnswer)
+        flashcardQuestion = configureFlashcardQuestion()
+        self.view.addSubview(flashcardQuestion)
+        setXYpositionsOfCorrectWrongButtons()
     }
 }
