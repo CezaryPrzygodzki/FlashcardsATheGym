@@ -45,6 +45,7 @@ class SelectTrainigModeViewController: UIViewController {
     private let lessonsTableView = UITableView()
     
     private let startTraningButton = UIButton()
+    private let labelError = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,10 @@ class SelectTrainigModeViewController: UIViewController {
         
         conteinerView.addSubview(startTraningButton)
         startTrainingButton()
+        
+        conteinerView.addSubview(labelError)
+        configureLabelError()
+        labelError.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -147,12 +152,12 @@ class SelectTrainigModeViewController: UIViewController {
     }
     
     @objc private func strengthPressed(sender: UIButton!){
-        chosenTypeOfTrening = (chosenTypeOfTrening == .strength) ? ( TypeOfTrening.empty) : (TypeOfTrening.strength)
+        chosenTypeOfTrening = chosenTypeOfTrening == .strength ? .empty : .strength
         configureBackgrodundColorOfButtons()
     }
     
     @objc private func cardioPressed(sender: UIButton!){
-        chosenTypeOfTrening = (chosenTypeOfTrening == .cardio) ? ( TypeOfTrening.empty) : (TypeOfTrening.cardio)
+        chosenTypeOfTrening = chosenTypeOfTrening == .cardio ? .empty : .cardio
         configureBackgrodundColorOfButtons()
     }
     private func addDurationOfTraningToViewWithAnimation(){
@@ -288,17 +293,46 @@ class SelectTrainigModeViewController: UIViewController {
         startTraningButton.centerXAnchor.constraint(equalTo: conteinerView.centerXAnchor).isActive = true
         startTraningButton.topAnchor.constraint(equalTo: lessonsTableView.bottomAnchor, constant: padding).isActive = true
         
+        self.heightOfScrollView += 50 + padding
+        
         startTraningButton.addTarget(self, action: #selector(startTraining), for: .touchUpInside)
     }
     
     @objc private func startTraining(){
         print("Start trainig")
-        dismiss(animated: true) {
+        let flashcardsToSend : [Flashcard] = (self.chosenLesson == nil) ? (DataHelper.shareInstance.loadData()) : (DataHelper.shareInstance.loadFlashcards(lesson: self.chosenLesson!))
 
-            let flashcardsToSend : [Flashcard] = (self.chosenLesson == nil) ? (DataHelper.shareInstance.loadData()) : (DataHelper.shareInstance.loadFlashcards(lesson: self.chosenLesson!))
-            let teacher = Teacher(lesson: self.chosenLesson, flashcards: flashcardsToSend)
-            self.treningViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher)
-        }
+
+        let duration = datePicker.countDownDuration
+
+            if flashcardsToSend.count != 0 {
+                dismiss(animated: true) {
+                let teacher = Teacher(lesson: self.chosenLesson, flashcards: flashcardsToSend)
+                    self.treningViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher, selectedMode: self.chosenTypeOfTrening, duration: duration)
+                }
+            } else {
+                showError("Lista jest pusta, wybierz inną")
+            }
+            
+        
+    }
+    
+    private func configureLabelError() {
+        labelError.error()
+        labelError.frame = CGRect(x: self.view.frame.size.width/2 - labelError.frame.size.width/2,
+                                  y: startTraningButton.frame.origin.y + startTraningButton.frame.size.height + 20,
+                                  width: labelError.frame.size.width,
+                                  height: labelError.frame.size.height)
+        labelError.sizeToFit()
+        labelError.frame.size.width = self.view.frame.size.width - 50
+        //I set the maximum dimensions first, then call sizeToFit() to reduce my height, and finally I set the width again.
+        
+    }
+    private func showError(_ message:String){
+        
+        configureLabelError()
+        labelError.text = message
+        labelError.alpha = 1
     }
     
 }

@@ -29,9 +29,7 @@ class Teacher: Teach {
     
     
     func wrongAnswer() -> Flashcard? {
-        
         wrongAnswers += 1
-        print("Wrong answer")
         
         if let f = listOfFlashcards.first {
             listOfFlashcards.append(f)//dodajemy na koniec, by w tej samej lekcji jeszcze raz przerobić słówko
@@ -42,11 +40,8 @@ class Teacher: Teach {
     }
     
     func correctAnswer() -> Flashcard? {
-        
         correctAnswers += 1
-        print("Correct answer")
 
-        
         if let f = listOfFlashcards.first {
             listOfFlashcards.removeFirst()
         

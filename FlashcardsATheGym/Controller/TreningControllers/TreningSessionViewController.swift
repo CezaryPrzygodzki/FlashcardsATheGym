@@ -16,12 +16,27 @@ class TreningSessionViewController: UIViewController {
     
     private let checkoutButton = UIButton()
     
-    private let correctAnswerButton = UIButton()
-    private let wrongAnswerButton = UIButton()
+    private let correctAnswerButton = correctWrongButton(type: .correct, frame: .zero)
+    private let wrongAnswerButton = correctWrongButton(type: .wrong, frame: .zero)
+    
+    var typeOfTrening: SelectTrainigModeViewController.TypeOfTrening!
+    var clockView : ClockView!
+   
     
     private var currentFlashcard : Flashcard!
     
     var teacher : Teacher!
+    
+    var timer : Timer?
+    var timeDuration: Double = 0
+    
+    var totalTimeTimer : Timer?
+    var totalTime: Int = 0
+    
+    var breakTimeView : BreakTimeView!
+    let blurView = UIView()
+    
+    private let timeLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +64,46 @@ class TreningSessionViewController: UIViewController {
         view.addSubview(correctAnswerButton)
         view.addSubview(wrongAnswerButton)
         configureCorrectWrongAnswerButtons()
+        
+        configureClockView(typeOfTrening: .cardio)
+        view.addSubview(clockView)
+        
+        view.addSubview(timeLabel)
+        configureTimeLabel()
+        
+        if typeOfTrening == .cardio {
+            totalTime = Int(timeDuration)
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDuration), userInfo: nil, repeats: true)
+            clockView.anim(duration: timeDuration) {
+                self.dismiss(animated: true) {
+                    print("koniec cardio")
+                }
+            }
+        }
+        
+ 
+        if typeOfTrening == .strength {
+            configureBlurView()
+            breakTimeView = BreakTimeView(frame: CGRect(x: 0,
+                                                        y: view.frame.maxY - view.frame.size.width,
+                                                              width: view.frame.size.width,
+                                                              height: view.frame.size.width))
+            view.addSubview(breakTimeView)
+            
+            breakTimeView.checkButtonPressed = { (numberOfSeconds) in
+                self.hideBlur()
+                self.hideBreakTimeView()
+                self.timeDuration = Double(numberOfSeconds)
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerDuration), userInfo: nil, repeats: true)
+                self.clockView.anim(duration: Double(numberOfSeconds)) {
+                    self.timer?.invalidate()
+                    self.showBlur()
+                    self.showBreakTimeView()
+                }
+                print(numberOfSeconds)
+            }
+        }
+        
         
     }
     
@@ -107,9 +162,9 @@ class TreningSessionViewController: UIViewController {
     private func configureFlashcardAnswer() -> FlashcardAnswer {
         let width = self.view.frame.size.width - 70
         var height : CGFloat = 136.66 // 4 x padding, translation and meaning have base 19.33 height, and example has 18 height
-        height = (currentFlashcard.translation == "") ? (height - 19.33) : ( height + CGFloat(( 19 * ( currentFlashcard.translation!.count / 35 ) )))
-        height = (currentFlashcard.meaning == "") ? (height - 19.33) : ( height + CGFloat(( 19 * ( currentFlashcard.meaning!.count / 35 ) )))
-        height = (currentFlashcard.example == "") ? (height - 18) : ( height + CGFloat(( 18 * ( currentFlashcard.example!.count / 40 ) )))
+        height = (currentFlashcard.translation == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.translation!.count / 35 ) )))
+        height = (currentFlashcard.meaning == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.meaning!.count / 35 ) )))
+        height = (currentFlashcard.example == "") ? (height - 38) : ( height + CGFloat(( 18 * ( currentFlashcard.example!.count / 40 ) )))
         
         let fr = CGRect(x: self.view.frame.size.width / 2 - width / 2,
                         y: checkoutButton.frame.origin.y,
@@ -117,6 +172,7 @@ class TreningSessionViewController: UIViewController {
                         height: height)
         
 
+        print(height)
         let fa = FlashcardAnswer(flashcard: currentFlashcard, frame: fr)
         fa.isHidden = true
         
@@ -135,11 +191,12 @@ class TreningSessionViewController: UIViewController {
                                    width: 100,
                                    height: closeButton.frame.size.height)
         closeButton.sizeToFit()
-        closeButton.addTarget(self, action: #selector(closeTreningViewController), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(endTreningSession), for: .touchUpInside)
     }
     
-    @objc private func closeTreningViewController(_ sender: UIButton!) {
+    @objc func endTreningSession() {
         dismiss(animated: true) {
+            print("total trening time \(self.totalTime)")
             return
         }
     }
@@ -160,7 +217,7 @@ class TreningSessionViewController: UIViewController {
         checkoutButton.addTarget(self, action: #selector(showAnswer), for: .touchUpInside)
     }
     
-    @objc private func showAnswer(_ sender: UIButton!) {
+    @objc func showAnswer(_ sender: UIButton!) {
         
         UIView.animate(withDuration: 0.2) {
             self.checkoutButton.alpha = 0
@@ -176,7 +233,7 @@ class TreningSessionViewController: UIViewController {
         }
 
     }
-    private func hideAnswer(complition: ((Bool) -> (Void))? = nil) {
+    func hideAnswer(complition: ((Bool) -> (Void))? = nil) {
         UIView.animate(withDuration: 0.2) {
             self.flashcardAnswer.alpha = 0
             self.correctAnswerButton.alpha = 0
@@ -191,21 +248,9 @@ class TreningSessionViewController: UIViewController {
         }
     }
     private func configureCorrectWrongAnswerButtons(){
-        correctAnswerButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-        correctAnswerButton.tintColor = Colors.FATGpurple
-        correctAnswerButton.contentHorizontalAlignment = .fill
-        correctAnswerButton.contentVerticalAlignment = .fill
-        correctAnswerButton.imageView?.contentMode = .scaleAspectFit
-        correctAnswerButton.addTarget(self, action: #selector(correctAnswer), for: .touchUpInside)
-        
-        wrongAnswerButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        wrongAnswerButton.tintColor = Colors.FATGpink
-        wrongAnswerButton.addTarget(self, action: #selector(wrongAnswer), for: .touchUpInside)
+        correctAnswerButton.addTarget(self, action: #selector(answer), for: .touchUpInside)
+        wrongAnswerButton.addTarget(self, action: #selector(answer), for: .touchUpInside)
 
-        wrongAnswerButton.contentHorizontalAlignment = .fill
-        wrongAnswerButton.contentVerticalAlignment = .fill
-        wrongAnswerButton.imageView?.contentMode = .scaleAspectFit
-        
         setXYpositionsOfCorrectWrongButtons()
         correctAnswerButton.isHidden = true
         wrongAnswerButton.isHidden = true
@@ -223,32 +268,23 @@ class TreningSessionViewController: UIViewController {
                                            width: size,
                                            height: size)
     }
-    @objc private func correctAnswer(_ sender: UIButton!){
-        let currFlash = teacher.correctAnswer()
+
+
+    @objc func answer(_ sender: correctWrongButton!){
+        var currFlash: Flashcard?
         
-        hideAnswer { [weak self] completed in
-            if currFlash != nil {
-                self!.currentFlashcard = currFlash!
-                self!.configureNewFlashcard()
-                print(self!.currentFlashcard)
-            } else {
-                print("The is is nil opss")
-            }
+        switch sender.type {
+        case .correct:
+            currFlash = teacher.correctAnswer()
+        case .wrong:
+            currFlash = teacher.wrongAnswer()
         }
-       
-       
-    }
-    
-    @objc private func wrongAnswer(_ sender: UIButton!){
-        let currFlash = teacher.wrongAnswer()
-        
-        hideAnswer { [weak self] completed in
+        hideAnswer { completed in
             if currFlash != nil {
-                self!.currentFlashcard = currFlash!
-                self!.configureNewFlashcard()
-                print(self!.currentFlashcard)
+                self.currentFlashcard = currFlash!
+                self.configureNewFlashcard()
             } else {
-                print("The is is nil opss")
+                self.endTreningSession()
             }
         }
     }
@@ -262,4 +298,81 @@ class TreningSessionViewController: UIViewController {
         self.view.addSubview(flashcardQuestion)
         setXYpositionsOfCorrectWrongButtons()
     }
+    
+    private func configureClockView(typeOfTrening: SelectTrainigModeViewController.TypeOfTrening) {
+        let sizeOfCV: CGFloat = 120
+        clockView = ClockView(frame: CGRect(x: checkoutButton.frame.origin.x,
+                                         y: UIScreen.main.bounds.size.height - sizeOfCV - checkoutButton.frame.origin.x,
+                                         width: sizeOfCV,
+                                         height: sizeOfCV),
+                           type: typeOfTrening)
+        
+    }
+    
+    @objc private func timerDuration(){
+        totalTime += 1
+        timeDuration -= 1
+        let time = secondsToHoursMinutesSeconds(seconds: Int(timeDuration))
+        timeLabel.text = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
+    }
+
+    private func configureTimeLabel(){
+
+        timeLabel.font = UIFont.systemFont(ofSize: 30, weight: .regular)
+        timeLabel.textColor = Colors.FATGtext
+        
+        timeLabel.frame = CGRect(x: clockView.frame.maxX + 50,
+                                 y: clockView.frame.origin.y + clockView.frame.size.height / 2 -  25,
+                                 width: 180,
+                                 height: 50)
+    }
+
+    
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int){
+        return ((seconds/3600),((seconds % 3600) / 60 ),((seconds % 3600) % 60 ))
+    }
+    private func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        timeString += String(format: "%02d", hours)
+        timeString += " : "
+        timeString += String(format: "%02d", minutes)
+        timeString += " : "
+        timeString += String(format: "%02d", seconds)
+        return timeString
+    }
+    
+    
+    private func configureBlurView() {
+        blurView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        blurView.backgroundColor = .gray
+        blurView.alpha = 0.4
+        view.addSubview(blurView)
+    }
+    
+    
+    private func hideBlur(){
+        UIView.animate(withDuration: 1) {
+            self.blurView.alpha = 0
+        }
+    }
+    private func showBlur(){
+        UIView.animate(withDuration: 1) {
+            self.blurView.alpha = 0.4
+        }
+    }
+    
+    private func hideBreakTimeView(){
+        UIView.animate(withDuration: 1) {
+            self.breakTimeView.transform = CGAffineTransform(translationX: 0, y: self.breakTimeView.frame.size.height + 50)
+        }
+    }
+    
+    private func showBreakTimeView(){
+        UIView.animate(withDuration: 1) {
+            self.breakTimeView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }
+    }
 }
+
+
+

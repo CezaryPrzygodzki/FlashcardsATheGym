@@ -115,6 +115,9 @@ class TreningViewController: UIViewController{
         
         let chooseVC = SelectTrainigModeViewController()
         chooseVC.treningViewController = self
+        
+        previousTreningsTableView.resignFirstResponder()
+        
         navigationController?.showDetailViewController(chooseVC, sender: true)
         
     }
@@ -147,11 +150,16 @@ class TreningViewController: UIViewController{
         previousTreningsTableView.backgroundColor = .clear
         
     }
-    func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher){
+    func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher, selectedMode: SelectTrainigModeViewController.TypeOfTrening, duration: Double){
         
         let sessionVC = TreningSessionViewController()
         sessionVC.modalPresentationStyle = .fullScreen
         sessionVC.teacher = teacher
+        sessionVC.typeOfTrening = selectedMode
+        sessionVC.timeDuration = duration
+  
+        
+        
         navigationController?.showDetailViewController(sessionVC, sender: true)
     }
 }

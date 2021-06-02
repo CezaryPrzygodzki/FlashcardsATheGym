@@ -30,6 +30,13 @@ extension UIButton{
         self.layer.cornerRadius = self.frame.size.height / 2
         self.clipsToBounds = true
     }
+    
+    func breakTimeButton(seconds: Int) {
+        self.layer.cornerRadius = 20
+        self.backgroundColor = Colors.FATGpurple
+        self.setTitle("\(seconds)s", for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+    }
 }
 extension UINavigationController {
 

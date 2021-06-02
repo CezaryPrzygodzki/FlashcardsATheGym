@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491EFCA52646DB0F00613269 /* CardioTreningSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EFCA42646DB0F00613269 /* CardioTreningSessionViewController.swift */; };
 		4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF4925B471BA00F9669C /* AppDelegate.swift */; };
 		4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF4B25B471BA00F9669C /* SceneDelegate.swift */; };
 		4990AF5125B471BA00F9669C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4990AF4F25B471BA00F9669C /* Main.storyboard */; };
@@ -46,6 +47,8 @@
 		49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */; };
 		49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */; };
 		49E8E7B42630372A00F4DFE9 /* FlashcardAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */; };
+		49E90A1F266526290084984D /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E90A1E266526290084984D /* ClockView.swift */; };
+		49E90A21266812E00084984D /* BreakTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E90A20266812E00084984D /* BreakTimeView.swift */; };
 		575222F8360AE0519D9C9574 /* Pods_FlashcardsATheGym.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */; };
 		9EB2CD42D3C465E44B68F6AB /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */; };
 		D67EA40553958F8400957878 /* Pods_FlashcardsATheGymTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00374564AD2F3F6E563E9F1B /* Pods_FlashcardsATheGymTests.framework */; };
@@ -72,6 +75,7 @@
 		00374564AD2F3F6E563E9F1B /* Pods_FlashcardsATheGymTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGymTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF373BBF34CB669ED1E3DD2 /* Pods-FlashcardsATheGym.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym.release.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym/Pods-FlashcardsATheGym.release.xcconfig"; sourceTree = "<group>"; };
 		3671DFB4C8F454088F732860 /* Pods-FlashcardsATheGym.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym.debug.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym/Pods-FlashcardsATheGym.debug.xcconfig"; sourceTree = "<group>"; };
+		491EFCA42646DB0F00613269 /* CardioTreningSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioTreningSessionViewController.swift; sourceTree = "<group>"; };
 		4990AF4625B471BA00F9669C /* FlashcardsATheGym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashcardsATheGym.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4990AF4925B471BA00F9669C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4990AF4B25B471BA00F9669C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsTableViewCell.swift; sourceTree = "<group>"; };
 		49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardAnswer.swift; sourceTree = "<group>"; };
+		49E90A1E266526290084984D /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		49E90A20266812E00084984D /* BreakTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimeView.swift; sourceTree = "<group>"; };
 		748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE0B69B113D0494DC321C3 /* Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym-FlashcardsATheGymUITests/Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +323,9 @@
 				49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */,
 				49A1F5FF263D9FDE00125B0C /* Teacher.swift */,
 				49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */,
+				491EFCA42646DB0F00613269 /* CardioTreningSessionViewController.swift */,
+				49E90A1E266526290084984D /* ClockView.swift */,
+				49E90A20266812E00084984D /* BreakTimeView.swift */,
 			);
 			path = TreningControllers;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 				49D650E32622F1C2007A4B1E /* LessonsTableViewCell.swift in Sources */,
 				49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */,
 				49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */,
+				49E90A1F266526290084984D /* ClockView.swift in Sources */,
 				4990AF5425B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld in Sources */,
 				49E8E7B42630372A00F4DFE9 /* FlashcardAnswer.swift in Sources */,
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
@@ -640,7 +650,9 @@
 				4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */,
 				49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */,
 				4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */,
+				49E90A21266812E00084984D /* BreakTimeView.swift in Sources */,
 				4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */,
+				491EFCA52646DB0F00613269 /* CardioTreningSessionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

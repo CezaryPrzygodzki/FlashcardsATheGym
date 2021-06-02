@@ -45,7 +45,7 @@ class FlashcardAnswer: UIView {
         meaningLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         meaningLabel.numberOfLines = 0
         meaningLabel.frame = CGRect(x: padding,
-                                    y: padding,
+                                    y: (flashcard.meaning == "") ? (0) : (padding),
                                     width: flashcardFrame.size.width - padding * 2,
                                     height: 20)
         meaningLabel.sizeToFit()
@@ -56,7 +56,7 @@ class FlashcardAnswer: UIView {
         translationLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         translationLabel.numberOfLines = 0
         translationLabel.frame = CGRect(x: padding,
-                                        y: meaningLabel.frame.origin.y + meaningLabel.frame.size.height + padding,
+                                        y: meaningLabel.frame.origin.y + meaningLabel.frame.size.height + ((flashcard.translation == "") ? (0) : (padding)),
                                         width: flashcardFrame.size.width - padding * 2,
                                         height: 20)
         translationLabel.sizeToFit()
@@ -70,7 +70,7 @@ class FlashcardAnswer: UIView {
         exampleLabel.frame.size.height = 20
         exampleLabel.sizeToFit()
         exampleLabel.frame = CGRect(x: flashcardFrame.size.width / 2 - exampleLabel.frame.size.width / 2,
-                                    y: translationLabel.frame.origin.y + translationLabel.frame.size.height + padding,
+                                    y: translationLabel.frame.origin.y + translationLabel.frame.size.height + ((flashcard.example == "") ? (0) : (padding)),
                                     width: exampleLabel.frame.size.width,
                                     height: exampleLabel.frame.size.height)
     }
