@@ -192,7 +192,6 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc private func allFlashcards (){
-        print("allFlashcards")
         self.imageViewAddbutton.isHidden = true
         self.performSegue(withIdentifier: "showAllFlashcards", sender: self)
     }
@@ -243,7 +242,6 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc private func addFlashcard (){
-        print("addFlashcard")
         addButtonAction()
         let addVC = UIStoryboard(name: "Main",
                                  bundle: nil)
@@ -259,7 +257,6 @@ class FlashcardsViewController: UIViewController {
     }
     
     @objc private func addList (){
-        print("addList")
         addButtonAction()
         configureBlurView()
         addListView = AddListView()

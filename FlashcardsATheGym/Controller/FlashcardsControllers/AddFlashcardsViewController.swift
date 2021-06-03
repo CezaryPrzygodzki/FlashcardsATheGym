@@ -103,9 +103,6 @@ class AddFlashcardsViewController: UIViewController {
 
         conteinerView.addSubview(addButton)
         createAddButton()
-        
-        print("Height of scroll view = \(heightOfScrollView)")
-        print("Height of view = \(view.frame.size.height)")
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -312,8 +309,6 @@ class AddFlashcardsViewController: UIViewController {
     
     @objc func addButtonFunc(sender: UIButton!){
         
-        print("Przycisk do dodawania")
-        
         let word = textFieldWord.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let translation = textFieldTranslation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pronunciation = textFieldPronunciation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -332,13 +327,7 @@ class AddFlashcardsViewController: UIViewController {
             allFlashcardsViewController?.backFromAddingNewFlashcard(data: flashcard)
             var lists : [Lesson] = []
             lists = flashcard.lesson?.allObjects as! [Lesson]
-            for list in lists {
-                print(list.name)
-            }
-            print("Ta fiszka jest w: \(flashcard.lesson?.count) lekcjach")
-            }
-            
-        
+        }
         dismiss(animated: true, completion: nil)
     }
         

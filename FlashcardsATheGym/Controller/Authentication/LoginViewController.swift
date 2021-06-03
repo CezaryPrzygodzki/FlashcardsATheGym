@@ -131,7 +131,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Configuring UITextFields
     private func configureWelcomeImage() {
-        let image = UIImage(named: "welcome")
+        let image = UIImage(named: "welcome2")
         welcomeImage.image = image
         
         let size :CGFloat = self.view.frame.size.width

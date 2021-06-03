@@ -104,9 +104,5 @@ class AddListView: UIView {
             NotificationCenter.default.post(name: Notification.Name("hideBlur"), object: nil)
             
         }
-        
-        print("Nice, dodałeś kolejną listę byczq")
-        
-        
     }
 }

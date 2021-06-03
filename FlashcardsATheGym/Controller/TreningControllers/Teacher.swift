@@ -17,14 +17,17 @@ class Teacher: Teach {
     
     let lesson: Lesson?
     var listOfFlashcards: [Flashcard]
-    private var correctAnswers: UInt
-    private var wrongAnswers: UInt
+    
+    private let numbersOfFlashcards: Int
+    private var correctAnswers: Int
+    private var wrongAnswers: Int
     
     init(lesson: Lesson? , flashcards: [Flashcard]){
         self.lesson = lesson
         self.listOfFlashcards = flashcards
         self.correctAnswers = 0
         self.wrongAnswers = 0
+        self.numbersOfFlashcards = flashcards.count
     }
     
     
@@ -50,7 +53,8 @@ class Teacher: Teach {
         return nil
     }
     
-    func showPoints() {
-        print("Correct answers: \(correctAnswers) Wrong answers: \(wrongAnswers)")
+    func getFinishedFlashcards() -> String {
+        let percentages: Int = Int(Double(correctAnswers) / Double(numbersOfFlashcards) * 100)
+        return "\(percentages)%"
     }
 }

@@ -7,36 +7,39 @@
 
 import UIKit
 
-class TreningSessionViewController: UIViewController {
+class TrainingSessionViewController: UIViewController {
 
+    var treningViewController: TrainingViewController? = nil
+    
     private var flashcardQuestion: FlashcardQuestion!
     private var flashcardAnswer: FlashcardAnswer!
+    var teacher : Teacher!
+    var typeOfTrening: SelectTrainigModeViewController.TypeOfTrening!
     
     private let closeButton = UIButton()
-    
     private let checkoutButton = UIButton()
-    
     private let correctAnswerButton = correctWrongButton(type: .correct, frame: .zero)
     private let wrongAnswerButton = correctWrongButton(type: .wrong, frame: .zero)
     
-    var typeOfTrening: SelectTrainigModeViewController.TypeOfTrening!
-    var clockView : ClockView!
-   
+    private var clockView : ClockView!
+    private let timeLabel = UILabel()
     
     private var currentFlashcard : Flashcard!
     
-    var teacher : Teacher!
+    private var countingDownTimer : Timer?
+    var durationOfCountingDownTimer: Double = 0// it's initialized in trainingViewController
     
-    var timer : Timer?
-    var timeDuration: Double = 0
+    private var entireTraigingSessionTimer : Timer?
+    private var durationOfEntireTrainingSession : Int = 0
     
-    var totalTimeTimer : Timer?
-    var totalTime: Int = 0
+    private var totalLearningTimeTimer : Timer?
+    private var durationOfTotalLeariningTimer : Int = 0
     
-    var breakTimeView : BreakTimeView!
-    let blurView = UIView()
+    private var breakTimeView : BreakTimeView!
+    private let blurView = UIView()
     
-    private let timeLabel = UILabel()
+    private let startDateTime = Date()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,14 +73,14 @@ class TreningSessionViewController: UIViewController {
         
         view.addSubview(timeLabel)
         configureTimeLabel()
+        //timer that counts the duration of the entire workout
+        entireTraigingSessionTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(entireTrainginSessionAction), userInfo: nil, repeats: true)
         
+        // 2 types of training
         if typeOfTrening == .cardio {
-            totalTime = Int(timeDuration)
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDuration), userInfo: nil, repeats: true)
-            clockView.anim(duration: timeDuration) {
-                self.dismiss(animated: true) {
-                    print("koniec cardio")
-                }
+            durationOfTotalLeariningTimer = Int(durationOfCountingDownTimer)
+            countingDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countingDownTimerAction), userInfo: nil, repeats: true)
+            clockView.anim(duration: durationOfCountingDownTimer) {
             }
         }
         
@@ -90,95 +93,26 @@ class TreningSessionViewController: UIViewController {
                                                               height: view.frame.size.width))
             view.addSubview(breakTimeView)
             
-            breakTimeView.checkButtonPressed = { (numberOfSeconds) in
+            breakTimeView.checkButtonPressed = { (numberOfSeconds) in //everything below will be done only when the user presses the button
                 self.hideBlur()
                 self.hideBreakTimeView()
-                self.timeDuration = Double(numberOfSeconds)
-                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerDuration), userInfo: nil, repeats: true)
+                self.durationOfCountingDownTimer = Double(numberOfSeconds)
+                self.countingDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countingDownTimerAction), userInfo: nil, repeats: true)
+                self.totalLearningTimeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.totalLearningTimeTimerAction), userInfo: nil, repeats: true)
+                
                 self.clockView.anim(duration: Double(numberOfSeconds)) {
-                    self.timer?.invalidate()
+                    self.countingDownTimer?.invalidate()
+                    self.totalLearningTimeTimer?.invalidate()
                     self.showBlur()
                     self.showBreakTimeView()
                 }
-                print(numberOfSeconds)
             }
         }
         
         
     }
     
-
-    private func configureTopBar(){
-        let topBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
-        topBar.backgroundColor = Colors.FATGbackground
-        
-        let mask = CAShapeLayer()
-        mask.frame = topBar.bounds
-        
-        let path = UIBezierPath(rect: topBar.bounds)
-        
-        let amplitude: CGFloat = 0.1
-        let width = topBar.frame.width
-        let height = topBar.frame.height
-        let origin = CGPoint(x: 0, y: height / 2)
-        path.move(to: origin)
-        
-        for angle in stride(from: 0, through: 360.0, by: 5.0) {
-            let x = origin.x + CGFloat(angle/360.0) * width
-            let y = origin.y - CGFloat(sin(angle/360 * Double.pi)) * height * amplitude
-
-            path.addLine(to: CGPoint(x: x, y: y))
-        }
-        
-        path.addLine(to: CGPoint(x: topBar.frame.width, y: 0))
-        path.addLine(to: CGPoint.zero)
-        path.close()
-        
-        mask.path = path.cgPath
-        
-        topBar.layer.mask = mask
-        view.addSubview(topBar)
-        
-        let bottomBar = UIView(frame: CGRect(x: 0, y: 300, width: self.view.frame.size.width, height: self.view.frame.size.height - 300))
-        bottomBar.backgroundColor = Colors.FATGbackground
-        
-        view.addSubview(bottomBar)
-        
-    }
-
-    private func configureFlashcardQuestion() -> FlashcardQuestion {
-        let width = self.view.frame.size.width - 70
-        let fr = CGRect(x: self.view.frame.size.width / 2 - width / 2,
-                        y: 75,
-                        width: width,
-                        height: 150)
-        
-
-        let fq = FlashcardQuestion(flashcard: currentFlashcard, frame: fr)
-        
-        return fq
-    }
-
-    private func configureFlashcardAnswer() -> FlashcardAnswer {
-        let width = self.view.frame.size.width - 70
-        var height : CGFloat = 136.66 // 4 x padding, translation and meaning have base 19.33 height, and example has 18 height
-        height = (currentFlashcard.translation == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.translation!.count / 35 ) )))
-        height = (currentFlashcard.meaning == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.meaning!.count / 35 ) )))
-        height = (currentFlashcard.example == "") ? (height - 38) : ( height + CGFloat(( 18 * ( currentFlashcard.example!.count / 40 ) )))
-        
-        let fr = CGRect(x: self.view.frame.size.width / 2 - width / 2,
-                        y: checkoutButton.frame.origin.y,
-                        width: width,
-                        height: height)
-        
-
-        print(height)
-        let fa = FlashcardAnswer(flashcard: currentFlashcard, frame: fr)
-        fa.isHidden = true
-        
-        return fa
-    }
-    
+ ///MARK - Close, end actions:
     private func configureCloseButton() {
         closeButton.setTitle("Zamknij", for: .normal)
         closeButton.setTitleColor(.black, for: .normal)
@@ -195,12 +129,20 @@ class TreningSessionViewController: UIViewController {
     }
     
     @objc func endTreningSession() {
-        dismiss(animated: true) {
-            print("total trening time \(self.totalTime)")
-            return
+        let endDateTime = Date()//the variable is initialized here to get the exact end date of the training
+        let lessonName = teacher.lesson?.name ?? "Wszystkie"
+        
+        let trainingDuration = durationOfEntireTrainingSession - durationOfTotalLeariningTimer
+        
+        let training = DataHelper.shareInstance.saveData(start: startDateTime, end: endDateTime, duration: durationOfEntireTrainingSession, learningDuration: durationOfTotalLeariningTimer, trainingDuration: trainingDuration, lessonName: lessonName, finishedFlashcards: teacher.getFinishedFlashcards())
+        treningViewController?.comeBackFromTreningSessionViewControllerAndPushTrainingSummaryReport(training: training)
+        dismiss(animated: true){
+            self.treningViewController?.showBlur()
+            self.treningViewController?.showTrainingSummaryReportView()
         }
     }
     
+    ///MARK - CheckoutButtons
     private func configureCheckoutButton(){
         checkoutButton.setTitle("ODPOWIEDŹ", for: .normal)
         checkoutButton.setTitleColor(Colors.FATGtext, for: .normal)
@@ -273,6 +215,7 @@ class TreningSessionViewController: UIViewController {
     @objc func answer(_ sender: correctWrongButton!){
         var currFlash: Flashcard?
         
+        
         switch sender.type {
         case .correct:
             currFlash = teacher.correctAnswer()
@@ -280,6 +223,7 @@ class TreningSessionViewController: UIViewController {
             currFlash = teacher.wrongAnswer()
         }
         hideAnswer { completed in
+            // TO DO: improve it so that after completing the list of cards in this session, the cards will be reloaded - it has to be looped - this way the user can do 200 or 300%
             if currFlash != nil {
                 self.currentFlashcard = currFlash!
                 self.configureNewFlashcard()
@@ -289,6 +233,7 @@ class TreningSessionViewController: UIViewController {
         }
     }
     
+    // TO DO: improve it so showing flashcards and replies with blurview works properly, because each new flashcard invocation puts it at the top of the stack, so it is above the blur
     private func configureNewFlashcard(){
         flashcardAnswer.removeFromSuperview()
         flashcardQuestion.removeFromSuperview()
@@ -299,6 +244,21 @@ class TreningSessionViewController: UIViewController {
         setXYpositionsOfCorrectWrongButtons()
     }
     
+    
+    ///MARK - Configure clockview and timers
+    @objc private func countingDownTimerAction(){
+        durationOfCountingDownTimer -= 1
+        let time = secondsToHoursMinutesSeconds(seconds: Int(durationOfCountingDownTimer))
+        timeLabel.text = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
+    }
+
+    @objc private func entireTrainginSessionAction(){
+        durationOfEntireTrainingSession += 1
+    }
+    
+    @objc private func totalLearningTimeTimerAction(){
+        durationOfTotalLeariningTimer += 1
+    }
     private func configureClockView(typeOfTrening: SelectTrainigModeViewController.TypeOfTrening) {
         let sizeOfCV: CGFloat = 120
         clockView = ClockView(frame: CGRect(x: checkoutButton.frame.origin.x,
@@ -309,12 +269,6 @@ class TreningSessionViewController: UIViewController {
         
     }
     
-    @objc private func timerDuration(){
-        totalTime += 1
-        timeDuration -= 1
-        let time = secondsToHoursMinutesSeconds(seconds: Int(timeDuration))
-        timeLabel.text = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
-    }
 
     private func configureTimeLabel(){
 
@@ -342,6 +296,8 @@ class TreningSessionViewController: UIViewController {
     }
     
     
+    
+    ///MARK - Configure blurview
     private func configureBlurView() {
         blurView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         blurView.backgroundColor = .gray
@@ -372,7 +328,79 @@ class TreningSessionViewController: UIViewController {
             self.breakTimeView.transform = CGAffineTransform(translationX: 0, y: 0)
         }
     }
+
+
+///MARK - UI
+
+private func configureTopBar(){
+    let topBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
+    topBar.backgroundColor = Colors.FATGbackground
+    
+    let mask = CAShapeLayer()
+    mask.frame = topBar.bounds
+    
+    let path = UIBezierPath(rect: topBar.bounds)
+    
+    let amplitude: CGFloat = 0.1
+    let width = topBar.frame.width
+    let height = topBar.frame.height
+    let origin = CGPoint(x: 0, y: height / 2)
+    path.move(to: origin)
+    
+    for angle in stride(from: 0, through: 360.0, by: 5.0) {
+        let x = origin.x + CGFloat(angle/360.0) * width
+        let y = origin.y - CGFloat(sin(angle/360 * Double.pi)) * height * amplitude
+
+        path.addLine(to: CGPoint(x: x, y: y))
+    }
+    
+    path.addLine(to: CGPoint(x: topBar.frame.width, y: 0))
+    path.addLine(to: CGPoint.zero)
+    path.close()
+    
+    mask.path = path.cgPath
+    
+    topBar.layer.mask = mask
+    view.addSubview(topBar)
+    
+    let bottomBar = UIView(frame: CGRect(x: 0, y: 300, width: self.view.frame.size.width, height: self.view.frame.size.height - 300))
+    bottomBar.backgroundColor = Colors.FATGbackground
+    
+    view.addSubview(bottomBar)
+    
+}
+
+private func configureFlashcardQuestion() -> FlashcardQuestion {
+    let width = self.view.frame.size.width - 70
+    let fr = CGRect(x: self.view.frame.size.width / 2 - width / 2,
+                    y: 75,
+                    width: width,
+                    height: 150)
+    
+
+    let fq = FlashcardQuestion(flashcard: currentFlashcard, frame: fr)
+    
+    return fq
+}
+
+private func configureFlashcardAnswer() -> FlashcardAnswer {
+    let width = self.view.frame.size.width - 70
+    var height : CGFloat = 136.66 // 4 x padding, translation and meaning have base 19.33 height, and example has 18 height
+    height = (currentFlashcard.translation == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.translation!.count / 35 ) )))
+    height = (currentFlashcard.meaning == "") ? (height - 39.33) : ( height + CGFloat(( 19 * ( currentFlashcard.meaning!.count / 35 ) )))
+    height = (currentFlashcard.example == "") ? (height - 38) : ( height + CGFloat(( 18 * ( currentFlashcard.example!.count / 40 ) )))
+    
+    let fr = CGRect(x: self.view.frame.size.width / 2 - width / 2,
+                    y: checkoutButton.frame.origin.y,
+                    width: width,
+                    height: height)
+    
+
+    let fa = FlashcardAnswer(flashcard: currentFlashcard, frame: fr)
+    fa.isHidden = true
+    
+    return fa
 }
 
 
-
+}

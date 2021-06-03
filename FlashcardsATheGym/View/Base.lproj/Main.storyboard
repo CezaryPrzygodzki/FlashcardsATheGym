@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsy-MM-sk5">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tsy-MM-sk5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +12,7 @@
             <objects>
                 <viewController id="d0K-Ke-vUw" customClass="FlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HAC-AZ-01c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oyU-HZ-vNO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -32,7 +31,7 @@
             <objects>
                 <viewController id="0jc-Ct-cd5" customClass="AllFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xyc-Ft-MeE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wfM-cH-WAP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -48,7 +47,7 @@
             <objects>
                 <viewController storyboardIdentifier="addFlashcard" id="RgI-hy-Toi" customClass="AddFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="03g-aJ-wgg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="2c8-hK-JBj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -59,12 +58,12 @@
             </objects>
             <point key="canvasLocation" x="-713" y="2875"/>
         </scene>
-        <!--Trening View Controller-->
+        <!--Training View Controller-->
         <scene sceneID="bET-C5-uCV">
             <objects>
-                <viewController id="0GF-n2-1RG" customClass="TreningViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0GF-n2-1RG" customClass="TrainingViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SXX-CC-fAn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="WYu-O6-hxh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,7 +79,7 @@
             <objects>
                 <viewController id="2tg-sp-F9t" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tiw-0q-Af6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iPl-YK-x6M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,7 +95,7 @@
             <objects>
                 <viewController id="5vj-W8-Wu6" customClass="SettingsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Mq-fo-nJ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="w8G-Hh-Inu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -112,7 +111,7 @@
             <objects>
                 <viewController id="e0w-4f-Wvr" customClass="LoginViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ncF-so-BUi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="dbr-vA-4dh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -132,7 +131,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="D7O-3U-Z6G" customClass="SignUpLoginSkipController" customModule="FlashcardsATheGym" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yc4-iJ-OtV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ukC-mJ-xJ5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -173,7 +172,7 @@
             <objects>
                 <viewController id="9Bm-rC-diJ" customClass="SignUpViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7o-g9-hVF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="y4u-2Z-D9R"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -200,6 +199,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZh-qq-X3J">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -273,6 +273,7 @@
                 <navigationController storyboardIdentifier="SignUpLoginSkipController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" navigationBarHidden="YES" id="92b-NI-P1a" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NgO-Lr-5H4">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -289,7 +290,7 @@
             <objects>
                 <viewController id="tsy-MM-sk5" customClass="AppContainerViewController" customModule="FlashcardsATheGym" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ka3-fZ-h5v">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="qy4-hx-ik4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -304,7 +305,7 @@
             <objects>
                 <viewController storyboardIdentifier="editFlashcard" id="lFA-eQ-Ldd" customClass="EditFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NhA-37-9xn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="mw5-9p-bk6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -320,7 +321,7 @@
             <objects>
                 <viewController storyboardIdentifier="lessonFlashcardsVC" id="78T-nb-gcT" customClass="LessonFlashcardsViewController" customModule="FlashcardsATheGym" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RTh-og-83A">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="2Pl-jN-w6D"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

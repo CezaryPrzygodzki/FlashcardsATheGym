@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class ClockView: UIView {
-    let shapeLayer = CAShapeLayer()
-    let type : SelectTrainigModeViewController.TypeOfTrening
+    private let shapeLayer = CAShapeLayer()
+    private let type : SelectTrainigModeViewController.TypeOfTraining
 
-    init(frame: CGRect, type: SelectTrainigModeViewController.TypeOfTrening) {
+    init(frame: CGRect, type: SelectTrainigModeViewController.TypeOfTraining) {
         
         self.type = type
         super.init(frame: frame)
@@ -50,22 +50,13 @@ class ClockView: UIView {
         
         shapeLayer.strokeEnd = type == .cardio ? 1 : 0 //jeżeli jest cardio to animacji będzie iść od pełnego do pustego, jak siłowy to od pustego do pełnego
         backgroundView.layer.addSublayer(shapeLayer)
-        //backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
 
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func tap(){
         
-        anim(duration: 3) {
-            print("ended")
-        }
-
-    }
-    
     func anim(duration: Double, completion: @escaping () -> Void){
         //ustawiony keyValue - parametr - który będzie wprowadzony w animację
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -76,6 +67,7 @@ class ClockView: UIView {
         
         
         shapeLayer.add(basicAnimation, forKey: "basic")
+
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             completion()
             }

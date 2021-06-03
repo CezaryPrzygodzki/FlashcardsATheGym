@@ -51,6 +51,20 @@ class DataHelper {
         
         return lesson
     }
+    func saveData(start: Date, end: Date, duration: Int, learningDuration: Int, trainingDuration: Int, lessonName: String, finishedFlashcards: String ) -> Training {
+        let training = Training(context: context)
+        training.start = start
+        training.end = end
+        training.duration = Int64(duration)
+        training.learingDuration = Int64(learningDuration)
+        training.trainingDuration = Int64(trainingDuration)
+        training.lessonName = lessonName
+        training.finishedFlashcards = finishedFlashcards
+        
+        saveContext()
+        
+        return training
+    }
     func editData(flashcardToEdit: Flashcard, word: String, translation: String, pronunciation: String, meaning: String, example: String, lessons: [Lesson] ) ->Flashcard {
         
         

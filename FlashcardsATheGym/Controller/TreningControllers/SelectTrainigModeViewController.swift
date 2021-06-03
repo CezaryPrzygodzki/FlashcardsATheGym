@@ -9,13 +9,12 @@ import UIKit
 
 class SelectTrainigModeViewController: UIViewController {
 
-    enum TypeOfTrening {
+    enum TypeOfTraining {
         case strength
         case cardio
         case empty
     }
-    private var chosenTypeOfTrening: TypeOfTrening = .empty
-    private var durationOfTrening: UInt? //= datePicker.countDownDuration
+    private var chosenTypeOfTraining: TypeOfTraining = .empty
     private var heightOfScrollView: CGFloat = 0
     private let padding: CGFloat = 20
     private let lessonTableViewCellIndentifier = "lessonTableViewCellIndentifier"
@@ -23,7 +22,7 @@ class SelectTrainigModeViewController: UIViewController {
         return DataHelper.shareInstance.loadData()
     }()
     private var chosenLesson: Lesson?
-    var treningViewController: TreningViewController? = nil
+    var treningViewController: TrainingViewController? = nil
     
     private let littleBarView = UIView()
     
@@ -91,9 +90,6 @@ class SelectTrainigModeViewController: UIViewController {
         super.viewWillAppear(true)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: heightOfScrollView)
         conteinerView.frame.size = CGSize(width: view.frame.size.width, height: heightOfScrollView)
-        print("Height of scroll view = \(heightOfScrollView)")
-        print("Height of view = \(view.frame.size.height)")
-
     }
     
     private func configureLittleBarView(){
@@ -152,12 +148,12 @@ class SelectTrainigModeViewController: UIViewController {
     }
     
     @objc private func strengthPressed(sender: UIButton!){
-        chosenTypeOfTrening = chosenTypeOfTrening == .strength ? .empty : .strength
+        chosenTypeOfTraining = chosenTypeOfTraining == .strength ? .empty : .strength
         configureBackgrodundColorOfButtons()
     }
     
     @objc private func cardioPressed(sender: UIButton!){
-        chosenTypeOfTrening = chosenTypeOfTrening == .cardio ? .empty : .cardio
+        chosenTypeOfTraining = chosenTypeOfTraining == .cardio ? .empty : .cardio
         configureBackgrodundColorOfButtons()
     }
     private func addDurationOfTraningToViewWithAnimation(){
@@ -195,7 +191,7 @@ class SelectTrainigModeViewController: UIViewController {
     }
     
     private func configureBackgrodundColorOfButtons(){
-        switch chosenTypeOfTrening {
+        switch chosenTypeOfTraining {
         case .cardio:
             
             cardioTreningButton.backgroundColor = Colors.FATGpurple
@@ -299,7 +295,6 @@ class SelectTrainigModeViewController: UIViewController {
     }
     
     @objc private func startTraining(){
-        print("Start trainig")
         let flashcardsToSend : [Flashcard] = (self.chosenLesson == nil) ? (DataHelper.shareInstance.loadData()) : (DataHelper.shareInstance.loadFlashcards(lesson: self.chosenLesson!))
 
 
@@ -308,7 +303,7 @@ class SelectTrainigModeViewController: UIViewController {
             if flashcardsToSend.count != 0 {
                 dismiss(animated: true) {
                 let teacher = Teacher(lesson: self.chosenLesson, flashcards: flashcardsToSend)
-                    self.treningViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher, selectedMode: self.chosenTypeOfTrening, duration: duration)
+                    self.treningViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher, selectedMode: self.chosenTypeOfTraining, duration: duration)
                 }
             } else {
                 showError("Lista jest pusta, wybierz inną")
@@ -360,14 +355,13 @@ extension SelectTrainigModeViewController: UITableViewDelegate, UITableViewDataS
             } else if self.chosenLesson == lesson {
                 self.chosenLesson = nil
             }
-            print("Chosen lesson is \(self.chosenLesson)")
             self.lessonsTableView.reloadData()
         }
 
         return cell
     }
     
-    func setLessonsTableViewDelegates(){
+    private func setLessonsTableViewDelegates(){
         lessonsTableView.delegate = self
         lessonsTableView.dataSource = self
     }

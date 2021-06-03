@@ -1,5 +1,5 @@
 //
-//  Lesson+CoreDataClass.swift
+//  Training+CoreDataClass.swift
 //  
 //
 //  Created by Cezary Przygodzki on 03/06/2021.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Lesson)
-public class Lesson: NSManagedObject {
+@objc(Training)
+public class Training: NSManagedObject {
 
 }

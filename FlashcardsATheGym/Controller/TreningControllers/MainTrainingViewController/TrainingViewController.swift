@@ -7,12 +7,15 @@
 
 import UIKit
 
-class TreningViewController: UIViewController{
+class TrainingViewController: UIViewController{
 
     private var topLabelStartTrening : UIView!
     private var previousTreningsLabel: UILabel!
     private var previousTreningsTableView: UITableView!
     let previousTreningsTableViewCellIdentifier = "previousTreningsTableViewCellIdentifier"
+    
+    private var trainingSummaryReportView : TrainingSummaryReportView!
+    let blurView = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,23 @@ class TreningViewController: UIViewController{
         previousTreningsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         previousTreningsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         previousTreningsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        configureBlurView()
+
+        
+        let traingingSummaryReportViewWidth = view.frame.size.width - 30
+        trainingSummaryReportView = TrainingSummaryReportView(frame: CGRect(x: 15,
+                                                                            y: view.frame.size.height/2 - traingingSummaryReportViewWidth/2,
+                                                                            width: traingingSummaryReportViewWidth,
+                                                                            height: traingingSummaryReportViewWidth))
+        view.addSubview(trainingSummaryReportView)
+        trainingSummaryReportView.isHidden = true
+        trainingSummaryReportView.alpha = 0
+        
+        let currentWindow: UIWindow? = UIApplication.shared.keyWindow
+        currentWindow?.addSubview(blurView)
+        currentWindow?.addSubview(trainingSummaryReportView)
+        
     }
     
 
@@ -109,10 +129,6 @@ class TreningViewController: UIViewController{
     }
     
     @objc private func start(){
-//        let sessionVC = TreningSessionViewController()
-//        sessionVC.modalPresentationStyle = .fullScreen
-//        navigationController?.showDetailViewController(sessionVC, sender: true)
-        
         let chooseVC = SelectTrainigModeViewController()
         chooseVC.treningViewController = self
         
@@ -150,23 +166,64 @@ class TreningViewController: UIViewController{
         previousTreningsTableView.backgroundColor = .clear
         
     }
-    func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher, selectedMode: SelectTrainigModeViewController.TypeOfTrening, duration: Double){
+    func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher, selectedMode: SelectTrainigModeViewController.TypeOfTraining, duration: Double){
         
-        let sessionVC = TreningSessionViewController()
+        let sessionVC = TrainingSessionViewController()
         sessionVC.modalPresentationStyle = .fullScreen
         sessionVC.teacher = teacher
-        sessionVC.typeOfTrening = selectedMode
-        sessionVC.timeDuration = duration
-  
+        sessionVC.typeOfTraining = selectedMode
+        sessionVC.durationOfCountingDownTimer = duration
+        sessionVC.trainingViewController = self
         
         
         navigationController?.showDetailViewController(sessionVC, sender: true)
     }
+    
+    func comeBackFromTreningSessionViewControllerAndPushTrainingSummaryReport(training: Training){
+        
+        trainingSummaryReportView.configureLabelsText(training: training)
+        
+    }
+    
+    private func configureBlurView() {
+        blurView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(blurView)
+        blurView.backgroundColor = .gray
+        blurView.isHidden = true
+        blurView.alpha = 0
+        
+        blurView.addTarget(self, action: #selector(hideBlurAndTrainingSummaryReportView), for: .touchUpInside)
+        view.addSubview(blurView)
+    }
+    
+    @objc private func hideBlurAndTrainingSummaryReportView(){
+        UIView.animate(withDuration: 1) {
+            self.blurView.alpha = 0
+            self.trainingSummaryReportView.alpha = 0
+        } completion: { _ in
+            self.blurView.isHidden = true
+            self.trainingSummaryReportView.isHidden = true
+        }
+    }
+    func showBlur(){
+        self.blurView.isHidden = false
+        UIView.animate(withDuration: 1) {
+            self.blurView.alpha = 0.4
+        }
+    }
+    
+    func showTrainingSummaryReportView(){
+        self.trainingSummaryReportView.isHidden = false
+        UIView.animate(withDuration: 1) {
+            self.trainingSummaryReportView.alpha = 1
+        }
+    }
+    
 }
 
 
 
-extension TreningViewController: UITableViewDelegate , UITableViewDataSource {
+extension TrainingViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
     }

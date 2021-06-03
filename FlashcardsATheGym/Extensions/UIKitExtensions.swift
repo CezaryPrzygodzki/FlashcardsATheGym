@@ -163,6 +163,13 @@ extension UILabel {
         self.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+    func trainingSummaryLabel(text: String){
+        
+        self.textAlignment = .left
+        self.textColor = Colors.FATGtext
+        self.font = UIFont.systemFont(ofSize: 20)
+        self.text = text
+    }
 }
 
 

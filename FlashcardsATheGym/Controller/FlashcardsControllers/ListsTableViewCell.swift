@@ -125,7 +125,6 @@ class ListsTableViewCell: UITableViewCell {
             lessonToEdit = DataHelper.shareInstance.editData(lessonToEdit: lessonToEdit, newName: name)
             nameOfListOfFlashcardsLabel.text = name
         }
-        print("Saved successfully")
         NotificationCenter.default.post(name: Notification.Name("cancel"), object: nil)
     }
     
@@ -140,7 +139,6 @@ class ListsTableViewCell: UITableViewCell {
     }
     @objc func cancelButtonFunc(sender: UIButton!){
         NotificationCenter.default.post(name: Notification.Name("cancel"), object: nil)
-        print("Cancel")
     }
     
     func configureButtonsStackView() -> UIStackView {
