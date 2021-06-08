@@ -1,5 +1,5 @@
 //
-//  TreningSessionViewController.swift
+//  TrainingSessionViewController.swift
 //  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 20/04/2021.
@@ -27,13 +27,13 @@ class TrainingSessionViewController: UIViewController {
     private var currentFlashcard : Flashcard!
     
     private var countingDownTimer : Timer?
-    var durationOfCountingDownTimer: Double = 0// it's initialized in trainingViewController
+    var durationOfCountingDownTimer: Double = 0// it's initialized in trainingViewController - duration of the entire workout
     
     private var entireTraigingSessionTimer : Timer?
-    private var durationOfEntireTrainingSession : Int = 0
+    private var durationOfEntireTrainingSession : Int = 0 //time when we play sports
     
     private var totalLearningTimeTimer : Timer?
-    private var durationOfTotalLeariningTimer : Int = 0
+    private var durationOfTotalLeariningTimer : Int = 0 //learning time
     
     private var breakTimeView : BreakTimeView!
     private let blurView = UIView()
@@ -68,7 +68,7 @@ class TrainingSessionViewController: UIViewController {
         view.addSubview(wrongAnswerButton)
         configureCorrectWrongAnswerButtons()
         
-        configureClockView(typeOfTrening: .cardio)
+        configureClockView(typeOfTraining: .cardio)
         view.addSubview(clockView)
         
         view.addSubview(timeLabel)
@@ -78,9 +78,10 @@ class TrainingSessionViewController: UIViewController {
         
         // 2 types of training
         if typeOfTraining == .cardio {
-            durationOfTotalLeariningTimer = Int(durationOfCountingDownTimer)
+            totalLearningTimeTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(totalLearningTimeTimerAction), userInfo: nil, repeats: true)
             countingDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countingDownTimerAction), userInfo: nil, repeats: true)
             clockView.anim(duration: durationOfCountingDownTimer) {
+                self.endTrainingSession()
             }
         }
         
@@ -125,17 +126,17 @@ class TrainingSessionViewController: UIViewController {
                                    width: 100,
                                    height: closeButton.frame.size.height)
         closeButton.sizeToFit()
-        closeButton.addTarget(self, action: #selector(endTreningSession), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(endTrainingSession), for: .touchUpInside)
     }
     
-    @objc func endTreningSession() {
+    @objc func endTrainingSession() {
         let endDateTime = Date()//the variable is initialized here to get the exact end date of the training
         let lessonName = teacher.lesson?.name ?? "Wszystkie"
         
-        let trainingDuration = durationOfEntireTrainingSession - durationOfTotalLeariningTimer
+        let trainingDuration = typeOfTraining == .cardio ? durationOfTotalLeariningTimer : durationOfEntireTrainingSession - durationOfTotalLeariningTimer
         
         let training = DataHelper.shareInstance.saveData(start: startDateTime, end: endDateTime, duration: durationOfEntireTrainingSession, learningDuration: durationOfTotalLeariningTimer, trainingDuration: trainingDuration, lessonName: lessonName, finishedFlashcards: teacher.getFinishedFlashcards())
-        trainingViewController?.comeBackFromTreningSessionViewControllerAndPushTrainingSummaryReport(training: training)
+        trainingViewController?.comeBackFromTrainingSessionViewControllerAndPushTrainingSummaryReport(training: training)
         dismiss(animated: true){
             self.trainingViewController?.showBlur()
             self.trainingViewController?.showTrainingSummaryReportView()
@@ -160,7 +161,6 @@ class TrainingSessionViewController: UIViewController {
     }
     
     @objc func showAnswer(_ sender: UIButton!) {
-        
         UIView.animate(withDuration: 0.2) {
             self.checkoutButton.alpha = 0
         } completion: { [weak self] completed in
@@ -215,7 +215,6 @@ class TrainingSessionViewController: UIViewController {
     @objc func answer(_ sender: correctWrongButton!){
         var currFlash: Flashcard?
         
-        
         switch sender.type {
         case .correct:
             currFlash = teacher.correctAnswer()
@@ -223,17 +222,16 @@ class TrainingSessionViewController: UIViewController {
             currFlash = teacher.wrongAnswer()
         }
         hideAnswer { completed in
-            // TO DO: improve it so that after completing the list of cards in this session, the cards will be reloaded - it has to be looped - this way the user can do 200 or 300%
             if currFlash != nil {
                 self.currentFlashcard = currFlash!
                 self.configureNewFlashcard()
             } else {
-                self.endTreningSession()
+                self.teacher.refreshListOfFlashcards()
+                self.answer(sender)
             }
         }
     }
     
-    // TO DO: improve it so showing flashcards and replies with blurview works properly, because each new flashcard invocation puts it at the top of the stack, so it is above the blur
     private func configureNewFlashcard(){
         flashcardAnswer.removeFromSuperview()
         flashcardQuestion.removeFromSuperview()
@@ -242,6 +240,10 @@ class TrainingSessionViewController: UIViewController {
         flashcardQuestion = configureFlashcardQuestion()
         self.view.addSubview(flashcardQuestion)
         setXYpositionsOfCorrectWrongButtons()
+        if typeOfTraining == .strength { //due to that app doesn't crash
+            view.bringSubviewToFront(blurView)
+            view.bringSubviewToFront(breakTimeView)
+        }
     }
     
     
@@ -259,13 +261,13 @@ class TrainingSessionViewController: UIViewController {
     @objc private func totalLearningTimeTimerAction(){
         durationOfTotalLeariningTimer += 1
     }
-    private func configureClockView(typeOfTrening: SelectTrainigModeViewController.TypeOfTraining) {
+    private func configureClockView(typeOfTraining: SelectTrainigModeViewController.TypeOfTraining) {
         let sizeOfCV: CGFloat = 120
         clockView = ClockView(frame: CGRect(x: checkoutButton.frame.origin.x,
                                          y: UIScreen.main.bounds.size.height - sizeOfCV - checkoutButton.frame.origin.x,
                                          width: sizeOfCV,
                                          height: sizeOfCV),
-                           type: typeOfTrening)
+                           type: typeOfTraining)
         
     }
     

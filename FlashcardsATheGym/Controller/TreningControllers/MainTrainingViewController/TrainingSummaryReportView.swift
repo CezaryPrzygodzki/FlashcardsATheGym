@@ -40,7 +40,7 @@ class TrainingSummaryReportView: UIView {
     }
     
     private func configureTitile() {
-        title.text = "Podsumowanie trenignu"
+        title.text = "Podsumowanie treningu"
         title.font = UIFont.systemFont(ofSize: 25)
         title.textAlignment = .center
         title.layer.cornerRadius = 20
@@ -88,13 +88,49 @@ class TrainingSummaryReportView: UIView {
     }
     
     func configureLabelsText(training: Training){
-        startLabel.text = "Rozpoczęcie: \(training.start!)"
-        endLabel.text = "Zakończenie: \(training.end!)"
-        durationLabel.text = "Czas trwania: \(training.duration)"
-        learningDurationLabel.text = "Czas nauki: \(training.learingDuration)"
-        trainingDurationLabel.text = "Czas ćwiczeń: \(training.trainingDuration)"
+        startLabel.text = "Rozpoczęcie: \(getDate(date: training.start!))"
+        endLabel.text = "Zakończenie: \(getDate(date: training.end!))"
+        var time = secondsToHoursMinutesSeconds(seconds: Int(training.duration))
+        durationLabel.text = "Czas trwania: \(makeTimeString(hours: time.0, minutes: time.1, seconds: time.2))"
+        time = secondsToHoursMinutesSeconds(seconds: Int(training.learingDuration))
+        learningDurationLabel.text = "Czas nauki: \(makeTimeString(hours: time.0, minutes: time.1, seconds: time.2))"
+        time = secondsToHoursMinutesSeconds(seconds: Int(training.trainingDuration))
+        trainingDurationLabel.text = "Czas ćwiczeń: \(makeTimeString(hours: time.0, minutes: time.1, seconds: time.2))"
         lessonNameLabel.text = "Lekcja: \(training.lessonName!)"
-        finishedFlashcards.text = "Fiszki ukończone w: \(training.finishedFlashcards!)%"
+        finishedFlashcards.text = "Fiszki ukończone w: \(training.finishedFlashcards!)"
         
+    }
+    
+    private func getDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm dd-MM-yyyy"
+        
+        return formatter.string(from: date)
+    }
+    
+    
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int){
+        return ((seconds/3600),((seconds % 3600) / 60 ),((seconds % 3600) % 60 ))
+    }
+    private func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        if ( minutes == 0 && hours == 0){
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes > 0 && minutes < 10 && hours == 0 ) {
+            timeString += String(format: "%01d", minutes)
+            timeString += " min "
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes < 60 && hours == 0 ){
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        } else {
+            timeString += String(format: "%01d", hours)
+            timeString += " h "
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        }
+        return timeString
     }
 }

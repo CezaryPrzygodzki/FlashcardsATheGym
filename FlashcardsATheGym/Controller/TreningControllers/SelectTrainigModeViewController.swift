@@ -22,7 +22,7 @@ class SelectTrainigModeViewController: UIViewController {
         return DataHelper.shareInstance.loadData()
     }()
     private var chosenLesson: Lesson?
-    var treningViewController: TrainingViewController? = nil
+    var trainingViewController: TrainingViewController? = nil
     
     private let littleBarView = UIView()
     
@@ -32,7 +32,7 @@ class SelectTrainigModeViewController: UIViewController {
     private let selectTraningModeLabel = UILabel()
     
     private let strengthTraningButton = UIButton()
-    private let cardioTreningButton = UIButton()
+    private let cardioTrainingButton = UIButton()
     private let horizontalStackView = UIStackView()
     
     private let selectDurationOfTraningLabel = UILabel()
@@ -111,8 +111,6 @@ class SelectTrainigModeViewController: UIViewController {
         selectTraningModeLabel.topAnchor.constraint(equalTo: conteinerView.topAnchor, constant: padding).isActive = true
         selectTraningModeLabel.leadingAnchor.constraint(equalTo: conteinerView.leadingAnchor, constant: padding).isActive = true
         selectTraningModeLabel.trailingAnchor.constraint(equalTo: conteinerView.trailingAnchor, constant: -padding).isActive = true
-        //selectTraningModeLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
         
         self.heightOfScrollView += 45
     }
@@ -124,16 +122,16 @@ class SelectTrainigModeViewController: UIViewController {
         strengthTraningButton.layer.cornerRadius = 10
         strengthTraningButton.addTarget(self, action: #selector(strengthPressed), for: .touchUpInside)
         
-        cardioTreningButton.setTitle("Trening cardio", for: .normal)
-        cardioTreningButton.setTitleColor(Colors.FATGtext, for: .normal)
-        cardioTreningButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        cardioTreningButton.layer.cornerRadius = 10
-        cardioTreningButton.addTarget(self, action: #selector(cardioPressed), for: .touchUpInside)
+        cardioTrainingButton.setTitle("Trening cardio", for: .normal)
+        cardioTrainingButton.setTitleColor(Colors.FATGtext, for: .normal)
+        cardioTrainingButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        cardioTrainingButton.layer.cornerRadius = 10
+        cardioTrainingButton.addTarget(self, action: #selector(cardioPressed), for: .touchUpInside)
 
         configureBackgrodundColorOfButtons()
         
         horizontalStackView.addArrangedSubview(strengthTraningButton)
-        horizontalStackView.addArrangedSubview(cardioTreningButton)
+        horizontalStackView.addArrangedSubview(cardioTrainingButton)
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
         horizontalStackView.spacing = padding
@@ -194,15 +192,15 @@ class SelectTrainigModeViewController: UIViewController {
         switch chosenTypeOfTraining {
         case .cardio:
             
-            cardioTreningButton.backgroundColor = Colors.FATGpurple
+            cardioTrainingButton.backgroundColor = Colors.FATGpurple
             strengthTraningButton.backgroundColor = Colors.FATGWhiteBlack
             addDurationOfTraningToViewWithAnimation()
         case .strength:
             strengthTraningButton.backgroundColor = Colors.FATGpink
-            cardioTreningButton.backgroundColor = Colors.FATGWhiteBlack
+            cardioTrainingButton.backgroundColor = Colors.FATGWhiteBlack
             removeDurationOfTraningFromViewWithAnimation()
         case .empty:
-            cardioTreningButton.backgroundColor = Colors.FATGWhiteBlack
+            cardioTrainingButton.backgroundColor = Colors.FATGWhiteBlack
             strengthTraningButton.backgroundColor = Colors.FATGWhiteBlack
             removeDurationOfTraningFromViewWithAnimation()
         }
@@ -301,9 +299,13 @@ class SelectTrainigModeViewController: UIViewController {
         let duration = datePicker.countDownDuration
 
             if flashcardsToSend.count != 0 {
+                if chosenTypeOfTraining == .empty {
+                    showError("Wybierz rodzaj treningu")
+                    return
+                }
                 dismiss(animated: true) {
                 let teacher = Teacher(lesson: self.chosenLesson, flashcards: flashcardsToSend)
-                    self.treningViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher, selectedMode: self.chosenTypeOfTraining, duration: duration)
+                    self.trainingViewController?.comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: teacher, selectedMode: self.chosenTypeOfTraining, duration: duration)
                 }
             } else {
                 showError("Lista jest pusta, wybierz inną")

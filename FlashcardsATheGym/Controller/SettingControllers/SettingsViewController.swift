@@ -13,25 +13,27 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        createLogOutButton()
         view.addSubview(logOutButton)
+        createLogOutButton()
+        
     }
     
     func createLogOutButton() {
-    logOutButton.frame.size.width = self.view.frame.width
-    logOutButton.frame.size.height = 44
-    
-    logOutButton.setTitle("Log out", for: UIControl.State.normal)
-    logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-    logOutButton.setTitleColor(.black, for: .normal)
-    
-    logOutButton.frame = CGRect(x: 0,
-                                y: 345,
-                                width: logOutButton.frame.size.width,
-                                height: logOutButton.frame.size.height)
-    
-    logOutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+
+        logOutButton.backgroundColor = Colors.FATGpink
+        logOutButton.layer.cornerRadius = 10
+        logOutButton.setTitle("Log out", for: UIControl.State.normal)
+        logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .regular)
+        logOutButton.setTitleColor(Colors.FATGtext, for: .normal)
+        
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        logOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logOutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        logOutButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        logOutButton.widthAnchor.constraint(equalToConstant: 180).isActive = true
+
+        
+        logOutButton.addTarget(self, action: #selector(logOut), for: .touchUpInside)
     }
     
     @objc func logOut(){

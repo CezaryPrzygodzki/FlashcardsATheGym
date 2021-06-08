@@ -102,9 +102,7 @@ class LoginViewController: UIViewController {
                     self.keychain.set((result?.user.uid)!, forKey: Keys.uid, withAccess: KeychainSwiftAccessOptions.accessibleWhenUnlockedThisDeviceOnly)
                     print("UID dla tej sesji to: \(self.keychain.get(Keys.uid))")
                     print("Nick dla tej sesji to: \(self.keychain.get(Keys.nick))")
-                    //Download profile photo from firebase storage and put it to Keychain
-                    //self.downloadPhoto()
-                    //Go to featuredViewController
+
                     progressHUD.dismiss()
                     self.performSegue(withIdentifier: "logged", sender: self)
                 }

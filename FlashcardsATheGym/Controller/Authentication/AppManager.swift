@@ -36,8 +36,6 @@ class AppManager {
 
     func logout() {
         keychain.delete(Keys.uid)
-        //keychain.delete(Keys.profilePhotoName)
-        //keychain.delete(Keys.profilePhotoData)
       try! Auth.auth().signOut()
       appContainer.presentedViewController?.dismiss(animated: true, completion: nil)
     }

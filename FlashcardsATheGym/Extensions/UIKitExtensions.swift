@@ -167,7 +167,7 @@ extension UILabel {
         
         self.textAlignment = .left
         self.textColor = Colors.FATGtext
-        self.font = UIFont.systemFont(ofSize: 20)
+        self.font = UIFont.systemFont(ofSize: 16)
         self.text = text
     }
 }

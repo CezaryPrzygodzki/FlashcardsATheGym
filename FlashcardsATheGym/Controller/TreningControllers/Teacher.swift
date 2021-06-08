@@ -17,7 +17,7 @@ class Teacher: Teach {
     
     let lesson: Lesson?
     var listOfFlashcards: [Flashcard]
-    
+    private let constantList: [Flashcard]!
     private let numbersOfFlashcards: Int
     private var correctAnswers: Int
     private var wrongAnswers: Int
@@ -28,6 +28,7 @@ class Teacher: Teach {
         self.correctAnswers = 0
         self.wrongAnswers = 0
         self.numbersOfFlashcards = flashcards.count
+        self.constantList = flashcards
     }
     
     
@@ -35,7 +36,11 @@ class Teacher: Teach {
         wrongAnswers += 1
         
         if let f = listOfFlashcards.first {
-            listOfFlashcards.append(f)//dodajemy na koniec, by w tej samej lekcji jeszcze raz przerobić słówko
+            if listOfFlashcards.count == 1 {
+                print("Im here")
+                return f
+            }
+            listOfFlashcards.append(f)//add at the end to practice the word again in the same lesson
             listOfFlashcards.removeFirst()
             return f
         }
@@ -56,5 +61,9 @@ class Teacher: Teach {
     func getFinishedFlashcards() -> String {
         let percentages: Int = Int(Double(correctAnswers) / Double(numbersOfFlashcards) * 100)
         return "\(percentages)%"
+    }
+    
+    func refreshListOfFlashcards(){
+        listOfFlashcards = constantList
     }
 }

@@ -60,8 +60,6 @@ class SignUpLoginSkipController: UIViewController {
     }
     
     func configureDescriptionLabel(){
-//        descriptionLabel.text = "FlashcardsATheGym to aplikacja, która skutecznie pomoże Ci połączyć trening z nauką języków obcych."
-        //descriptionLabel.textColor = Colors.FATGtext
         descriptionLabel.textAlignment = .center
         descriptionLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         descriptionLabel.numberOfLines = 0

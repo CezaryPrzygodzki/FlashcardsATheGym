@@ -35,7 +35,7 @@ class ClockView: UIView {
         trackLayer.lineWidth = radius / 5
          
         trackLayer.fillColor = UIColor.clear.cgColor
-        trackLayer.lineCap = .round //dlatego mamy zaokgrąglone rogi okręgu
+        trackLayer.lineCap = .round //rounded corners of the circle
         backgroundView.layer.addSublayer(trackLayer)
         
 
@@ -45,10 +45,10 @@ class ClockView: UIView {
         shapeLayer.lineWidth = radius / 5
         
         shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = .round //dlatego mamy zaokgrąglone rogi okręgu
+        shapeLayer.lineCap = .round //rounded corners of the circle
         
         
-        shapeLayer.strokeEnd = type == .cardio ? 1 : 0 //jeżeli jest cardio to animacji będzie iść od pełnego do pustego, jak siłowy to od pustego do pełnego
+        shapeLayer.strokeEnd = type == .cardio ? 1 : 0 //the animation will be displayed from full to empty if it is cardio, and from empty to full if it is strength
         backgroundView.layer.addSublayer(shapeLayer)
 
     }
@@ -58,9 +58,9 @@ class ClockView: UIView {
     }
         
     func anim(duration: Double, completion: @escaping () -> Void){
-        //ustawiony keyValue - parametr - który będzie wprowadzony w animację
+        //set keyValue - the parameter that will be inserted into the animation
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = self.type == .cardio ? 0 : 1 //jeżeli jest cardio to animacji będzie iść od pełnego do pustego, jak siłowy to od pustego do pełnego
+        basicAnimation.toValue = self.type == .cardio ? 0 : 1 //the animation will be displayed from full to empty if it is cardio, and from empty to full if it is strength
         basicAnimation.duration = duration
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false

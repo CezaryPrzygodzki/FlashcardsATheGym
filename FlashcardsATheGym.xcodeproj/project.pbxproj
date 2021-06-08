@@ -18,7 +18,7 @@
 		4990AF8C25B488EE00F9669C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF8B25B488EE00F9669C /* Constants.swift */; };
 		4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9325B4892400F9669C /* UIKitExtensions.swift */; };
 		4990AF9925B4898000F9669C /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9825B4898000F9669C /* TrainingViewController.swift */; };
-		4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */; };
+		4990AF9E25B489A700F9669C /* PreviousTrainingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */; };
 		4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA225B489D100F9669C /* FlashcardsViewController.swift */; };
 		4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */; };
 		4990AFAD25B5B46500F9669C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */; };
@@ -95,7 +95,7 @@
 		4990AF8B25B488EE00F9669C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4990AF9325B4892400F9669C /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		4990AF9825B4898000F9669C /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
-		4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTreningsTableViewCell.swift; sourceTree = "<group>"; };
+		4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTrainingsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFA225B489D100F9669C /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
 		4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -284,7 +284,6 @@
 				4990AFF225B5C96900F9669C /* Authentication */,
 				4990AF8A25B488B300F9669C /* TreningControllers */,
 				4990AF8925B488A600F9669C /* FlashcardsControllers */,
-				4990AF8825B4889C00F9669C /* ShopControllers */,
 				4990AF8725B4888F00F9669C /* SettingControllers */,
 			);
 			path = Controller;
@@ -296,13 +295,6 @@
 				4990B03A25B7636E00F9669C /* SettingsViewController.swift */,
 			);
 			path = SettingControllers;
-			sourceTree = "<group>";
-		};
-		4990AF8825B4889C00F9669C /* ShopControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ShopControllers;
 			sourceTree = "<group>";
 		};
 		4990AF8925B488A600F9669C /* FlashcardsControllers */ = {
@@ -347,7 +339,7 @@
 		49D704F7266985000014DE0C /* MainTrainingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */,
+				4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */,
 				49D704E926690D300014DE0C /* TrainingSummaryReportView.swift */,
 				4990AF9825B4898000F9669C /* TrainingViewController.swift */,
 			);
@@ -662,7 +654,7 @@
 				49A45F7F262F0F8500C6A37A /* FlashcardQuestion.swift in Sources */,
 				49A1F602263ED5F600125B0C /* SelectTrainigModeViewController.swift in Sources */,
 				49D704F4266928830014DE0C /* Flashcard+CoreDataClass.swift in Sources */,
-				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
+				4990AF9E25B489A700F9669C /* PreviousTrainingsTableViewCell.swift in Sources */,
 				49D704F1266928830014DE0C /* Lesson+CoreDataClass.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,

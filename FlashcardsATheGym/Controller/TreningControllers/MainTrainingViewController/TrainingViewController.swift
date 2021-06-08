@@ -1,5 +1,5 @@
 //
-//  TreningViewController.swift
+//  TrainingViewController.swift
 //  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 17/01/2021.
@@ -9,31 +9,34 @@ import UIKit
 
 class TrainingViewController: UIViewController{
 
-    private var topLabelStartTrening : UIView!
-    private var previousTreningsLabel: UILabel!
-    private var previousTreningsTableView: UITableView!
-    let previousTreningsTableViewCellIdentifier = "previousTreningsTableViewCellIdentifier"
+    private var topLabelStartTraining : UIView!
+    private var previousTrainingsLabel: UILabel!
+    private var previousTrainingsTableView: UITableView!
+    let previousTrainingsTableViewCellIdentifier = "previousTrainingsTableViewCellIdentifier"
     
     private var trainingSummaryReportView : TrainingSummaryReportView!
     let blurView = UIButton()
     
+    var previousTrainings: [Training] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadData()
         configureNavigationAndTabBarControllers()
         
-        topLabelStartTrening = configureTopLabelStartTrening()
-        view.addSubview(topLabelStartTrening)
+        topLabelStartTraining = configureTopLabelStartTraining()
+        view.addSubview(topLabelStartTraining)
         
-        previousTreningsLabel = configurePreviousTreningsLabel()
-        view.addSubview(previousTreningsLabel)
+        previousTrainingsLabel = configurePreviousTrainingsLabel()
+        view.addSubview(previousTrainingsLabel)
         
-        configurePreviousTreningsTableView()
-        view.addSubview(previousTreningsTableView)
-        previousTreningsTableView.topAnchor.constraint(equalTo: previousTreningsLabel.bottomAnchor , constant: 25).isActive = true
-        previousTreningsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        previousTreningsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        previousTreningsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        configurePreviousTrainingsTableView()
+        view.addSubview(previousTrainingsTableView)
+        previousTrainingsTableView.topAnchor.constraint(equalTo: previousTrainingsLabel.bottomAnchor , constant: 25).isActive = true
+        previousTrainingsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        previousTrainingsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        previousTrainingsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         configureBlurView()
 
@@ -53,7 +56,16 @@ class TrainingViewController: UIViewController{
         
     }
     
-
+    private func loadData(){
+        let temporaryList : [Training] = DataHelper.shareInstance.loadData()
+        previousTrainings = temporaryList.sorted(by: {
+            $0.end?.compare($1.end!) == .orderedDescending
+        })
+        DispatchQueue.main.async {
+            self.previousTrainingsTableView.reloadData()
+        }
+    }
+    
     private func configureNavigationAndTabBarControllers(){
 
         self.tabBarController?.tabBar.tintColor = Colors.FATGpurple!
@@ -68,7 +80,7 @@ class TrainingViewController: UIViewController{
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.FATGtext!]
     }
 
-    private func configureTopLabelStartTrening() -> UIView{
+    private func configureTopLabelStartTraining() -> UIView{
         
         let topView = UIView()
         
@@ -130,40 +142,40 @@ class TrainingViewController: UIViewController{
     
     @objc private func start(){
         let chooseVC = SelectTrainigModeViewController()
-        chooseVC.treningViewController = self
+        chooseVC.trainingViewController = self
         
-        previousTreningsTableView.resignFirstResponder()
+        previousTrainingsTableView.resignFirstResponder()
         
         navigationController?.showDetailViewController(chooseVC, sender: true)
         
     }
     
-    private func configurePreviousTreningsLabel() -> UILabel {
+    private func configurePreviousTrainingsLabel() -> UILabel {
         let label = UILabel()
         
         label.text = "Poprzednie treningi"
         label.textColor = Colors.FATGtext
         label.font = UIFont.systemFont(ofSize: 25, weight: .regular)
         
-        label.frame = CGRect(x: 25, y: topLabelStartTrening.bounds.maxY + 70, width: UIScreen.main.bounds.size.width - 50, height: 50)
+        label.frame = CGRect(x: 25, y: topLabelStartTraining.bounds.maxY + 70, width: UIScreen.main.bounds.size.width - 50, height: 50)
         return label
     }
     
-    private func configurePreviousTreningsTableView() {
-        previousTreningsTableView = UITableView()
+    private func configurePreviousTrainingsTableView() {
+        previousTrainingsTableView = UITableView()
         //set row height
-        previousTreningsTableView.rowHeight = 130
+        previousTrainingsTableView.rowHeight = 130
         //register cells
-        previousTreningsTableView.register(PreviousTreningsTableViewCell.self, forCellReuseIdentifier: previousTreningsTableViewCellIdentifier)
+        previousTrainingsTableView.register(PreviousTrainingsTableViewCell.self, forCellReuseIdentifier: previousTrainingsTableViewCellIdentifier)
         //set contraits
-        previousTreningsTableView.translatesAutoresizingMaskIntoConstraints = false
+        previousTrainingsTableView.translatesAutoresizingMaskIntoConstraints = false
         //set delegates
-        setPreviousTreningsTableView()
+        setPreviousTrainingsTableView()
         
-        previousTreningsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-        previousTreningsTableView.showsVerticalScrollIndicator = false
+        previousTrainingsTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        previousTrainingsTableView.showsVerticalScrollIndicator = false
                 
-        previousTreningsTableView.backgroundColor = .clear
+        previousTrainingsTableView.backgroundColor = .clear
         
     }
     func comeBackFromSelectTraningModeAndPushTrennigSessionViewController(teacher: Teacher, selectedMode: SelectTrainigModeViewController.TypeOfTraining, duration: Double){
@@ -179,8 +191,8 @@ class TrainingViewController: UIViewController{
         navigationController?.showDetailViewController(sessionVC, sender: true)
     }
     
-    func comeBackFromTreningSessionViewControllerAndPushTrainingSummaryReport(training: Training){
-        
+    func comeBackFromTrainingSessionViewControllerAndPushTrainingSummaryReport(training: Training){
+        loadData()
         trainingSummaryReportView.configureLabelsText(training: training)
         
     }
@@ -225,22 +237,36 @@ class TrainingViewController: UIViewController{
 
 extension TrainingViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        previousTrainings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: previousTreningsTableViewCellIdentifier, for: indexPath) as? PreviousTreningsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: previousTrainingsTableViewCellIdentifier, for: indexPath) as? PreviousTrainingsTableViewCell else {
             fatalError("Bad Instance")
         }
     
+        let prevTraining = previousTrainings[indexPath.row]
+        
+        cell.configureRow(training: prevTraining)
         return cell
     }
     
     
-    private func  setPreviousTreningsTableView() {
-        previousTreningsTableView.delegate = self
-        previousTreningsTableView.dataSource = self
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? PreviousTrainingsTableViewCell else {
+            fatalError("Bad Instance")
+        }
+        cell.selectionStyle = .none
+        let training = previousTrainings[indexPath.row]
+        trainingSummaryReportView.configureLabelsText(training: training)
+        showBlur()
+        showTrainingSummaryReportView()
+    }
+    
+    private func  setPreviousTrainingsTableView() {
+        previousTrainingsTableView.delegate = self
+        previousTrainingsTableView.dataSource = self
         
     }
     

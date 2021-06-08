@@ -1,5 +1,5 @@
 //
-//  PreviousTreningsTableViewCell.swift
+//  PreviousTrainingsTableViewCell.swift
 //  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 17/01/2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviousTreningsTableViewCell: UITableViewCell {
+class PreviousTrainingsTableViewCell: UITableViewCell {
     
     private let cellWidth = UIScreen.main.bounds.size.width - 50
     private let cellHeight : CGFloat = 130
@@ -16,13 +16,13 @@ class PreviousTreningsTableViewCell: UITableViewCell {
     
     private let background = UIView()
     
-    let dayLabelView = UIView()
-    let monthDateLabel = UILabel()
-    let dayDateLabel = UILabel()
+    private let dayLabelView = UIView()
+    private let monthDateLabel = UILabel()
+    private let dayDateLabel = UILabel()
     
-    let timeLabel = UILabel()
-    let listLabel = UILabel()
-    let flashcardsDoneLabel = UILabel()
+    private let timeLabel = UILabel()
+    private let listLabel = UILabel()
+    private let flashcardsDoneLabel = UILabel()
     private var stackView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -49,6 +49,52 @@ class PreviousTreningsTableViewCell: UITableViewCell {
          fatalError("init(coder:) has not been implemented")
      }
     
+    
+    func configureRow(training: Training){
+        let time = secondsToHoursMinutesSeconds(seconds: Int(training.duration))
+        timeLabel.text = "Czas: \(makeTimeString(hours: time.0, minutes: time.1, seconds: time.2))"
+        listLabel.text = "Lista: \(training.lessonName!)"
+        flashcardsDoneLabel.text = "Fiszki ukończone w: \(training.finishedFlashcards!)"
+        monthDateLabel.text = getMonth(date: training.end!).uppercased()
+        dayDateLabel.text = getDay(date: training.end!)
+    }
+    
+    private func getMonth(date: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        formatter.locale = Locale(identifier: "pl_PL")
+        return formatter.string(from: date)
+    }
+    private func getDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        
+        return formatter.string(from: date)
+    }
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int){
+        return ((seconds/3600),((seconds % 3600) / 60 ),((seconds % 3600) % 60 ))
+    }
+    private func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        if ( minutes == 0 && hours == 0){
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes > 0 && minutes < 10 && hours == 0 ) {
+            timeString += String(format: "%01d", minutes)
+            timeString += " min "
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes < 60 && hours == 0 ){
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        } else {
+            timeString += String(format: "%01d", hours)
+            timeString += " h "
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        }
+        return timeString
+    }
     private func configureBackground() {
         background.backgroundColor = Colors.FATGWhiteBlack
         background.layer.cornerRadius = 10

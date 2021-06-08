@@ -21,7 +21,7 @@ class BreakTimeView: UIView{
     
     private let verticalStack = UIStackView()
     
-    var checkButtonPressed : ((_ numberOfSeconds: Int) -> Void) = {_ in} // here, I get information in the TreningSessionViewController about the button press
+    var checkButtonPressed : ((_ numberOfSeconds: Int) -> Void) = {_ in} // here, I get information in the TrainingSessionViewController about the button press
     
     override init(frame: CGRect) {
         super.init(frame: frame)
