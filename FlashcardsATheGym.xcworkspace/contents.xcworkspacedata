@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Training+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Training+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift">
    </FileRef>
    <FileRef

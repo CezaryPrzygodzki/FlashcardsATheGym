@@ -9,55 +9,54 @@ import UIKit
 
 class AddFlashcardsViewController: UIViewController {
 
-    var heightOfScrollView: CGFloat = 0
-    let padding: CGFloat = 10
-    let lessonTableViewCellIndentifier = "lessonTableViewCellIndentifier"
+    private var heightOfScrollView: CGFloat = 0
+    private let padding: CGFloat = 10
+    private let lessonTableViewCellIndentifier = "lessonTableViewCellIndentifier"
     
-    let littleBarView = UIView()
+    private let littleBarView = UIView()
     let titleLabel = UILabel()
     
-    let scrollView = UIScrollView()
-    let conteinerView = UIView()
+    private let scrollView = UIScrollView()
+    private let conteinerView = UIView()
     
-    let labelWord = UILabel()
+    private let labelWord = UILabel()
     let textFieldWord = UITextField()
     
-    let labelTranslation = UILabel()
+    private let labelTranslation = UILabel()
     let textFieldTranslation = UITextField()
     
-    let labelPronunciation = UILabel()
+    private let labelPronunciation = UILabel()
     let textFieldPronunciation = UITextField()
     
-    let labelMeaning = UILabel()
+    private let labelMeaning = UILabel()
     let textFieldMeaning = UITextField()
     
-    let labelExample = UILabel()
+    private let labelExample = UILabel()
     let textFieldExample = UITextField()
     
     let addButton = UIButton()
-    var lessonsTableView = UITableView()
-    let saveInLabel = UILabel()
+    private var lessonsTableView = UITableView()
+    private let saveInLabel = UILabel()
     
-    var count = 0
     var flashcardsViewController: FlashcardsViewController?
     var allFlashcardsViewController: AllFlashcardsViewController?
 
-    var lessons: [Lesson] = []
+    private let lessons: [Lesson] = {
+    return DataHelper.shareInstance.loadData()
+}()
     var saveThisFlashcardInLessons : [Lesson] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-
+        
         view.backgroundColor = Colors.FATGbackground
         title = "Nowa fiszka"
-        navigationItem.backBarButtonItem?.title = "Wszystkie fiszki"
         
         configureLittleBarView()
-               view.addSubview(littleBarView)
+        view.addSubview(littleBarView)
                
-               configureTitleLabel()
-               view.addSubview(titleLabel)
+        configureTitleLabel()
+        view.addSubview(titleLabel)
         
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,11 +103,8 @@ class AddFlashcardsViewController: UIViewController {
 
         conteinerView.addSubview(addButton)
         createAddButton()
-        
-        print("Height of scroll view = \(heightOfScrollView)")
-        print("Height of view = \(view.frame.size.height)")
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         
     
@@ -120,27 +116,13 @@ class AddFlashcardsViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc func loadData(){
-        
-        lessons = DataHelper.shareInstance.loadData()
-        DispatchQueue.main.async {
-            self.lessonsTableView.reloadData()
-        }
-        
-    }
-    
-    @objc
-    func anuluj() {
-        dismiss(animated: true, completion: nil)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         scrollView.contentSize = CGSize(width: view.frame.size.width, height: heightOfScrollView)
         conteinerView.frame.size = CGSize(width: view.frame.size.width, height: heightOfScrollView)
     }
 
-    func configureLittleBarView(){
+    private func configureLittleBarView(){
         littleBarView.backgroundColor = .lightGray
         littleBarView.layer.cornerRadius = 5
         littleBarView.frame.size.width = 100
@@ -149,7 +131,7 @@ class AddFlashcardsViewController: UIViewController {
                                      width: littleBarView.frame.size.width,
                                      height: 5)
     }
-    func configureTitleLabel(){
+    private func configureTitleLabel(){
         
         titleLabel.text = "Nowa fiszka"
         titleLabel.textColor = Colors.FATGtext
@@ -159,7 +141,7 @@ class AddFlashcardsViewController: UIViewController {
 
         
     }
-    func createLabelWord(){
+    private func createLabelWord(){
         labelWord.newFlashcardLabel(text: "Wyraz")
         labelWord.translatesAutoresizingMaskIntoConstraints = false
         labelWord.topAnchor.constraint(equalTo: conteinerView.topAnchor, constant: 10).isActive = true
@@ -169,7 +151,7 @@ class AddFlashcardsViewController: UIViewController {
         
         self.heightOfScrollView += 30
     }
-    func createTextFieldWord(){
+    private func createTextFieldWord(){
         textFieldWord.textField(placeholder: "sensational")
         textFieldWord.translatesAutoresizingMaskIntoConstraints = false
         textFieldWord.topAnchor.constraint(equalTo: labelWord.bottomAnchor, constant: 5).isActive = true
@@ -181,7 +163,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
     
-    func createLabelTranslation(){
+    private func createLabelTranslation(){
         labelTranslation.newFlashcardLabel(text: "Tłumaczenie")
         labelTranslation.translatesAutoresizingMaskIntoConstraints = false
         labelTranslation.topAnchor.constraint(equalTo: textFieldWord.bottomAnchor, constant: 10).isActive = true
@@ -192,7 +174,7 @@ class AddFlashcardsViewController: UIViewController {
         self.heightOfScrollView += 30
     }
     
-    func createTextFieldTranslation(){
+    private func createTextFieldTranslation(){
         textFieldTranslation.textField(placeholder: "rewelacyjny")
         textFieldTranslation.translatesAutoresizingMaskIntoConstraints = false
         textFieldTranslation.topAnchor.constraint(equalTo: labelTranslation.bottomAnchor, constant: 5).isActive = true
@@ -204,7 +186,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
     
-    func createLabelPronunciation(){
+    private func createLabelPronunciation(){
         labelPronunciation.newFlashcardLabel(text: "Wymowa")
         labelPronunciation.translatesAutoresizingMaskIntoConstraints = false
         labelPronunciation.topAnchor.constraint(equalTo: textFieldTranslation.bottomAnchor, constant: 10).isActive = true
@@ -215,7 +197,7 @@ class AddFlashcardsViewController: UIViewController {
         self.heightOfScrollView += 30
     }
     
-    func createTextFieldPronunciation(){
+    private func createTextFieldPronunciation(){
         textFieldPronunciation.textField(placeholder: "sensejszynal")
         textFieldPronunciation.translatesAutoresizingMaskIntoConstraints = false
         textFieldPronunciation.topAnchor.constraint(equalTo: labelPronunciation.bottomAnchor, constant: 5).isActive = true
@@ -227,7 +209,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
     
-    func createLabelMeaning(){
+    private func createLabelMeaning(){
         labelMeaning.newFlashcardLabel(text: "Znaczenie")
         labelMeaning.translatesAutoresizingMaskIntoConstraints = false
         labelMeaning.topAnchor.constraint(equalTo: textFieldPronunciation.bottomAnchor, constant: 10).isActive = true
@@ -237,7 +219,7 @@ class AddFlashcardsViewController: UIViewController {
         
         self.heightOfScrollView += 30
     }
-    func createTextFieldMeaning(){
+    private func createTextFieldMeaning(){
         textFieldMeaning.textField(placeholder: "very good, exciting")
         textFieldMeaning.translatesAutoresizingMaskIntoConstraints = false
         textFieldMeaning.topAnchor.constraint(equalTo: labelMeaning.bottomAnchor, constant: 5).isActive = true
@@ -249,7 +231,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
     
-    func createLabelExample(){
+    private func createLabelExample(){
         labelExample.newFlashcardLabel(text: "Użycie")
         labelExample.translatesAutoresizingMaskIntoConstraints = false
         labelExample.topAnchor.constraint(equalTo: textFieldMeaning.bottomAnchor, constant: 10).isActive = true
@@ -259,7 +241,7 @@ class AddFlashcardsViewController: UIViewController {
         
         self.heightOfScrollView += 30
     }
-    func createTextFieldExample(){
+    private func createTextFieldExample(){
         textFieldExample.textField(placeholder: "You look sensational this evening!")
         textFieldExample.translatesAutoresizingMaskIntoConstraints = false
         textFieldExample.topAnchor.constraint(equalTo: labelExample.bottomAnchor, constant: 5).isActive = true
@@ -271,7 +253,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
     
-    func configureSaveInLabel() {
+    private func configureSaveInLabel() {
         saveInLabel.text = "Zapisz tę fiszkę w lekcji:"
         saveInLabel.textColor = Colors.FATGtext
         saveInLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
@@ -285,7 +267,7 @@ class AddFlashcardsViewController: UIViewController {
         self.heightOfScrollView += 45
         
     }
-    func configureLessonsTableView(){
+    private func configureLessonsTableView(){
         let rowHeight : CGFloat = 50
         let tableViewHeight = CGFloat(lessons.count) * rowHeight
         lessonsTableView.rowHeight = rowHeight
@@ -306,7 +288,7 @@ class AddFlashcardsViewController: UIViewController {
     }
     
 
-    func createAddButton() {
+    private func createAddButton() {
         addButton.setTitle("Dodaj", for: UIControl.State.normal)
         addButton.setTitleColor(Colors.FATGWhiteBlack, for: .normal)
         addButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
@@ -327,8 +309,6 @@ class AddFlashcardsViewController: UIViewController {
     
     @objc func addButtonFunc(sender: UIButton!){
         
-        print("Przycisk do dodawania")
-        
         let word = textFieldWord.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let translation = textFieldTranslation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pronunciation = textFieldPronunciation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -347,13 +327,7 @@ class AddFlashcardsViewController: UIViewController {
             allFlashcardsViewController?.backFromAddingNewFlashcard(data: flashcard)
             var lists : [Lesson] = []
             lists = flashcard.lesson?.allObjects as! [Lesson]
-            for list in lists {
-                print(list.name)
-            }
-            print("Ta fiszka jest w: \(flashcard.lesson?.count) lekcjach")
-            }
-            
-        
+        }
         dismiss(animated: true, completion: nil)
     }
         
@@ -373,7 +347,7 @@ extension AddFlashcardsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.nameOfListOfFlashcardsLabel.text = lesson.name
         
         if self.saveThisFlashcardInLessons.contains(lesson) {
-            cell.checkButton.on = true
+            cell.checkButton.setOn(true, animated: true)
         }
         
         cell.checkButtonPressed = {
@@ -384,8 +358,6 @@ extension AddFlashcardsViewController: UITableViewDelegate, UITableViewDataSourc
                     self.saveThisFlashcardInLessons.remove(at: index) //wejdziemy do środka i utworzymy zmienną tylko, jeżeli obiekt jest w tej liście
                 }
             }
-            print("number of lessons in: \(self.saveThisFlashcardInLessons.count)")
-            tableView.reloadData()
         }
         return cell
     }

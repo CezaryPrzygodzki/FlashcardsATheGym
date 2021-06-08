@@ -27,8 +27,8 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 
 + (void)initialize {
 	if (self == [FRHyperLabel class]) {
-		FRHyperLabelLinkColorDefault = [UIColor colorWithRed:28/255.0 green:135/255.0 blue:199/255.0 alpha:1];
-		FRHyperLabelLinkColorHighlight = [UIColor colorWithRed:242/255.0 green:183/255.0 blue:73/255.0 alpha:1];
+		FRHyperLabelLinkColorDefault = [UIColor colorWithRed:0.544 green:0.504 blue:0.932 alpha:1];
+		FRHyperLabelLinkColorHighlight = [UIColor colorWithRed:0.946 green:0.634 blue:0.590 alpha:1];
 	}
 }
 
@@ -54,17 +54,15 @@ static UIColor *FRHyperLabelLinkColorHighlight;
 	}
 	
 	if (!self.userInteractionEnabled) {
-		self.userInteractionEnabled = YES;
+		self.userInteractionEnabled = true;
 	}
 	
 	if (!self.linkAttributeDefault) {
-		self.linkAttributeDefault = @{NSForegroundColorAttributeName: FRHyperLabelLinkColorDefault,
-									  NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+		self.linkAttributeDefault = @{NSForegroundColorAttributeName: FRHyperLabelLinkColorDefault};
 	}
 	
 	if (!self.linkAttributeHighlight) {
-		self.linkAttributeHighlight = @{NSForegroundColorAttributeName: FRHyperLabelLinkColorHighlight,
-										NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)};
+		self.linkAttributeHighlight = @{NSForegroundColorAttributeName: FRHyperLabelLinkColorHighlight};
 	}
 }
 

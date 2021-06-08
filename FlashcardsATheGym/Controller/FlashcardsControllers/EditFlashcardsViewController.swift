@@ -26,19 +26,12 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
         textFieldExample.text = flashcardToEdit?.example
         saveThisFlashcardInLessons = flashcardToEdit?.lesson?.allObjects as! [Lesson]
 
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-
     }
     
     
 
     @objc override func addButtonFunc(sender: UIButton!){
-        
-        print("Przycisk do dodawania")
-        
+
         let word = textFieldWord.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let translation = textFieldTranslation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let pronunciation = textFieldPronunciation.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -52,28 +45,6 @@ class EditFlashcardsViewController: AddFlashcardsViewController {
         } else if ( word == "" ) && ( translation == "" ) {
             Alert.wrongData(on: self, message: "Uzupełnij pola nazwa oraz tłumaczenie.")
         } else {
-            
-//            guard let appDelegate =
-//              UIApplication.shared.delegate as? AppDelegate else {
-//              return
-//            }
-//
-//            let managedContext = appDelegate.persistentContainer.viewContext
-//
-//            flashcardToEdit!.word = word
-//            flashcardToEdit!.translation = translation
-//            flashcardToEdit?.pronunciation = pronunciation
-//            flashcardToEdit?.meaning = meaning
-//            flashcardToEdit?.example = example
-//
-//            do {
-//              try managedContext.save()
-//                print("Yes, u did it!")
-//            } catch let error as NSError {
-//              print("Could not save. \(error), \(error.userInfo)")
-//            }
-            //allFlashcardsViewController?.backFromEditFlashcardController(data: flashcardToEdit!)
-            
             flashcardToEdit = DataHelper.shareInstance.editData(flashcardToEdit: flashcardToEdit!, word: word, translation: translation, pronunciation: pronunciation, meaning: meaning, example: example, lessons: saveThisFlashcardInLessons)
             allFlashcardsViewController?.loadData()
             allFlashcardsViewController?.flashcardsTableView.reloadData()

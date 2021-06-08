@@ -1,5 +1,5 @@
 //
-//  PreviousTreningsTableViewCell.swift
+//  PreviousTrainingsTableViewCell.swift
 //  FlashcardsATheGym
 //
 //  Created by Cezary Przygodzki on 17/01/2021.
@@ -8,23 +8,22 @@
 
 import UIKit
 
-class PreviousTreningsTableViewCell: UITableViewCell {
+class PreviousTrainingsTableViewCell: UITableViewCell {
     
-    let cellWidth = UIScreen.main.bounds.size.width - 50
-    let cellHeight : CGFloat = 130
-    let padding: CGFloat = 15
+    private let cellWidth = UIScreen.main.bounds.size.width - 50
+    private let cellHeight : CGFloat = 130
+    private let padding: CGFloat = 15
     
+    private let background = UIView()
     
-    let background = UIView()
+    private let dayLabelView = UIView()
+    private let monthDateLabel = UILabel()
+    private let dayDateLabel = UILabel()
     
-    let dayLabelView = UIView()
-    let monthDateLabel = UILabel()
-    let dayDateLabel = UILabel()
-    
-    let timeLabel = UILabel()
-    let listLabel = UILabel()
-    let flashcardsDoneLabel = UILabel()
-    var stackView = UIStackView()
+    private let timeLabel = UILabel()
+    private let listLabel = UILabel()
+    private let flashcardsDoneLabel = UILabel()
+    private var stackView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
      super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -49,23 +48,61 @@ class PreviousTreningsTableViewCell: UITableViewCell {
      required init?(coder: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }
-
     
     
-    func configureBackground() {
-        background.backgroundColor = Colors.FATGWhiteBlack
-        
-        background.layer.cornerRadius = 10
-
-        background.frame.size.height = cellHeight - 20
-        background.frame.size.width = cellWidth
-        
+    func configureRow(training: Training){
+        let time = secondsToHoursMinutesSeconds(seconds: Int(training.duration))
+        timeLabel.text = "Czas: \(makeTimeString(hours: time.0, minutes: time.1, seconds: time.2))"
+        listLabel.text = "Lista: \(training.lessonName!)"
+        flashcardsDoneLabel.text = "Fiszki ukończone w: \(training.finishedFlashcards!)"
+        monthDateLabel.text = getMonth(date: training.end!).uppercased()
+        dayDateLabel.text = getDay(date: training.end!)
     }
     
-    
-    
-    func configureDayLabelView() {
+    private func getMonth(date: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        formatter.locale = Locale(identifier: "pl_PL")
+        return formatter.string(from: date)
+    }
+    private func getDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
         
+        return formatter.string(from: date)
+    }
+    private func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int){
+        return ((seconds/3600),((seconds % 3600) / 60 ),((seconds % 3600) % 60 ))
+    }
+    private func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        if ( minutes == 0 && hours == 0){
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes > 0 && minutes < 10 && hours == 0 ) {
+            timeString += String(format: "%01d", minutes)
+            timeString += " min "
+            timeString += String(format: "%02d", seconds)
+            timeString += " s"
+        } else if ( minutes < 60 && hours == 0 ){
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        } else {
+            timeString += String(format: "%01d", hours)
+            timeString += " h "
+            timeString += String(format: "%02d", minutes)
+            timeString += " min"
+        }
+        return timeString
+    }
+    private func configureBackground() {
+        background.backgroundColor = Colors.FATGWhiteBlack
+        background.layer.cornerRadius = 10
+        background.frame.size.height = cellHeight - 20
+        background.frame.size.width = cellWidth
+    }
+    
+    private func configureDayLabelView() {
         dayLabelView.backgroundColor = Colors.FATGpink
         dayLabelView.layer.cornerRadius = 7
         
@@ -78,8 +115,7 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                     height: dayLabelView.frame.size.height)
     }
     
-    func configureMonthDateLabel(){
-        
+    private func configureMonthDateLabel(){
         monthDateLabel.text = "STY"
         monthDateLabel.textColor = .white
         monthDateLabel.font = UIFont.systemFont(ofSize: 25, weight: .regular)
@@ -93,10 +129,9 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                       width: monthDateLabel.frame.size.width ,
                                       height:  monthDateLabel.frame.size.height)
         
-        
     }
-    func configureDayDateLabel() {
-        
+    
+    private func configureDayDateLabel() {
         dayDateLabel.text = "27"
         dayDateLabel.textColor = .white
         dayDateLabel.font = UIFont.systemFont(ofSize: 30, weight: .black)
@@ -110,10 +145,9 @@ class PreviousTreningsTableViewCell: UITableViewCell {
                                     width: dayDateLabel.frame.size.width,
                                     height: dayDateLabel.frame.size.height)
         
-        
     }
     
-    func configureTimeListFlashcardsDoneLabels(){
+    private func configureTimeListFlashcardsDoneLabels(){
         
         timeLabel.textColor = Colors.FATGtext
         listLabel.textColor = Colors.FATGtext
@@ -129,14 +163,12 @@ class PreviousTreningsTableViewCell: UITableViewCell {
         
     }
     
-    func configureStackView() -> UIStackView {
+    private func configureStackView() -> UIStackView {
         let sv = UIStackView(arrangedSubviews: [
             timeLabel,
             listLabel,
             flashcardsDoneLabel
         ])
-        let numberOfLabels : CGFloat = 3
-        let labelSize : CGFloat = 75
         
         sv.axis = .vertical
         sv.distribution = .fillEqually

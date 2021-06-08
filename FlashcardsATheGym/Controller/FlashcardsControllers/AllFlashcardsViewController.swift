@@ -12,13 +12,13 @@ class AllFlashcardsViewController: UIViewController {
     var flashcards: [Flashcard] = []//List of loaded flashcards
     var flashcardToEdit: Flashcard?
     
-    let imageViewAddbutton = UIImageView()
+    private let imageViewAddbutton = UIImageView()
     
     var flashcardsTableView: UITableView!
-    let flashcardsTableViewCellIdentifier = "flashcardsTableViewCellIdentifier"
+    private let flashcardsTableViewCellIdentifier = "flashcardsTableViewCellIdentifier"
 
-    var thereIsCellTapped = false
-    var selectedRowIndex = -1
+    private var thereIsCellTapped = false
+    private var selectedRowIndex = -1
     
     
     
@@ -49,7 +49,7 @@ class AllFlashcardsViewController: UIViewController {
         imageViewAddbutton.isHidden = false
     }
     
-    func createAddButton(){
+    private func createAddButton(){
         imageViewAddbutton.image = UIImage(systemName: "plus.circle.fill")
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addButtonAction))
         guard let navigationBar = self.navigationController?.navigationBar else { return }
@@ -69,8 +69,7 @@ class AllFlashcardsViewController: UIViewController {
         ])
     }
     
-    @objc
-    func addButtonAction() {
+    @objc func addButtonAction() {
         
         let addVC = UIStoryboard(name: "Main",
                                  bundle: nil)
@@ -92,7 +91,7 @@ class AllFlashcardsViewController: UIViewController {
         }
         
     }
-    func configureFlashcardsTableView(){
+    private func configureFlashcardsTableView(){
         
         flashcardsTableView = UITableView()
         flashcardsTableView.register(FlashcardsTableViewCell.self, forCellReuseIdentifier: flashcardsTableViewCellIdentifier)
@@ -168,7 +167,7 @@ extension AllFlashcardsViewController:  UITableViewDelegate, UITableViewDataSour
         return 90
     }
 
-    func setFlashcardsTableViewDelegates(){
+    private func setFlashcardsTableViewDelegates(){
         flashcardsTableView.delegate = self
         flashcardsTableView.dataSource = self
     }

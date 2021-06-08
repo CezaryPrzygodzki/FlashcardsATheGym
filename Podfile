@@ -16,6 +16,7 @@ pod 'KeychainSwift'
 pod 'GoogleSignIn'
 pod 'BEMCheckBox'
 pod 'FRHyperLabel'
+pod 'JGProgressHUD'
 
 
   target 'FlashcardsATheGymTests' do

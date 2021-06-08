@@ -10,15 +10,15 @@ import UIKit
 class AddListView: UIView {
 
     //Dimensions
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
-    var padding : CGFloat = 20
-    var addListWidth = UIScreen.main.bounds.size.width - 100
-    var addListHeight = UIScreen.main.bounds.size.height - 300
+    private let screenWidth = UIScreen.main.bounds.size.width
+    private let screenHeight = UIScreen.main.bounds.size.height
+    private var padding : CGFloat = 20
+    private var addListWidth = UIScreen.main.bounds.size.width - 100
+    private var addListHeight = UIScreen.main.bounds.size.height - 300
     
-    let label = UILabel()
-    let textFieldName = UITextField()
-    let button = UIButton()
+    private let label = UILabel()
+    private let textFieldName = UITextField()
+    private let button = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,14 +99,10 @@ class AddListView: UIView {
         if ( name == "" ){
             Alert.wrongData(on: UIViewController(), message: "Uzupełnij pole nazwa.")
         } else {
-            let lesson = DataHelper.shareInstance.saveData(name: name)
+            _ = DataHelper.shareInstance.saveData(name: name)
             NotificationCenter.default.post(name: Notification.Name("reload"), object: nil)
             NotificationCenter.default.post(name: Notification.Name("hideBlur"), object: nil)
             
         }
-        
-        print("Nice, dodałeś kolejną listę byczq")
-        
-        
     }
 }

@@ -2,7 +2,7 @@
 //  Lesson+CoreDataClass.swift
 //  
 //
-//  Created by Cezary Przygodzki on 05/04/2021.
+//  Created by Cezary Przygodzki on 03/06/2021.
 //
 //
 

@@ -20,7 +20,24 @@ extension UIView {
 
 }
 
+extension UIButton{
+    
+    func makeRounded(diameter: CGFloat) {
 
+        self.frame.size.width = diameter
+        self.frame.size.height = diameter
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = self.frame.size.height / 2
+        self.clipsToBounds = true
+    }
+    
+    func breakTimeButton(seconds: Int) {
+        self.layer.cornerRadius = 20
+        self.backgroundColor = Colors.FATGpurple
+        self.setTitle("\(seconds)s", for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+    }
+}
 extension UINavigationController {
 
     
@@ -145,6 +162,13 @@ extension UILabel {
         self.textColor = Colors.FATGtext
         self.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    func trainingSummaryLabel(text: String){
+        
+        self.textAlignment = .left
+        self.textColor = Colors.FATGtext
+        self.font = UIFont.systemFont(ofSize: 16)
+        self.text = text
     }
 }
 

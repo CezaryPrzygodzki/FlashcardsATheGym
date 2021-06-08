@@ -11,7 +11,7 @@ import KeychainSwift
 
 class AppManager {
     
-    let keychain = KeychainSwift()
+    private let keychain = KeychainSwift()
     //making singleton
     static let shared = AppManager()
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -36,8 +36,6 @@ class AppManager {
 
     func logout() {
         keychain.delete(Keys.uid)
-        //keychain.delete(Keys.profilePhotoName)
-        //keychain.delete(Keys.profilePhotoData)
       try! Auth.auth().signOut()
       appContainer.presentedViewController?.dismiss(animated: true, completion: nil)
     }

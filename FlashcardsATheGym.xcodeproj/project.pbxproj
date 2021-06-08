@@ -17,8 +17,8 @@
 		4990AF6F25B471BB00F9669C /* FlashcardsATheGymUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF6E25B471BB00F9669C /* FlashcardsATheGymUITests.swift */; };
 		4990AF8C25B488EE00F9669C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF8B25B488EE00F9669C /* Constants.swift */; };
 		4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9325B4892400F9669C /* UIKitExtensions.swift */; };
-		4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9825B4898000F9669C /* TreningViewController.swift */; };
-		4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */; };
+		4990AF9925B4898000F9669C /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9825B4898000F9669C /* TrainingViewController.swift */; };
+		4990AF9E25B489A700F9669C /* PreviousTrainingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */; };
 		4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA225B489D100F9669C /* FlashcardsViewController.swift */; };
 		4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */; };
 		4990AFAD25B5B46500F9669C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */; };
@@ -28,21 +28,30 @@
 		4990B03125B7449A00F9669C /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03025B7449A00F9669C /* AppManager.swift */; };
 		4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03525B744CA00F9669C /* AppContainerViewController.swift */; };
 		4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4990B03A25B7636E00F9669C /* SettingsViewController.swift */; };
-		49A45F7A262EFCC100C6A37A /* TreningSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */; };
-		49A45F7F262F0F8500C6A37A /* FlascardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F7E262F0F8500C6A37A /* FlascardQuestion.swift */; };
+		49A1F600263D9FDE00125B0C /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1F5FF263D9FDE00125B0C /* Teacher.swift */; };
+		49A1F602263ED5F600125B0C /* SelectTrainigModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */; };
+		49A45F7A262EFCC100C6A37A /* TrainingSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F79262EFCC100C6A37A /* TrainingSessionViewController.swift */; };
+		49A45F7F262F0F8500C6A37A /* FlashcardQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */; };
 		49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9984425DBFFC0000F9DB4 /* AddListView.swift */; };
 		49AC05752620AC7C004CC4BE /* LessonFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AC05742620AC7C004CC4BE /* LessonFlashcardsViewController.swift */; };
 		49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431BB261B08C400FC99C1 /* DataHelper.swift */; };
-		49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */; };
-		49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */; };
-		49B431DA261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */; };
-		49B431DB261B80F100FC99C1 /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */; };
 		49D650E32622F1C2007A4B1E /* LessonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D650E22622F1C2007A4B1E /* LessonsTableViewCell.swift */; };
+		49D704EA26690D300014DE0C /* TrainingSummaryReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704E926690D300014DE0C /* TrainingSummaryReportView.swift */; };
+		49D704F1266928830014DE0C /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704ED266928830014DE0C /* Lesson+CoreDataClass.swift */; };
+		49D704F2266928830014DE0C /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704EB266928820014DE0C /* Lesson+CoreDataProperties.swift */; };
+		49D704F3266928830014DE0C /* Training+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704EC266928830014DE0C /* Training+CoreDataClass.swift */; };
+		49D704F4266928830014DE0C /* Flashcard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704EE266928830014DE0C /* Flashcard+CoreDataClass.swift */; };
+		49D704F5266928830014DE0C /* Training+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704F0266928830014DE0C /* Training+CoreDataProperties.swift */; };
+		49D704F6266928830014DE0C /* Flashcard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704EF266928830014DE0C /* Flashcard+CoreDataProperties.swift */; };
+		49D704FA2669878A0014DE0C /* CorrectWrongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D704F92669878A0014DE0C /* CorrectWrongButton.swift */; };
 		49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */; };
 		49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2425B8E30200F3C4F8 /* Alert.swift */; };
 		49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */; };
 		49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */; };
 		49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */; };
+		49E8E7B42630372A00F4DFE9 /* FlashcardAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */; };
+		49E90A1F266526290084984D /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E90A1E266526290084984D /* ClockView.swift */; };
+		49E90A21266812E00084984D /* BreakTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E90A20266812E00084984D /* BreakTimeView.swift */; };
 		575222F8360AE0519D9C9574 /* Pods_FlashcardsATheGym.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */; };
 		9EB2CD42D3C465E44B68F6AB /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */; };
 		D67EA40553958F8400957878 /* Pods_FlashcardsATheGymTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00374564AD2F3F6E563E9F1B /* Pods_FlashcardsATheGymTests.framework */; };
@@ -85,8 +94,8 @@
 		4990AF7025B471BB00F9669C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4990AF8B25B488EE00F9669C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4990AF9325B4892400F9669C /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
-		4990AF9825B4898000F9669C /* TreningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreningViewController.swift; sourceTree = "<group>"; };
-		4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTreningsTableViewCell.swift; sourceTree = "<group>"; };
+		4990AF9825B4898000F9669C /* TrainingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
+		4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousTrainingsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFA225B489D100F9669C /* FlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
 		4990AFA725B4C22000F9669C /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		4990AFAC25B5B46500F9669C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -96,21 +105,30 @@
 		4990B03025B7449A00F9669C /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		4990B03525B744CA00F9669C /* AppContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainerViewController.swift; sourceTree = "<group>"; };
 		4990B03A25B7636E00F9669C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreningSessionViewController.swift; sourceTree = "<group>"; };
-		49A45F7E262F0F8500C6A37A /* FlascardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlascardQuestion.swift; sourceTree = "<group>"; };
+		49A1F5FF263D9FDE00125B0C /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTrainigModeViewController.swift; sourceTree = "<group>"; };
+		49A45F79262EFCC100C6A37A /* TrainingSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSessionViewController.swift; sourceTree = "<group>"; };
+		49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardQuestion.swift; sourceTree = "<group>"; };
 		49A9984425DBFFC0000F9DB4 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		49AC05742620AC7C004CC4BE /* LessonFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49B431BB261B08C400FC99C1 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
-		49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		49D650E22622F1C2007A4B1E /* LessonsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsTableViewCell.swift; sourceTree = "<group>"; };
+		49D704E926690D300014DE0C /* TrainingSummaryReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSummaryReportView.swift; sourceTree = "<group>"; };
+		49D704EB266928820014DE0C /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		49D704EC266928830014DE0C /* Training+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Training+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Training+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		49D704ED266928830014DE0C /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Lesson+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Lesson+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		49D704EE266928830014DE0C /* Flashcard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataClass.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		49D704EF266928830014DE0C /* Flashcard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Flashcard+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Flashcard+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		49D704F0266928830014DE0C /* Training+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Training+CoreDataProperties.swift"; path = "/Users/cezaryprzygodzki/Desktop/PracaInzynierska/FlashcardsATheGym/FlashcardsATheGym/FlashcardsATheGym/Model/Training+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		49D704F92669878A0014DE0C /* CorrectWrongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectWrongButton.swift; sourceTree = "<group>"; };
 		49E2DE1F25B891CF00F3C4F8 /* AddFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49E2DE2425B8E30200F3C4F8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		49E2DE2925B8E5F600F3C4F8 /* AllFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFlashcardsViewController.swift; sourceTree = "<group>"; };
 		49E2DE2E25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsTableViewCell.swift; sourceTree = "<group>"; };
 		49E2DE3325BA367900F3C4F8 /* EditFlashcardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFlashcardsViewController.swift; sourceTree = "<group>"; };
+		49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardAnswer.swift; sourceTree = "<group>"; };
+		49E90A1E266526290084984D /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		49E90A20266812E00084984D /* BreakTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimeView.swift; sourceTree = "<group>"; };
 		748126A21688C78DA53A5A74 /* Pods_FlashcardsATheGym.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EE0B69B113D0494DC321C3 /* Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlashcardsATheGym-FlashcardsATheGymUITests/Pods-FlashcardsATheGym-FlashcardsATheGymUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5239597DA1B34F529C9EE4C /* Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashcardsATheGym_FlashcardsATheGymUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,10 +257,12 @@
 		4990AF8125B4883100F9669C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				49B431D6261B80F100FC99C1 /* Flashcard+CoreDataClass.swift */,
-				49B431D8261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift */,
-				49B431D7261B80F100FC99C1 /* Lesson+CoreDataClass.swift */,
-				49B431D1261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift */,
+				49D704EC266928830014DE0C /* Training+CoreDataClass.swift */,
+				49D704F0266928830014DE0C /* Training+CoreDataProperties.swift */,
+				49D704EE266928830014DE0C /* Flashcard+CoreDataClass.swift */,
+				49D704EF266928830014DE0C /* Flashcard+CoreDataProperties.swift */,
+				49D704ED266928830014DE0C /* Lesson+CoreDataClass.swift */,
+				49D704EB266928820014DE0C /* Lesson+CoreDataProperties.swift */,
 				4990AF5225B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld */,
 				49B431BB261B08C400FC99C1 /* DataHelper.swift */,
 			);
@@ -264,7 +284,6 @@
 				4990AFF225B5C96900F9669C /* Authentication */,
 				4990AF8A25B488B300F9669C /* TreningControllers */,
 				4990AF8925B488A600F9669C /* FlashcardsControllers */,
-				4990AF8825B4889C00F9669C /* ShopControllers */,
 				4990AF8725B4888F00F9669C /* SettingControllers */,
 			);
 			path = Controller;
@@ -276,13 +295,6 @@
 				4990B03A25B7636E00F9669C /* SettingsViewController.swift */,
 			);
 			path = SettingControllers;
-			sourceTree = "<group>";
-		};
-		4990AF8825B4889C00F9669C /* ShopControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ShopControllers;
 			sourceTree = "<group>";
 		};
 		4990AF8925B488A600F9669C /* FlashcardsControllers */ = {
@@ -304,10 +316,10 @@
 		4990AF8A25B488B300F9669C /* TreningControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4990AF9825B4898000F9669C /* TreningViewController.swift */,
-				4990AF9D25B489A700F9669C /* PreviousTreningsTableViewCell.swift */,
-				49A45F79262EFCC100C6A37A /* TreningSessionViewController.swift */,
-				49A45F7E262F0F8500C6A37A /* FlascardQuestion.swift */,
+				49D704F8266985550014DE0C /* TrainingSession */,
+				49D704F7266985000014DE0C /* MainTrainingViewController */,
+				49A1F5FF263D9FDE00125B0C /* Teacher.swift */,
+				49A1F601263ED5F600125B0C /* SelectTrainigModeViewController.swift */,
 			);
 			path = TreningControllers;
 			sourceTree = "<group>";
@@ -322,6 +334,29 @@
 				4990B03525B744CA00F9669C /* AppContainerViewController.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		49D704F7266985000014DE0C /* MainTrainingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4990AF9D25B489A700F9669C /* PreviousTrainingsTableViewCell.swift */,
+				49D704E926690D300014DE0C /* TrainingSummaryReportView.swift */,
+				4990AF9825B4898000F9669C /* TrainingViewController.swift */,
+			);
+			path = MainTrainingViewController;
+			sourceTree = "<group>";
+		};
+		49D704F8266985550014DE0C /* TrainingSession */ = {
+			isa = PBXGroup;
+			children = (
+				49E90A20266812E00084984D /* BreakTimeView.swift */,
+				49E90A1E266526290084984D /* ClockView.swift */,
+				49E8E7B32630372A00F4DFE9 /* FlashcardAnswer.swift */,
+				49A45F7E262F0F8500C6A37A /* FlashcardQuestion.swift */,
+				49A45F79262EFCC100C6A37A /* TrainingSessionViewController.swift */,
+				49D704F92669878A0014DE0C /* CorrectWrongButton.swift */,
+			);
+			path = TrainingSession;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -599,35 +634,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B431DB261B80F100FC99C1 /* Flashcard+CoreDataClass.swift in Sources */,
 				4990B02925B7152100F9669C /* LoginViewController.swift in Sources */,
 				4990B02425B6E23700F9669C /* SignUpViewController.swift in Sources */,
+				49D704F2266928830014DE0C /* Lesson+CoreDataProperties.swift in Sources */,
 				49E2DE2025B891CF00F3C4F8 /* AddFlashcardsViewController.swift in Sources */,
+				49A1F600263D9FDE00125B0C /* Teacher.swift in Sources */,
+				49D704F5266928830014DE0C /* Training+CoreDataProperties.swift in Sources */,
 				4990AFF425B5C99900F9669C /* SignUpLoginSkipController.swift in Sources */,
 				49E2DE2A25B8E5F600F3C4F8 /* AllFlashcardsViewController.swift in Sources */,
-				49B431D9261B80F100FC99C1 /* Lesson+CoreDataClass.swift in Sources */,
+				49D704F3266928830014DE0C /* Training+CoreDataClass.swift in Sources */,
 				49D650E32622F1C2007A4B1E /* LessonsTableViewCell.swift in Sources */,
 				49E2DE2525B8E30200F3C4F8 /* Alert.swift in Sources */,
-				49B431D2261B80EB00FC99C1 /* Lesson+CoreDataProperties.swift in Sources */,
+				49E90A1F266526290084984D /* ClockView.swift in Sources */,
 				4990AF5425B471BA00F9669C /* FlashcardsATheGym.xcdatamodeld in Sources */,
+				49D704EA26690D300014DE0C /* TrainingSummaryReportView.swift in Sources */,
+				49E8E7B42630372A00F4DFE9 /* FlashcardAnswer.swift in Sources */,
 				4990AF8C25B488EE00F9669C /* Constants.swift in Sources */,
 				49AC05752620AC7C004CC4BE /* LessonFlashcardsViewController.swift in Sources */,
-				49A45F7F262F0F8500C6A37A /* FlascardQuestion.swift in Sources */,
-				4990AF9E25B489A700F9669C /* PreviousTreningsTableViewCell.swift in Sources */,
+				49A45F7F262F0F8500C6A37A /* FlashcardQuestion.swift in Sources */,
+				49A1F602263ED5F600125B0C /* SelectTrainigModeViewController.swift in Sources */,
+				49D704F4266928830014DE0C /* Flashcard+CoreDataClass.swift in Sources */,
+				4990AF9E25B489A700F9669C /* PreviousTrainingsTableViewCell.swift in Sources */,
+				49D704F1266928830014DE0C /* Lesson+CoreDataClass.swift in Sources */,
 				4990B03625B744CA00F9669C /* AppContainerViewController.swift in Sources */,
 				4990B03125B7449A00F9669C /* AppManager.swift in Sources */,
-				49A45F7A262EFCC100C6A37A /* TreningSessionViewController.swift in Sources */,
+				49A45F7A262EFCC100C6A37A /* TrainingSessionViewController.swift in Sources */,
 				49A9984525DBFFC0000F9DB4 /* AddListView.swift in Sources */,
-				49B431DA261B80F100FC99C1 /* Flashcard+CoreDataProperties.swift in Sources */,
+				49D704FA2669878A0014DE0C /* CorrectWrongButton.swift in Sources */,
 				4990B03B25B7636E00F9669C /* SettingsViewController.swift in Sources */,
 				4990AFA325B489D100F9669C /* FlashcardsViewController.swift in Sources */,
-				4990AF9925B4898000F9669C /* TreningViewController.swift in Sources */,
+				4990AF9925B4898000F9669C /* TrainingViewController.swift in Sources */,
 				4990AFA825B4C22000F9669C /* ListsTableViewCell.swift in Sources */,
 				49E2DE3425BA367900F3C4F8 /* EditFlashcardsViewController.swift in Sources */,
 				49E2DE2F25B9EC0300F3C4F8 /* FlashcardsTableViewCell.swift in Sources */,
 				4990AF4A25B471BA00F9669C /* AppDelegate.swift in Sources */,
+				49D704F6266928830014DE0C /* Flashcard+CoreDataProperties.swift in Sources */,
 				49B431BC261B08C400FC99C1 /* DataHelper.swift in Sources */,
 				4990AF4C25B471BA00F9669C /* SceneDelegate.swift in Sources */,
+				49E90A21266812E00084984D /* BreakTimeView.swift in Sources */,
 				4990AF9425B4892400F9669C /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
